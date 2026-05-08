@@ -5,32 +5,80 @@ provider: Apollo.io
 providerId: apollo-io
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Sales Intelligence
-- Prospecting
-- Engagement
-- B2B Data
-- SaaS
-- Rate Limiting
-- Quotas
-- Throttling
-description: Placeholder rate-limit artifact for Apollo.io. Replace with real limits once the pipeline
-  researches the provider's rate-limit documentation.
-notes: Initial scaffold — limits have not yet been reconciled against the provider's documentation.
+  - Sales Intelligence
+  - B2B Data
+  - Rate Limiting
+  - Throttling
+description: >-
+  Apollo.io applies request-rate limits per minute, per hour, and per day,
+  scaled by plan tier (Basic / Professional / Organization). Search and
+  enrichment endpoints additionally consume credits from a separate
+  per-workspace monthly pool. When the request rate or credit pool is
+  exhausted Apollo returns HTTP 429.
 sources:
-- https://www.apollo.io/
+  - https://docs.apollo.io/reference/rate-limits
+notes: >-
+  Apollo's exact RPM / RPH / daily caps differ by endpoint family and plan
+  tier and may evolve over time; consult the live documentation for the
+  authoritative numbers and inspect rate-limit headers on responses.
 responseCodes:
   throttled: 429
 limits:
-- name: Default
-  scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  - name: Per Minute
+    scope: workspace
+    metric: requests
+    notes: >-
+      Per-minute request cap scaled by plan tier; tightest on Basic,
+      loosest on Organization.
+  - name: Per Hour
+    scope: workspace
+    metric: requests
+    notes: >-
+      Per-hour request cap scaled by plan tier.
+  - name: Per Day
+    scope: workspace
+    metric: requests
+    notes: >-
+      Per-day request cap scaled by plan tier.
+  - name: Search Credits
+    scope: workspace
+    metric: credits
+    notes: >-
+      Search-style endpoints (people search, organization search) draw
+      from a monthly search-credit pool refreshed each billing cycle.
+  - name: Enrichment Credits
+    scope: workspace
+    metric: credits
+    notes: >-
+      Enrichment endpoints consume a separate enrichment-credit pool;
+      mobile reveals are billed against a dedicated mobile-credit pool.
+  - name: Bulk Endpoint Discount
+    scope: request
+    metric: credits
+    notes: >-
+      Bulk enrichment endpoints (up to 10 records per call) cost less
+      per-record than the single-record endpoints.
+  - name: Webhook Delivery
+    scope: subscription
+    metric: events
+    notes: >-
+      Webhook deliveries are retried on 5xx; receivers should respond
+      2xx within the platform timeout.
 policies:
-- name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+  - name: Backoff Strategy
+    description: >-
+      Exponential backoff with jitter on 429. Inspect the
+      x-rate-limit-* headers (minute / hour / day) for current usage.
+  - name: Bulk Where Possible
+    description: >-
+      Use bulk enrichment endpoints (up to 10 records) instead of single-
+      record calls to lower per-record credit cost and round-trip count.
+  - name: Credit Telemetry
+    description: >-
+      Read the API Usage endpoint to monitor remaining credits and
+      throttle in-app workloads accordingly.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -5,22 +5,21 @@ provider: Apollo.io
 providerId: apollo-io
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Sales Intelligence
-- Prospecting
-- Engagement
-- B2B Data
-- SaaS
-- FinOps
-- Cost Management
-- FOCUS
-description: FOCUS-aligned FinOps placeholder for Apollo.io. Pipeline will replace with the provider's
-  real billing-model details once researched.
-notes: Initial scaffold — billing model has not yet been reconciled.
+  - Sales Intelligence
+  - B2B Data
+  - FinOps
+  - FOCUS
+description: >-
+  Apollo.io bills per-seat-per-month subscriptions with separate monthly
+  credit pools for searches, enrichments, mobile-number reveals, exports,
+  and dialer minutes. Heavy-usage workspaces purchase credit top-ups or
+  upgrade tier. This artifact maps Apollo charges to FOCUS columns for
+  FinOps allocation across go-to-market cost centers.
 sources:
-- https://www.apollo.io/
-- https://focus.finops.org/focus-specification/v1-3/
+  - https://www.apollo.io/pricing
+  - https://focus.finops.org/focus-specification/v1-3/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -30,13 +29,14 @@ alignedWith:
 publisherName: Apollo.io
 serviceCategory: Sales Intelligence
 billingModel:
-  pricingCategory: To Be Reconciled
+  pricingCategory: Subscription Per Seat With Usage Credits
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
-  - Usage
-  - Purchase
-  - Adjustment
+    - Purchase
+    - Usage
+    - Adjustment
+    - Tax
 focusColumns:
   ServiceName: Apollo.io
   ServiceCategory: Sales Intelligence
@@ -44,24 +44,77 @@ focusColumns:
   PublisherName: Apollo.io
   InvoiceIssuerName: Apollo.io
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
-- name: api_usage
-  description: Catch-all meter pending reconciliation against the provider's published metering.
-  unit: varies
-  aggregation: sum
-  dimensions:
-  - account
-  - resource
+  - name: apollo_seats
+    description: Active seats on Free / Basic / Professional / Organization tiers.
+    unit: seat-month
+    aggregation: sum
+    dimensions:
+      - tier
+      - team
+      - cost_center
+  - name: apollo_search_credits
+    description: Search credits consumed by people / organization search calls.
+    unit: credits
+    aggregation: sum
+    dimensions:
+      - integration
+      - user
+  - name: apollo_enrichment_credits
+    description: Enrichment credits consumed by people / org enrichment calls.
+    unit: credits
+    aggregation: sum
+    dimensions:
+      - integration
+      - user
+  - name: apollo_mobile_credits
+    description: Mobile-number-reveal credits consumed.
+    unit: credits
+    aggregation: sum
+    dimensions:
+      - user
+      - cost_center
+  - name: apollo_export_credits
+    description: Export credits consumed when exporting people / accounts.
+    unit: credits
+    aggregation: sum
+    dimensions:
+      - user
+      - cost_center
+  - name: apollo_dialer_minutes
+    description: Dialer minutes used through Apollo's calling feature.
+    unit: minutes
+    aggregation: sum
+    dimensions:
+      - user
+      - country
+  - name: apollo_email_sends
+    description: Outbound sequence emails sent.
+    unit: messages
+    aggregation: sum
+    dimensions:
+      - sequence
+      - user
 principles:
-- name: Visibility
-  description: Pull provider invoices or usage exports until a self-serve usage feed is documented.
-- name: Allocation
-  description: Tag invoice line items to consuming business units in your FinOps store.
-- name: Optimization
-  description: Levers depend on the provider's billing model; review at renewal once reconciled.
-- name: Accountability
-  description: Assign a contract owner to review billing against negotiated terms.
+  - name: Visibility
+    description: >-
+      Track Apollo's API Usage endpoint to monitor remaining search /
+      enrichment / mobile credits weekly; pull monthly invoices for seat
+      and credit-topup charges.
+  - name: Allocation
+    description: >-
+      Allocate seat costs by team; allocate credit consumption by
+      sourcing campaign or integration via tags and lists.
+  - name: Optimization
+    description: >-
+      Use bulk enrichment endpoints (up to 10 records per call) for the
+      best per-record price; cache enrichments to avoid double-paying;
+      audit unused seats monthly.
+  - name: Accountability
+    description: >-
+      Designate Sales Operations / Marketing Ops as contract owner;
+      review credit consumption monthly and right-size at renewal.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

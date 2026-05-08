@@ -5,38 +5,136 @@ provider: Apollo.io
 providerId: apollo-io
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Sales Intelligence
-- Prospecting
-- Engagement
-- B2B Data
-- SaaS
-- Plans
-description: Placeholder plans/pricing artifact for Apollo.io. Replace with real published pricing once
-  the pipeline researches the provider's plans page.
-notes: Initial scaffold — plans/pricing have not yet been reconciled against the provider's documentation.
+  - Sales Intelligence
+  - Prospecting
+  - B2B Data
+  - Plans
+description: >-
+  Apollo.io publishes four per-seat-per-month plans (Free, Basic,
+  Professional, Organization) plus add-on credits for mobile numbers,
+  exports, dialer minutes, and email sends. API access is gated to Basic
+  and higher and is metered by credits drawn from the workspace pool.
 sources:
-- https://www.apollo.io/
+  - https://www.apollo.io/pricing
+notes: >-
+  Listed prices reflect publicly published per-seat-per-month rates on
+  annual billing; monthly billing is approximately 25-35% higher. Apollo
+  adjusts pricing periodically; verify against the live pricing page.
 plans:
-- id: apollo-io-default
-  name: To Be Reconciled
-  type: enterprise
-  description: Initial scaffold; replace with provider plan tiers (Free / Pro / Enterprise / pay-as-you-go,
-    etc.) once pricing is reconciled.
-  entries:
-  - label: API Access
-    name: api_access
-    type: flat
-    metric: varies
-    limit: -1
-    timeFrame: usage
-    geo: global
-    unit: 1
-    price: see https://www.apollo.io/
-    userMultiplied: false
-  elements:
-  - name: Pending Reconciliation
+  - id: apollo-io-free
+    name: Free
+    type: free
+    description: >-
+      Free tier with limited monthly export and email credits; no API
+      access. Includes Chrome extension and basic prospecting.
+    entries:
+      - label: Free
+        name: apollo_free
+        type: flat
+        metric: account
+        timeFrame: monthly
+        unit: 1
+        price: '0'
+        currency: USD
+        userMultiplied: false
+    elements:
+      - name: Limited monthly exports and emails
+      - name: No REST API access
+  - id: apollo-io-basic
+    name: Basic
+    type: per-seat
+    description: >-
+      Entry paid plan with REST API access, increased credits, and basic
+      sequence sending.
+    entries:
+      - label: Per Seat / Month (annual)
+        name: apollo_basic_seat
+        type: flat
+        metric: seats
+        timeFrame: monthly
+        unit: 1
+        price: '59'
+        currency: USD
+        userMultiplied: true
+    elements:
+      - name: REST API access
+      - name: Email sequences and basic dialer
+  - id: apollo-io-professional
+    name: Professional
+    type: per-seat
+    description: >-
+      Adds advanced sequencing, A/B testing, dialer, and increased
+      credit allocations.
+    entries:
+      - label: Per Seat / Month (annual)
+        name: apollo_pro_seat
+        type: flat
+        metric: seats
+        timeFrame: monthly
+        unit: 1
+        price: '99'
+        currency: USD
+        userMultiplied: true
+  - id: apollo-io-organization
+    name: Organization
+    type: per-seat
+    description: >-
+      Top tier with advanced analytics, conversations recording, custom
+      workflows, and admin / SSO features. Min seat counts apply.
+    entries:
+      - label: Per Seat / Month (annual)
+        name: apollo_org_seat
+        type: flat
+        metric: seats
+        timeFrame: monthly
+        unit: 1
+        price: '149'
+        currency: USD
+        userMultiplied: true
+  - id: apollo-io-mobile-credits
+    name: Mobile Number Credits
+    type: usage
+    description: Credits consumed for mobile number reveals beyond plan allocation.
+    entries:
+      - label: Per Mobile Reveal
+        name: apollo_mobile_credit
+        type: flat
+        metric: credits
+        timeFrame: usage
+        unit: 1
+        price: as-quoted
+        currency: USD
+        userMultiplied: false
+  - id: apollo-io-export-credits
+    name: Export Credits
+    type: usage
+    description: Credits for exporting people / accounts beyond the plan allocation.
+    entries:
+      - label: Per Export
+        name: apollo_export_credit
+        type: flat
+        metric: credits
+        timeFrame: usage
+        unit: 1
+        price: as-quoted
+        currency: USD
+        userMultiplied: false
+  - id: apollo-io-dialer-minutes
+    name: Dialer Minutes
+    type: usage
+    description: Per-minute calling charges through the Apollo Dialer.
+    entries:
+      - label: Per Minute
+        name: apollo_dialer_minute
+        type: flat
+        metric: minutes
+        timeFrame: usage
+        unit: 1
+        price: as-quoted
+        currency: USD
+        userMultiplied: false
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

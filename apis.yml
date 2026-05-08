@@ -3,27 +3,319 @@ url: https://raw.githubusercontent.com/api-evangelist/apollo-io/refs/heads/main/
 name: Apollo.io
 x-type: company
 description: >-
-  Apollo.io is a sales intelligence and engagement platform combining a 270M+ contact database with email and call sequencing. The Apollo API exposes people, companies, sequences, emails, and analytics.
+  Apollo.io is a sales intelligence and engagement platform combining a
+  270M+ contact database with email and call sequencing. The Apollo REST
+  API exposes people search & enrichment, organization search &
+  enrichment, contacts, accounts, deals, sequences, email accounts, calls,
+  tasks, meetings, lists, and webhooks.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Sales Intelligence
   - Prospecting
   - Engagement
   - B2B Data
+  - Enrichment
   - SaaS
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: apollo-io:apollo-people-search-api
+    name: Apollo People Search API
+    tags:
+      - People
+      - Search
+      - Prospecting
+    properties:
+      - url: https://docs.apollo.io/
+        type: Documentation
+      - url: https://docs.apollo.io/reference/people-search
+        type: API Reference
+    description: >-
+      Search Apollo's 270M+ person database by title, location,
+      seniority, function, industry, technology stack, and other
+      filters. Returns matching people with optional enrichment fields.
+  - aid: apollo-io:apollo-organization-search-api
+    name: Apollo Organization Search API
+    tags:
+      - Organizations
+      - Companies
+      - Search
+    properties:
+      - url: https://docs.apollo.io/reference/organization-search
+        type: API Reference
+    description: >-
+      Search Apollo's organization database by industry, headcount,
+      revenue, technology stack, location, and funding stage.
+  - aid: apollo-io:apollo-people-enrichment-api
+    name: Apollo People Enrichment API
+    tags:
+      - People
+      - Enrichment
+    properties:
+      - url: https://docs.apollo.io/reference/people-enrichment
+        type: API Reference
+    description: >-
+      Enrich a known person record by email, LinkedIn URL, name + company,
+      or other identifiers; returns work email, mobile, title, social
+      profiles, and tenure.
+  - aid: apollo-io:apollo-organization-enrichment-api
+    name: Apollo Organization Enrichment API
+    tags:
+      - Organizations
+      - Enrichment
+    properties:
+      - url: https://docs.apollo.io/reference/organization-enrichment
+        type: API Reference
+    description: >-
+      Enrich a known organization by domain or LinkedIn URL; returns
+      headcount, industry, revenue, funding, technologies, and location.
+  - aid: apollo-io:apollo-bulk-people-enrichment-api
+    name: Apollo Bulk People Enrichment API
+    tags:
+      - Bulk Enrichment
+      - People
+    properties:
+      - url: https://docs.apollo.io/reference/bulk-people-enrichment
+        type: API Reference
+    description: >-
+      Enrich up to 10 person records in a single API call to reduce
+      round-trip and credit cost.
+  - aid: apollo-io:apollo-bulk-organization-enrichment-api
+    name: Apollo Bulk Organization Enrichment API
+    tags:
+      - Bulk Enrichment
+      - Organizations
+    properties:
+      - url: https://docs.apollo.io/reference/bulk-organization-enrichment
+        type: API Reference
+    description: >-
+      Enrich multiple organizations in a single API call.
+  - aid: apollo-io:apollo-contacts-api
+    name: Apollo Contacts API
+    tags:
+      - Contacts
+      - CRM
+    properties:
+      - url: https://docs.apollo.io/reference/contacts
+        type: API Reference
+    description: >-
+      Manage contacts in your Apollo CRM workspace — create, update,
+      delete, and bulk-import contacts with custom fields and tags.
+  - aid: apollo-io:apollo-accounts-api
+    name: Apollo Accounts API
+    tags:
+      - Accounts
+      - CRM
+    properties:
+      - url: https://docs.apollo.io/reference/accounts
+        type: API Reference
+    description: >-
+      Manage accounts (companies) in your Apollo CRM with stage,
+      ownership, and custom fields.
+  - aid: apollo-io:apollo-deals-api
+    name: Apollo Deals API
+    tags:
+      - Deals
+      - Opportunities
+      - Pipeline
+    properties:
+      - url: https://docs.apollo.io/reference/deals
+        type: API Reference
+    description: >-
+      Manage deals (opportunities) attached to accounts and contacts,
+      including stage, value, probability, and custom fields.
+  - aid: apollo-io:apollo-sequences-api
+    name: Apollo Sequences API
+    tags:
+      - Sequences
+      - Cadences
+      - Outreach
+    properties:
+      - url: https://docs.apollo.io/reference/sequences
+        type: API Reference
+    description: >-
+      Manage outreach sequences (cadences) and add or remove contacts as
+      sequence subscribers; trigger sends and pause/resume schedules.
+  - aid: apollo-io:apollo-email-accounts-api
+    name: Apollo Email Accounts API
+    tags:
+      - Email Accounts
+      - SMTP
+    properties:
+      - url: https://docs.apollo.io/reference/email-accounts
+        type: API Reference
+    description: >-
+      Manage connected email accounts (Gmail / Outlook / SMTP) used for
+      outbound sequence sends and inbox sync.
+  - aid: apollo-io:apollo-emails-api
+    name: Apollo Emails API
+    tags:
+      - Emails
+      - Tracking
+    properties:
+      - url: https://docs.apollo.io/reference/emails
+        type: API Reference
+    description: >-
+      Read sent / received email metadata and tracking events (open,
+      click, reply, bounce) for sequence emails.
+  - aid: apollo-io:apollo-calls-api
+    name: Apollo Calls API
+    tags:
+      - Calls
+      - Telephony
+    properties:
+      - url: https://docs.apollo.io/reference/calls
+        type: API Reference
+    description: >-
+      Log inbound and outbound calls with duration, recording URLs,
+      transcripts, and disposition outcomes.
+  - aid: apollo-io:apollo-tasks-api
+    name: Apollo Tasks API
+    tags:
+      - Tasks
+    properties:
+      - url: https://docs.apollo.io/reference/tasks
+        type: API Reference
+    description: >-
+      Manage user tasks tied to contacts and accounts.
+  - aid: apollo-io:apollo-meetings-api
+    name: Apollo Meetings API
+    tags:
+      - Meetings
+      - Scheduling
+    properties:
+      - url: https://docs.apollo.io/reference/meetings
+        type: API Reference
+    description: >-
+      Manage meetings booked via Apollo's Meetings (scheduling) feature
+      and synced from connected calendar accounts.
+  - aid: apollo-io:apollo-custom-fields-api
+    name: Apollo Custom Fields API
+    tags:
+      - Custom Fields
+      - Metadata
+    properties:
+      - url: https://docs.apollo.io/reference/custom-fields
+        type: API Reference
+    description: >-
+      Define and read custom field schemas across people, organizations,
+      contacts, accounts, and deals.
+  - aid: apollo-io:apollo-lists-api
+    name: Apollo Lists API
+    tags:
+      - Lists
+      - Segments
+    properties:
+      - url: https://docs.apollo.io/reference/lists
+        type: API Reference
+    description: >-
+      Manage saved lists (static and dynamic) for segmenting people and
+      accounts and feeding them into sequences and dialer queues.
+  - aid: apollo-io:apollo-tags-api
+    name: Apollo Tags API
+    tags:
+      - Tags
+    properties:
+      - url: https://docs.apollo.io/reference/tags
+        type: API Reference
+    description: >-
+      Read, create, and apply tags to contacts and accounts for
+      categorization and filtering.
+  - aid: apollo-io:apollo-users-api
+    name: Apollo Users API
+    tags:
+      - Users
+    properties:
+      - url: https://docs.apollo.io/reference/users
+        type: API Reference
+    description: >-
+      Manage users (sales reps, managers) and their roles within the
+      Apollo workspace.
+  - aid: apollo-io:apollo-analytics-api
+    name: Apollo Analytics API
+    tags:
+      - Analytics
+      - Reporting
+    properties:
+      - url: https://docs.apollo.io/reference/analytics
+        type: API Reference
+    description: >-
+      Pull aggregated activity, sequence performance, dialer, and
+      pipeline analytics for reporting use cases.
+  - aid: apollo-io:apollo-api-usage-api
+    name: Apollo API Usage API
+    tags:
+      - Usage
+      - Credits
+    properties:
+      - url: https://docs.apollo.io/reference/api-usage
+        type: API Reference
+    description: >-
+      Read your workspace's API usage and remaining credit balance
+      across hourly, daily, and monthly windows.
+  - aid: apollo-io:apollo-webhooks-api
+    name: Apollo Webhooks API
+    tags:
+      - Webhooks
+      - Events
+    properties:
+      - url: https://docs.apollo.io/reference/webhooks
+        type: API Reference
+    description: >-
+      Subscribe to Apollo events (contact.created, sequence.added,
+      email.opened, call.completed) for downstream automation.
 common:
   - type: Website
     url: https://www.apollo.io/
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: API Reference
+    url: https://docs.apollo.io/reference
+  - type: Pricing
+    url: https://www.apollo.io/pricing
+  - type: Login
+    url: https://app.apollo.io/
+  - type: Status
+    url: https://status.apollo.io/
+  - type: Blog
+    url: https://www.apollo.io/blog
+  - type: Support
+    url: https://knowledge.apollo.io/
+  - type: GitHub Organization
+    url: https://github.com/apolloio
+  - type: Privacy Policy
+    url: https://www.apollo.io/privacy-policy
+  - type: Terms of Service
+    url: https://www.apollo.io/terms
+  - type: Authentication
+    url: https://docs.apollo.io/reference/authentication
+  - type: Rate Limits
+    url: https://docs.apollo.io/reference/rate-limits
+  - type: Webhooks
+    url: https://docs.apollo.io/reference/webhooks
   - type: Plans
     url: plans/apollo-io-plans-pricing.yml
   - type: RateLimits
     url: rate-limits/apollo-io-rate-limits.yml
   - type: FinOps
     url: finops/apollo-io-finops.yml
+  - type: Features
+    data:
+      - REST API at https://api.apollo.io/api/v1/
+      - API key authentication via X-Api-Key header
+      - 270M+ person database, 60M+ companies
+      - Free, Basic, Professional, Organization plans
+      - Per-user-per-month seat pricing plus monthly credit allocations
+      - Search, Enrichment, and Mobile credits each tracked separately
+      - Bulk endpoints for batched enrichment to save credits
+      - Per-minute and per-hour API rate limits scaled by plan tier
+      - Webhooks for sequence and engagement events
+      - REST API access requires Basic or higher
+    sources:
+      - https://www.apollo.io/pricing
+      - https://docs.apollo.io/
+    updated: '2026-05-08'
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
