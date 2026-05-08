@@ -31,6 +31,8 @@ apis:
         type: Documentation
       - url: https://docs.apollo.io/reference/people-search
         type: API Reference
+      - url: openapi/apollo-io-openapi.yml
+        type: OpenAPI
     description: >-
       Search Apollo's 270M+ person database by title, location,
       seniority, function, industry, technology stack, and other
