@@ -1,0 +1,29 @@
+aid: apollo-io
+url: https://raw.githubusercontent.com/api-evangelist/apollo-io/refs/heads/main/apis.yml
+name: Apollo.io
+x-type: company
+description: >-
+  Apollo.io is a sales intelligence and engagement platform combining a 270M+ contact database with email and call sequencing. The Apollo API exposes people, companies, sequences, emails, and analytics.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Sales Intelligence
+  - Prospecting
+  - Engagement
+  - B2B Data
+  - SaaS
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://www.apollo.io/
+  - type: Plans
+    url: plans/apollo-io-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/apollo-io-rate-limits.yml
+  - type: FinOps
+    url: finops/apollo-io-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
