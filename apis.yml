@@ -318,6 +318,13 @@ common:
       - https://www.apollo.io/pricing
       - https://docs.apollo.io/
     updated: '2026-05-08'
+  - type: Integrations
+    url: https://www.apollo.io/partners
+integrations:
+  - name: Affiliate Partners Affiliate Partners
+  - name: Solutions Partners Solutions Partners
+  - name: Technology Partners Technology Partners
+  - name: Data Reseller Partners Data Reseller Partners
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
