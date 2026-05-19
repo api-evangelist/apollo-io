@@ -17,7 +17,7 @@ tags:
   - Enrichment
   - SaaS
 created: '2026-05-08'
-modified: '2026-05-08'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: apollo-io:apollo-people-search-api
@@ -320,6 +320,9 @@ common:
     updated: '2026-05-08'
   - type: Integrations
     url: https://www.apollo.io/partners
+  - name: MCP Server
+    url: https://github.com/apolloio/apollo-mcp-plugin
+    type: MCPServer
 integrations:
   - name: Affiliate Partners Affiliate Partners
   - name: Solutions Partners Solutions Partners
