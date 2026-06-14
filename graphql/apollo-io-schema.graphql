@@ -1,0 +1,929 @@
+# Apollo.io Conceptual GraphQL Schema
+# Derived from the Apollo REST API (https://docs.apollo.io/reference)
+# Apollo.io does not natively expose a GraphQL API; this schema models
+# the platform's data model for governance, tooling, and code-generation use.
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar JSON
+scalar URL
+scalar EmailAddress
+
+# ---------------------------------------------------------------------------
+# Enums
+# ---------------------------------------------------------------------------
+
+enum ContactStatus {
+  NEW
+  OPEN
+  IN_PROGRESS
+  OPEN_DEAL
+  UNQUALIFIED
+  ATTEMPTED_TO_CONTACT
+  CONNECTED
+  BAD_TIMING
+}
+
+enum PersonSeniority {
+  C_SUITE
+  FOUNDER
+  VP
+  DIRECTOR
+  MANAGER
+  SENIOR
+  ENTRY
+  INTERN
+  INDIVIDUAL_CONTRIBUTOR
+}
+
+enum TaskType {
+  CALL
+  EMAIL
+  ACTION
+  LINKEDIN_MESSAGE
+  LINKEDIN_CONNECT
+  LINKEDIN_VIEW
+}
+
+enum TaskOutcome {
+  NO_ANSWER
+  BUSY
+  LEFT_VOICEMAIL
+  WRONG_NUMBER
+  CONNECTED
+  NOT_INTERESTED
+  INTERESTED
+  REQUESTED_INFO
+  SCHEDULED_MEETING
+}
+
+enum ActivityType {
+  EMAIL_SENT
+  EMAIL_OPENED
+  EMAIL_CLICKED
+  EMAIL_REPLIED
+  EMAIL_BOUNCED
+  CALL_LOGGED
+  MEETING_BOOKED
+  TASK_COMPLETED
+  NOTE_ADDED
+  CONTACT_CREATED
+  CONTACT_UPDATED
+  DEAL_CREATED
+  DEAL_UPDATED
+  SEQUENCE_ENROLLED
+  SEQUENCE_REMOVED
+}
+
+enum DealStage {
+  PROSPECTING
+  QUALIFICATION
+  PROPOSAL
+  NEGOTIATION
+  CLOSED_WON
+  CLOSED_LOST
+}
+
+enum OrgFundingStage {
+  SEED
+  SERIES_A
+  SERIES_B
+  SERIES_C
+  SERIES_D_PLUS
+  IPO
+  ACQUIRED
+  PUBLIC
+  PRIVATE
+}
+
+enum SequenceStepType {
+  EMAIL
+  CALL
+  TASK
+  FOLLOW_UP
+  LINKEDIN_MESSAGE
+  LINKEDIN_CONNECT
+  LINKEDIN_VIEW
+}
+
+enum PhoneType {
+  WORK
+  MOBILE
+  DIRECT
+  OTHER
+}
+
+enum EmailType {
+  WORK
+  PERSONAL
+  GENERIC
+}
+
+enum WebhookEventType {
+  CONTACT_CREATED
+  CONTACT_UPDATED
+  SEQUENCE_CONTACT_ADDED
+  SEQUENCE_CONTACT_REMOVED
+  EMAIL_SENT
+  EMAIL_OPENED
+  EMAIL_CLICKED
+  EMAIL_REPLIED
+  EMAIL_BOUNCED
+  CALL_COMPLETED
+  MEETING_BOOKED
+  DEAL_CREATED
+  DEAL_STAGE_CHANGED
+}
+
+# ---------------------------------------------------------------------------
+# People Domain
+# ---------------------------------------------------------------------------
+
+type PersonEmail {
+  email: EmailAddress!
+  emailType: EmailType
+  confidence: Float
+  isPrimary: Boolean
+  verifiedAt: DateTime
+}
+
+type PersonPhone {
+  phone: String!
+  phoneType: PhoneType
+  isPrimary: Boolean
+  sanitized: String
+}
+
+type PersonTitle {
+  raw: String
+  normalized: String
+}
+
+type PersonDepartment {
+  raw: String
+  normalized: String
+}
+
+type PersonCompany {
+  name: String
+  apolloOrgId: ID
+  domain: String
+  linkedInUrl: URL
+}
+
+type PersonLinkedIn {
+  url: URL
+  uid: String
+}
+
+type PersonTwitter {
+  handle: String
+  url: URL
+}
+
+type PersonLocation {
+  city: String
+  state: String
+  country: String
+  countryCode: String
+  postalCode: String
+  rawAddress: String
+}
+
+type PersonTechnology {
+  name: String!
+  category: String
+  vendor: String
+}
+
+type ContactDetails {
+  emails: [PersonEmail!]
+  phones: [PersonPhone!]
+  title: PersonTitle
+  seniority: PersonSeniority
+  department: PersonDepartment
+  company: PersonCompany
+  linkedIn: PersonLinkedIn
+  twitter: PersonTwitter
+  location: PersonLocation
+  technologies: [PersonTechnology!]
+  headline: String
+  photoUrl: URL
+  websiteUrl: URL
+  github: String
+  facebookUrl: URL
+  intlPhone: String
+}
+
+type Contact {
+  id: ID!
+  firstName: String
+  lastName: String
+  fullName: String
+  email: EmailAddress
+  phone: String
+  title: String
+  seniority: PersonSeniority
+  department: PersonDepartment
+  status: ContactStatus
+  account: Account
+  owner: User
+  details: ContactDetails
+  labels: [Label!]
+  tags: [Tag!]
+  sequences: [SequenceContact!]
+  activities: [Activity!]
+  notes: [Note!]
+  deals: [Deal!]
+  meetings: [Meeting!]
+  calls: [Call!]
+  tasks: [Task!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Organization Domain
+# ---------------------------------------------------------------------------
+
+type OrgDomain {
+  primary: String
+  aliases: [String!]
+}
+
+type OrgSize {
+  min: Int
+  max: Int
+  exact: Int
+  label: String
+}
+
+type OrgRevenue {
+  min: Int
+  max: Int
+  currency: String
+  label: String
+}
+
+type OrgFunding {
+  totalFunding: Float
+  lastRoundAmount: Float
+  lastRoundDate: DateTime
+  stage: OrgFundingStage
+  currency: String
+  investors: [String!]
+}
+
+type OrgFoundedYear {
+  year: Int
+}
+
+type OrgIndustry {
+  primary: String
+  secondary: String
+  naicsCode: String
+  sicCode: String
+}
+
+type OrgTechnology {
+  name: String!
+  category: String
+  vendor: String
+  firstDetectedAt: DateTime
+  lastDetectedAt: DateTime
+}
+
+type OrgPhoneNumber {
+  number: String!
+  type: PhoneType
+  sanitized: String
+}
+
+type OrgLocation {
+  streetAddress: String
+  city: String
+  state: String
+  country: String
+  countryCode: String
+  postalCode: String
+  rawAddress: String
+  lat: Float
+  lng: Float
+}
+
+type OrgSocialMedia {
+  linkedInUrl: URL
+  twitterUrl: URL
+  facebookUrl: URL
+  crunchbaseUrl: URL
+  angelListUrl: URL
+}
+
+type OrganizationDetails {
+  domain: OrgDomain
+  size: OrgSize
+  revenue: OrgRevenue
+  funding: OrgFunding
+  foundedYear: OrgFoundedYear
+  industry: OrgIndustry
+  technologies: [OrgTechnology!]
+  phones: [OrgPhoneNumber!]
+  location: OrgLocation
+  socialMedia: OrgSocialMedia
+  alexa_ranking: Int
+  seo_description: String
+  short_description: String
+  logo_url: URL
+  blog_url: URL
+  primary_phone: OrgPhoneNumber
+  departments: [String!]
+  keywords: [String!]
+}
+
+type Organization {
+  id: ID!
+  name: String!
+  website: URL
+  details: OrganizationDetails
+  contacts: [Contact!]
+  accounts: [Account!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Sequences Domain
+# ---------------------------------------------------------------------------
+
+type EmailStep {
+  stepId: ID!
+  dayOffset: Int!
+  subject: Subject
+  body: Body
+  fromEmail: EmailAddress
+  replyToEmail: EmailAddress
+  trackOpens: Boolean
+  trackClicks: Boolean
+}
+
+type CallStep {
+  stepId: ID!
+  dayOffset: Int!
+  scriptNote: String
+  priority: String
+}
+
+type TaskStep {
+  stepId: ID!
+  dayOffset: Int!
+  taskNote: String
+  priority: String
+}
+
+type FollowUpStep {
+  stepId: ID!
+  dayOffset: Int!
+  condition: String
+  targetStepId: ID
+}
+
+type SequenceStep {
+  id: ID!
+  position: Int!
+  type: SequenceStepType!
+  emailStep: EmailStep
+  callStep: CallStep
+  taskStep: TaskStep
+  followUpStep: FollowUpStep
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Sequence {
+  id: ID!
+  name: String!
+  active: Boolean
+  archived: Boolean
+  owner: User
+  steps: [SequenceStep!]
+  subscribers: [SequenceContact!]
+  labels: [Label!]
+  emailAccount: EmailAccount
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SequenceContact {
+  id: ID!
+  contact: Contact!
+  sequence: Sequence!
+  currentStep: SequenceStep
+  enrolledAt: DateTime
+  finishedAt: DateTime
+  bouncedAt: DateTime
+  unsubscribedAt: DateTime
+  status: String
+}
+
+# ---------------------------------------------------------------------------
+# Engagement Domain
+# ---------------------------------------------------------------------------
+
+type Subject {
+  raw: String!
+  hasTemplateVars: Boolean
+  templateVarNames: [String!]
+}
+
+type Body {
+  text: String
+  html: String
+  hasTemplateVars: Boolean
+  templateVarNames: [String!]
+}
+
+type EmailMessage {
+  id: ID!
+  contact: Contact
+  account: Account
+  sequence: Sequence
+  sequenceStep: SequenceStep
+  subject: Subject
+  body: Body
+  fromEmail: EmailAddress
+  toEmail: EmailAddress
+  sentAt: DateTime
+  openedAt: DateTime
+  clickedAt: DateTime
+  repliedAt: DateTime
+  bouncedAt: DateTime
+  unsubscribedAt: DateTime
+  trackingEnabled: Boolean
+  emailAccount: EmailAccount
+}
+
+type EmailThread {
+  id: ID!
+  contact: Contact
+  subject: String
+  messages: [EmailMessage!]
+  lastMessageAt: DateTime
+  messageCount: Int
+}
+
+type EmailReply {
+  id: ID!
+  originalMessage: EmailMessage!
+  replyBody: Body
+  receivedAt: DateTime!
+  fromEmail: EmailAddress
+}
+
+type CallRecord {
+  id: ID!
+  recordingUrl: URL
+  duration: Int
+  transcriptUrl: URL
+  transcriptText: String
+}
+
+type Call {
+  id: ID!
+  contact: Contact
+  account: Account
+  direction: String
+  duration: Int
+  outcome: TaskOutcome
+  notes: String
+  record: CallRecord
+  user: User
+  calledAt: DateTime!
+  createdAt: DateTime!
+}
+
+type Task {
+  id: ID!
+  type: TaskType!
+  contact: Contact
+  account: Account
+  owner: User
+  dueAt: DateTime
+  completedAt: DateTime
+  outcome: TaskOutcome
+  note: String
+  priority: String
+  sequenceStep: SequenceStep
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Meeting {
+  id: ID!
+  contact: Contact
+  account: Account
+  organizer: User
+  title: String
+  startAt: DateTime
+  endAt: DateTime
+  duration: Int
+  location: String
+  externalCalendarId: String
+  videoConferenceUrl: URL
+  notes: String
+  outcome: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Note {
+  id: ID!
+  contact: Contact
+  account: Account
+  deal: Deal
+  author: User
+  body: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Activity {
+  id: ID!
+  type: ActivityType!
+  contact: Contact
+  account: Account
+  deal: Deal
+  user: User
+  metadata: JSON
+  occurredAt: DateTime!
+  createdAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# CRM Domain
+# ---------------------------------------------------------------------------
+
+type AccountOwner {
+  user: User!
+  assignedAt: DateTime
+}
+
+type Account {
+  id: ID!
+  name: String!
+  domain: String
+  website: URL
+  phone: String
+  industry: String
+  size: String
+  owner: AccountOwner
+  organization: Organization
+  contacts: [Contact!]
+  deals: [Deal!]
+  activities: [Activity!]
+  notes: [Note!]
+  tags: [Tag!]
+  labels: [Label!]
+  customFields: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DealValue {
+  amount: Float
+  currency: String
+}
+
+type DealStageDetail {
+  stage: DealStage!
+  label: String
+  probability: Float
+}
+
+type PipelineStage {
+  id: ID!
+  name: String!
+  position: Int!
+  probability: Float
+  pipeline: Pipeline!
+}
+
+type Pipeline {
+  id: ID!
+  name: String!
+  stages: [PipelineStage!]
+  deals: [Deal!]
+  owner: User
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Deal {
+  id: ID!
+  name: String!
+  account: Account
+  contact: Contact
+  owner: User
+  value: DealValue
+  stage: DealStageDetail
+  pipeline: Pipeline
+  closeDate: DateTime
+  probability: Float
+  notes: [Note!]
+  activities: [Activity!]
+  customFields: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Taxonomy Domain
+# ---------------------------------------------------------------------------
+
+type Label {
+  id: ID!
+  name: String!
+  color: String
+  createdAt: DateTime!
+}
+
+type Tag {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Workspace & Auth Domain
+# ---------------------------------------------------------------------------
+
+type User {
+  id: ID!
+  firstName: String
+  lastName: String
+  email: EmailAddress!
+  title: String
+  role: String
+  teamId: ID
+  active: Boolean
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type EmailAccount {
+  id: ID!
+  email: EmailAddress!
+  provider: String
+  user: User
+  active: Boolean
+  dailySendLimit: Int
+  sentToday: Int
+  createdAt: DateTime!
+}
+
+type APIKey {
+  id: ID!
+  key: String!
+  name: String
+  scopes: [String!]
+  active: Boolean
+  lastUsedAt: DateTime
+  createdAt: DateTime!
+}
+
+type Token {
+  accessToken: String!
+  tokenType: String
+  expiresAt: DateTime
+  scopes: [String!]
+}
+
+# ---------------------------------------------------------------------------
+# Search & Filter Domain
+# ---------------------------------------------------------------------------
+
+input FilterInput {
+  field: String!
+  operator: String!
+  value: JSON!
+}
+
+input SearchParamsInput {
+  query: String
+  filters: [FilterInput!]
+  page: Int
+  perPage: Int
+  sortField: String
+  sortDirection: String
+}
+
+type Filter {
+  field: String!
+  operator: String!
+  value: JSON!
+}
+
+type SearchParams {
+  query: String
+  filters: [Filter!]
+  page: Int
+  perPage: Int
+  sortField: String
+  sortDirection: String
+}
+
+type SearchResult {
+  totalCount: Int!
+  page: Int!
+  perPage: Int!
+  totalPages: Int!
+}
+
+type ContactSearch {
+  results: [Contact!]!
+  pagination: SearchResult!
+  breadcrumbs: [Filter!]
+}
+
+type OrgSearch {
+  results: [Organization!]!
+  pagination: SearchResult!
+  breadcrumbs: [Filter!]
+}
+
+# ---------------------------------------------------------------------------
+# Enrichment Domain
+# ---------------------------------------------------------------------------
+
+input PersonInput {
+  firstName: String
+  lastName: String
+  email: EmailAddress
+  linkedInUrl: URL
+  organizationName: String
+  domain: String
+}
+
+input OrgInput {
+  name: String
+  domain: String
+  linkedInUrl: URL
+}
+
+type BulkEnrichRecord {
+  input: JSON!
+  contact: Contact
+  organization: Organization
+  status: String!
+  creditsUsed: Int
+}
+
+type BulkEnrich {
+  id: ID!
+  status: String!
+  records: [BulkEnrichRecord!]!
+  totalCreditsUsed: Int
+  createdAt: DateTime!
+  completedAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Webhooks Domain
+# ---------------------------------------------------------------------------
+
+type WebhookEvent {
+  id: ID!
+  type: WebhookEventType!
+  payload: JSON!
+  deliveredAt: DateTime!
+  retries: Int
+  contact: Contact
+  account: Account
+  deal: Deal
+  sequence: Sequence
+  emailMessage: EmailMessage
+  call: Call
+  meeting: Meeting
+}
+
+# ---------------------------------------------------------------------------
+# Input Types (for mutations)
+# ---------------------------------------------------------------------------
+
+input ContactInput {
+  firstName: String
+  lastName: String
+  email: EmailAddress
+  phone: String
+  title: String
+  accountId: ID
+  ownerId: ID
+  status: ContactStatus
+  customFields: JSON
+  labelIds: [ID!]
+  tagIds: [ID!]
+}
+
+input AccountInput {
+  name: String!
+  domain: String
+  website: URL
+  phone: String
+  industry: String
+  ownerId: ID
+  customFields: JSON
+}
+
+input DealInput {
+  name: String!
+  accountId: ID
+  contactId: ID
+  ownerId: ID
+  amount: Float
+  currency: String
+  stage: DealStage
+  pipelineId: ID
+  closeDate: DateTime
+  probability: Float
+  customFields: JSON
+}
+
+input TaskInput {
+  type: TaskType!
+  contactId: ID
+  accountId: ID
+  ownerId: ID
+  dueAt: DateTime
+  note: String
+  priority: String
+}
+
+input NoteInput {
+  body: String!
+  contactId: ID
+  accountId: ID
+  dealId: ID
+}
+
+# ---------------------------------------------------------------------------
+# Root Types
+# ---------------------------------------------------------------------------
+
+type Query {
+  searchContacts(params: SearchParamsInput!): ContactSearch
+  searchOrganizations(params: SearchParamsInput!): OrgSearch
+  getContact(id: ID!): Contact
+  getAccount(id: ID!): Account
+  getDeal(id: ID!): Deal
+  getPipeline(id: ID!): Pipeline
+  getSequence(id: ID!): Sequence
+  getOrganization(id: ID!): Organization
+  getUser(id: ID!): User
+  listContacts(page: Int, perPage: Int): ContactSearch
+  listAccounts(page: Int, perPage: Int): [Account!]
+  listDeals(page: Int, perPage: Int): [Deal!]
+  listSequences(page: Int, perPage: Int): [Sequence!]
+  listTasks(userId: ID, contactId: ID, accountId: ID): [Task!]
+  listCalls(contactId: ID, accountId: ID): [Call!]
+  listMeetings(contactId: ID, accountId: ID): [Meeting!]
+  listNotes(contactId: ID, accountId: ID, dealId: ID): [Note!]
+  listActivities(contactId: ID, accountId: ID): [Activity!]
+  listLabels: [Label!]
+  listTags: [Tag!]
+  listUsers: [User!]
+  listEmailAccounts: [EmailAccount!]
+  listPipelines: [Pipeline!]
+  getWebhookEvent(id: ID!): WebhookEvent
+  listWebhookEvents(type: WebhookEventType, page: Int, perPage: Int): [WebhookEvent!]
+}
+
+type Mutation {
+  createContact(input: ContactInput!): Contact
+  updateContact(id: ID!, input: ContactInput!): Contact
+  deleteContact(id: ID!): Boolean
+
+  createAccount(input: AccountInput!): Account
+  updateAccount(id: ID!, input: AccountInput!): Account
+  deleteAccount(id: ID!): Boolean
+
+  createDeal(input: DealInput!): Deal
+  updateDeal(id: ID!, input: DealInput!): Deal
+  deleteDeal(id: ID!): Boolean
+
+  enrollContact(sequenceId: ID!, contactId: ID!): SequenceContact
+  removeFromSequence(sequenceId: ID!, contactId: ID!): Boolean
+
+  createTask(input: TaskInput!): Task
+  updateTask(id: ID!, input: TaskInput!): Task
+  completeTask(id: ID!, outcome: TaskOutcome!): Task
+  deleteTask(id: ID!): Boolean
+
+  createNote(input: NoteInput!): Note
+  updateNote(id: ID!, body: String!): Note
+  deleteNote(id: ID!): Boolean
+
+  bulkEnrichPeople(inputs: [PersonInput!]!): BulkEnrich
+  bulkEnrichOrganizations(inputs: [OrgInput!]!): BulkEnrich
+}
