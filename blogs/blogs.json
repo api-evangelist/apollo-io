@@ -2,6 +2,10 @@
   "repo": "apollo-io",
   "feeds": [
     {
+      "source": "https://www.apollo.io/blog",
+      "error": "HTTPError"
+    },
+    {
       "source": "https://status.apollo.io/",
       "feed_url": "https://status.apollo.io/feed",
       "title": "",
@@ -9,6 +13,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-06-01T23:35:02Z",
+  "fetched": "2026-06-14T20:42:17Z",
   "post_count": 0
 }
