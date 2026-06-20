@@ -6,7 +6,7 @@ description: Apollo.io is a sales intelligence and engagement platform combining
   270M+ contact database with email and call sequencing. The Apollo REST API exposes
   people search & enrichment, organization search & enrichment, contacts, accounts,
   deals, sequences, email accounts, calls, tasks, meetings, lists, and webhooks.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Sales Intelligence
 - Prospecting
