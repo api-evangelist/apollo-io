@@ -303,7 +303,7 @@ common:
 - name: MCP Server
   url: https://github.com/apolloio/apollo-mcp-plugin
   type: MCPServer
-- type: LLMsTxt
+- type: LlmsText
   url: https://docs.apollo.io/llms.txt
 integrations:
 - name: Affiliate Partners Affiliate Partners
