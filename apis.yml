@@ -246,6 +246,10 @@ apis:
   description: Subscribe to Apollo events (contact.created, sequence.added, email.opened,
     call.completed) for downstream automation.
 common:
+- type: TrustCenter
+  url: security/apollo-io-trust-center.yml
+- type: DomainSecurity
+  url: security/apollo-io-domain-security.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/apolloio
 - type: Website
