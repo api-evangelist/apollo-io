@@ -9,6 +9,13 @@
       "method": "none"
     },
     {
+      "source": "https://status.apollo.io/feed",
+      "feed_url": "https://status.apollo.io/feed",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://status.apollo.io/",
       "feed_url": "https://status.apollo.io/feed",
       "title": "",
@@ -16,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-06-27T12:03:07Z",
-  "post_count": 10
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 28
 }
