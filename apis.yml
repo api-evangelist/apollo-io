@@ -246,6 +246,8 @@ apis:
   description: Subscribe to Apollo events (contact.created, sequence.added, email.opened,
     call.completed) for downstream automation.
 common:
+- type: AgenticAccess
+  url: agentic-access/apollo-io-agentic-access.yml
 - type: TrustCenter
   url: security/apollo-io-trust-center.yml
 - type: DomainSecurity
