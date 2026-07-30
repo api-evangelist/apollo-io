@@ -6,7 +6,19 @@ description: Apollo.io is a sales intelligence and engagement platform combining
   270M+ contact database with email and call sequencing. The Apollo REST API exposes
   people search & enrichment, organization search & enrichment, contacts, accounts,
   deals, sequences, email accounts, calls, tasks, meetings, lists, and webhooks.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apollo-io.png
 tags:
 - Sales Intelligence
 - Prospecting
@@ -18,24 +30,6 @@ created: '2026-05-08'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: apollo-io:apollo-people-search-api
-  name: Apollo People Search API
-  tags:
-  - People
-  - Search
-  - Prospecting
-  properties:
-  - url: https://docs.apollo.io/
-    type: Documentation
-  - url: https://docs.apollo.io/reference/people-search
-    type: APIReference
-  - url: openapi/apollo-io-openapi.yml
-    type: OpenAPI
-  - url: graphql/apollo-io-graphql.md
-    type: GraphQL
-  description: Search Apollo's 270M+ person database by title, location, seniority,
-    function, industry, technology stack, and other filters. Returns matching people
-    with optional enrichment fields.
 - aid: apollo-io:apollo-organization-search-api
   name: Apollo Organization Search API
   tags:
@@ -45,8 +39,9 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/organization-search
     type: APIReference
-  description: Search Apollo's organization database by industry, headcount, revenue,
-    technology stack, location, and funding stage.
+  description: >-
+    Search Apollo's organization database by industry, headcount, revenue, technology stack, location,
+    and funding stage.
 - aid: apollo-io:apollo-people-enrichment-api
   name: Apollo People Enrichment API
   tags:
@@ -55,9 +50,9 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/people-enrichment
     type: APIReference
-  description: Enrich a known person record by email, LinkedIn URL, name + company,
-    or other identifiers; returns work email, mobile, title, social profiles, and
-    tenure.
+  description: >-
+    Enrich a known person record by email, LinkedIn URL, name + company, or other identifiers; returns
+    work email, mobile, title, social profiles, and tenure.
 - aid: apollo-io:apollo-organization-enrichment-api
   name: Apollo Organization Enrichment API
   tags:
@@ -66,8 +61,9 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/organization-enrichment
     type: APIReference
-  description: Enrich a known organization by domain or LinkedIn URL; returns headcount,
-    industry, revenue, funding, technologies, and location.
+  description: >-
+    Enrich a known organization by domain or LinkedIn URL; returns headcount, industry, revenue, funding,
+    technologies, and location.
 - aid: apollo-io:apollo-bulk-people-enrichment-api
   name: Apollo Bulk People Enrichment API
   tags:
@@ -76,8 +72,8 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/bulk-people-enrichment
     type: APIReference
-  description: Enrich up to 10 person records in a single API call to reduce round-trip
-    and credit cost.
+  description: >-
+    Enrich up to 10 person records in a single API call to reduce round-trip and credit cost.
 - aid: apollo-io:apollo-bulk-organization-enrichment-api
   name: Apollo Bulk Organization Enrichment API
   tags:
@@ -95,8 +91,9 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/contacts
     type: APIReference
-  description: Manage contacts in your Apollo CRM workspace — create, update, delete,
-    and bulk-import contacts with custom fields and tags.
+  description: >-
+    Manage contacts in your Apollo CRM workspace — create, update, delete, and bulk-import contacts with
+    custom fields and tags.
 - aid: apollo-io:apollo-accounts-api
   name: Apollo Accounts API
   tags:
@@ -105,8 +102,7 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/accounts
     type: APIReference
-  description: Manage accounts (companies) in your Apollo CRM with stage, ownership,
-    and custom fields.
+  description: Manage accounts (companies) in your Apollo CRM with stage, ownership, and custom fields.
 - aid: apollo-io:apollo-deals-api
   name: Apollo Deals API
   tags:
@@ -116,8 +112,9 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/deals
     type: APIReference
-  description: Manage deals (opportunities) attached to accounts and contacts, including
-    stage, value, probability, and custom fields.
+  description: >-
+    Manage deals (opportunities) attached to accounts and contacts, including stage, value, probability,
+    and custom fields.
 - aid: apollo-io:apollo-sequences-api
   name: Apollo Sequences API
   tags:
@@ -127,8 +124,9 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/sequences
     type: APIReference
-  description: Manage outreach sequences (cadences) and add or remove contacts as
-    sequence subscribers; trigger sends and pause/resume schedules.
+  description: >-
+    Manage outreach sequences (cadences) and add or remove contacts as sequence subscribers; trigger sends
+    and pause/resume schedules.
 - aid: apollo-io:apollo-email-accounts-api
   name: Apollo Email Accounts API
   tags:
@@ -137,8 +135,9 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/email-accounts
     type: APIReference
-  description: Manage connected email accounts (Gmail / Outlook / SMTP) used for outbound
-    sequence sends and inbox sync.
+  description: >-
+    Manage connected email accounts (Gmail / Outlook / SMTP) used for outbound sequence sends and inbox
+    sync.
 - aid: apollo-io:apollo-emails-api
   name: Apollo Emails API
   tags:
@@ -147,8 +146,9 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/emails
     type: APIReference
-  description: Read sent / received email metadata and tracking events (open, click,
-    reply, bounce) for sequence emails.
+  description: >-
+    Read sent / received email metadata and tracking events (open, click, reply, bounce) for sequence
+    emails.
 - aid: apollo-io:apollo-calls-api
   name: Apollo Calls API
   tags:
@@ -157,8 +157,8 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/calls
     type: APIReference
-  description: Log inbound and outbound calls with duration, recording URLs, transcripts,
-    and disposition outcomes.
+  description: >-
+    Log inbound and outbound calls with duration, recording URLs, transcripts, and disposition outcomes.
 - aid: apollo-io:apollo-tasks-api
   name: Apollo Tasks API
   tags:
@@ -175,8 +175,9 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/meetings
     type: APIReference
-  description: Manage meetings booked via Apollo's Meetings (scheduling) feature and
-    synced from connected calendar accounts.
+  description: >-
+    Manage meetings booked via Apollo's Meetings (scheduling) feature and synced from connected calendar
+    accounts.
 - aid: apollo-io:apollo-custom-fields-api
   name: Apollo Custom Fields API
   tags:
@@ -185,8 +186,8 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/custom-fields
     type: APIReference
-  description: Define and read custom field schemas across people, organizations,
-    contacts, accounts, and deals.
+  description: >-
+    Define and read custom field schemas across people, organizations, contacts, accounts, and deals.
 - aid: apollo-io:apollo-lists-api
   name: Apollo Lists API
   tags:
@@ -195,8 +196,9 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/lists
     type: APIReference
-  description: Manage saved lists (static and dynamic) for segmenting people and accounts
-    and feeding them into sequences and dialer queues.
+  description: >-
+    Manage saved lists (static and dynamic) for segmenting people and accounts and feeding them into sequences
+    and dialer queues.
 - aid: apollo-io:apollo-tags-api
   name: Apollo Tags API
   tags:
@@ -204,8 +206,7 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/tags
     type: APIReference
-  description: Read, create, and apply tags to contacts and accounts for categorization
-    and filtering.
+  description: Read, create, and apply tags to contacts and accounts for categorization and filtering.
 - aid: apollo-io:apollo-users-api
   name: Apollo Users API
   tags:
@@ -213,8 +214,7 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/users
     type: APIReference
-  description: Manage users (sales reps, managers) and their roles within the Apollo
-    workspace.
+  description: Manage users (sales reps, managers) and their roles within the Apollo workspace.
 - aid: apollo-io:apollo-analytics-api
   name: Apollo Analytics API
   tags:
@@ -223,8 +223,8 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/analytics
     type: APIReference
-  description: Pull aggregated activity, sequence performance, dialer, and pipeline
-    analytics for reporting use cases.
+  description: >-
+    Pull aggregated activity, sequence performance, dialer, and pipeline analytics for reporting use cases.
 - aid: apollo-io:apollo-api-usage-api
   name: Apollo API Usage API
   tags:
@@ -233,8 +233,8 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/api-usage
     type: APIReference
-  description: Read your workspace's API usage and remaining credit balance across
-    hourly, daily, and monthly windows.
+  description: >-
+    Read your workspace's API usage and remaining credit balance across hourly, daily, and monthly windows.
 - aid: apollo-io:apollo-webhooks-api
   name: Apollo Webhooks API
   tags:
@@ -243,8 +243,205 @@ apis:
   properties:
   - url: https://docs.apollo.io/reference/webhooks
     type: APIReference
-  description: Subscribe to Apollo events (contact.created, sequence.added, email.opened,
-    call.completed) for downstream automation.
+  description: >-
+    Subscribe to Apollo events (contact.created, sequence.added, email.opened, call.completed) for downstream
+    automation.
+- aid: apollo-io:apollo-io-accounts-api
+  name: Apollo.io Accounts API
+  description: The Accounts API from Apollo.io — 3 operation(s) for accounts.
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-contacts-api
+  name: Apollo.io Contacts API
+  description: The Contacts API from Apollo.io — 3 operation(s) for contacts.
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-email-accounts-api
+  name: Apollo.io Email Accounts API
+  description: The Email Accounts API from Apollo.io — 1 operation(s) for email accounts.
+  tags:
+  - Email Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-email-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-emailer-campaigns-api
+  name: Apollo.io Emailer Campaigns API
+  description: The Emailer Campaigns API from Apollo.io — 3 operation(s) for emailer campaigns.
+  tags:
+  - Emailer Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-emailer-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-mixed-companies-api
+  name: Apollo.io Mixed Companies API
+  description: The Mixed Companies API from Apollo.io — 1 operation(s) for mixed companies.
+  tags:
+  - Mixed Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-mixed-companies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-mixed-people-api
+  name: Apollo.io Mixed People API
+  description: The Mixed People API from Apollo.io — 1 operation(s) for mixed people.
+  tags:
+  - Mixed People
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-mixed-people-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-opportunities-api
+  name: Apollo.io Opportunities API
+  description: The Opportunities API from Apollo.io — 3 operation(s) for opportunities.
+  tags:
+  - Opportunities
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-opportunities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-organizations-api
+  name: Apollo.io Organizations API
+  description: The Organizations API from Apollo.io — 2 operation(s) for organizations.
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-people-api
+  name: Apollo.io People API
+  description: The People API from Apollo.io — 2 operation(s) for people.
+  tags:
+  - People
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-people-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-phone-calls-api
+  name: Apollo.io Phone Calls API
+  description: The Phone Calls API from Apollo.io — 3 operation(s) for phone calls.
+  tags:
+  - Phone Calls
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-phone-calls-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-sync-report-api
+  name: Apollo.io Sync Report API
+  description: The Sync Report API from Apollo.io — 1 operation(s) for sync report.
+  tags:
+  - Sync Report
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-sync-report-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-tasks-api
+  name: Apollo.io Tasks API
+  description: The Tasks API from Apollo.io — 3 operation(s) for tasks.
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-usage-stats-api
+  name: Apollo.io Usage Stats API
+  description: The Usage Stats API from Apollo.io — 1 operation(s) for usage stats.
+  tags:
+  - Usage Stats
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-usage-stats-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
+- aid: apollo-io:apollo-io-users-api
+  name: Apollo.io Users API
+  description: The Users API from Apollo.io — 1 operation(s) for users.
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-search
+  - type: GraphQL
+    url: graphql/apollo-io-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/apollo-io-agentic-access.yml
