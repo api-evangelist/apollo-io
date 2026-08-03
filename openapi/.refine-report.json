@@ -1,0 +1,40 @@
+{
+  "provider": "apollo-io",
+  "sources": [
+    "apollo-io-accounts-api-openapi.yml",
+    "apollo-io-contacts-api-openapi.yml",
+    "apollo-io-email-accounts-api-openapi.yml",
+    "apollo-io-emailer-campaigns-api-openapi.yml",
+    "apollo-io-mixed-companies-api-openapi.yml",
+    "apollo-io-mixed-people-api-openapi.yml",
+    "apollo-io-opportunities-api-openapi.yml",
+    "apollo-io-organizations-api-openapi.yml",
+    "apollo-io-people-api-openapi.yml",
+    "apollo-io-phone-calls-api-openapi.yml",
+    "apollo-io-sync-report-api-openapi.yml",
+    "apollo-io-tasks-api-openapi.yml",
+    "apollo-io-usage-stats-api-openapi.yml",
+    "apollo-io-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "apollo-io-accounts-api-openapi.yml",
+    "apollo-io-contacts-api-openapi.yml",
+    "apollo-io-email-accounts-api-openapi.yml",
+    "apollo-io-emailer-campaigns-api-openapi.yml",
+    "apollo-io-mixed-companies-api-openapi.yml",
+    "apollo-io-mixed-people-api-openapi.yml",
+    "apollo-io-opportunities-api-openapi.yml",
+    "apollo-io-organizations-api-openapi.yml",
+    "apollo-io-people-api-openapi.yml",
+    "apollo-io-phone-calls-api-openapi.yml",
+    "apollo-io-sync-report-api-openapi.yml",
+    "apollo-io-tasks-api-openapi.yml",
+    "apollo-io-usage-stats-api-openapi.yml",
+    "apollo-io-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
