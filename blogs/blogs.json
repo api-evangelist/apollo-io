@@ -16,13 +16,13 @@
       "method": "feed"
     },
     {
-      "source": "https://status.apollo.io/",
-      "feed_url": "https://status.apollo.io/feed",
+      "source": "https://knowledge.apollo.io/",
+      "feed_url": "https://knowledge.apollo.io/",
       "title": "",
       "saved": 0,
-      "method": "discovered"
+      "method": "none"
     }
   ],
-  "fetched": "2026-08-06T14:08:46Z",
-  "post_count": 29
+  "fetched": "2026-08-15T12:22:01Z",
+  "post_count": 30
 }
