@@ -1,0 +1,77 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.apollo.io/docs/apollo-cli-overview
+repository: https://github.com/apolloio/apollo-io-cli
+name: Apollo CLI
+binary: apollo
+official: true
+version: 2.1.0
+released: '2026-08-07'
+language: TypeScript
+runtime: Node.js 18+ (only when building from source; the prebuilt binaries bundle their own runtime)
+description: >-
+  Shell-native access to the full Apollo API — search the contact database, enrich people and
+  companies, manage CRM records, and run sequences from the terminal. Output is pipeable into jq and
+  the CLI ships a Claude Code skill so coding agents can drive it directly.
+install:
+  - method: homebrew
+    command: brew install apolloio/apollo-io-cli/apollo-io-cli
+    tap: https://github.com/apolloio/homebrew-apollo-io-cli
+    upgrade: brew upgrade apollo-io-cli
+  - method: prebuilt-binary
+    url: https://github.com/apolloio/apollo-io-cli/releases
+    artifacts: [apollo-macos-arm64, apollo-macos-x64, apollo-linux-x64, apollo-windows-x64.exe]
+    note: No Node.js required. Each release also ships a GPG .asc signature and a release-signing-key.asc.
+  - method: source
+    command: git clone https://github.com/apolloio/apollo-io-cli.git && npm install && npm link
+authentication:
+  scheme: oauth2
+  flow: browser-based device authorization via `apollo auth login`
+  api_key_required: false
+  credentials_path: ~/.config/apollo/credentials
+  refresh: automatic
+commands:
+  - group: auth
+    commands: [auth login, auth whoami, auth logout]
+  - group: people
+    commands: [people search, people enrich, people bulk-enrich, people email, people get, people employees]
+  - group: companies
+    commands: [companies search, companies enrich, companies bulk-enrich, companies get, companies jobs]
+  - group: news
+    commands: [news search]
+  - group: contacts
+    commands: [contacts search, contacts create, contacts update, contacts show, contacts bulk-create,
+               contacts bulk-update, contacts update-stages, contacts update-owners, contacts stages]
+  - group: accounts
+    commands: [accounts create, accounts update, accounts search, accounts show, accounts bulk-create,
+               accounts bulk-update, accounts update-owners, accounts stages]
+  - group: deals
+    commands: [deals create, deals search, deals show, deals update, deals stages]
+  - group: sequences
+    commands: [sequences search, sequences schedules, sequences create, sequences update, sequences approve,
+               sequences abort, sequences archive, sequences add-contacts, sequences remove-contacts]
+  - group: emails
+    commands: [emails draft, emails send, emails status, emails search]
+  - group: calls
+    commands: [calls log, calls search, calls update]
+  - group: tasks
+    commands: [tasks create, tasks bulk-create, tasks search, tasks show, tasks update, tasks complete, tasks skip]
+  - group: conversations
+    commands: [conversations search, conversations show, conversations export, conversations export-status]
+  - group: labels
+    commands: [labels list, labels create, labels update, labels add, labels remove]
+  - group: fields
+    commands: [fields list, fields create, fields custom]
+  - group: users
+    commands: [users profile, users search]
+  - group: usage
+    commands: [usage credits, usage api]
+command_group_count: 17
+agent_support:
+  claude_code_skill: https://github.com/apolloio/apollo-io-cli/blob/main/.claude/skills/apollo-cli/SKILL.md
+  saved_copy: skills/apollo-io-apollo-cli.md
+  note: >-
+    Apollo ships a first-party Claude Code skill (v4.0.0) documenting every command, its options,
+    JSON response shapes and jq examples — installable globally or per-repository, and usable by
+    Cursor and other agents.
+packages: packages/apollo-io-packages.yml

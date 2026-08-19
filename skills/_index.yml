@@ -1,0 +1,61 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://github.com/apolloio/apollo-mcp-plugin (skills/) and
+  https://github.com/apolloio/apollo-io-cli/blob/main/.claude/skills/apollo-cli/SKILL.md
+note: >-
+  Every skill in this directory is PROVIDER-PUBLISHED and saved verbatim — Apollo authors and ships
+  them itself, four in the Apollo MCP plug-in and one in the Apollo CLI repository. Nothing here was
+  generated or derived on Apollo's behalf. The four plug-in skills drive the hosted MCP server
+  (https://mcp.apollo.io/mcp); the CLI skill drives the `apollo` binary, which in turn calls the
+  REST API at https://api.apollo.io/api/v1.
+skill_count: 5
+skills:
+  - file: apollo-io-prospect.md
+    name: prospect
+    description: >-
+      Full ICP-to-leads pipeline. Describe your ideal customer in plain English and get a ranked
+      table of enriched decision-maker leads with emails and phone numbers.
+    surface: mcp
+    api: mcp/apollo-io-mcp.yml
+    user_invocable: true
+    source: https://github.com/apolloio/apollo-mcp-plugin/blob/main/skills/prospect/SKILL.md
+  - file: apollo-io-enrich-lead.md
+    name: enrich-lead
+    description: >-
+      Instant lead enrichment. Drop a name, company, LinkedIn URL, or email and get the full contact
+      card with email, phone, title, company intel, and next actions.
+    surface: mcp
+    api: mcp/apollo-io-mcp.yml
+    user_invocable: true
+    source: https://github.com/apolloio/apollo-mcp-plugin/blob/main/skills/enrich-lead/SKILL.md
+  - file: apollo-io-sequence-load.md
+    name: sequence-load
+    description: >-
+      Find leads matching criteria and bulk-add them to an Apollo outreach sequence. Handles
+      enrichment, contact creation, deduplication, and enrollment in one flow.
+    surface: mcp
+    api: mcp/apollo-io-mcp.yml
+    user_invocable: true
+    source: https://github.com/apolloio/apollo-mcp-plugin/blob/main/skills/sequence-load/SKILL.md
+  - file: apollo-io-analytics.md
+    name: analytics
+    description: >-
+      Instant sales analytics. Ask any performance question — emails, calls, meetings, tasks,
+      opportunities, sequences, conversation intelligence — and get formatted tables with real
+      Apollo data.
+    surface: mcp
+    api: mcp/apollo-io-mcp.yml
+    user_invocable: true
+    source: https://github.com/apolloio/apollo-mcp-plugin/blob/main/skills/analytics/SKILL.md
+  - file: apollo-io-apollo-cli.md
+    name: apollo-cli
+    version: 4.0.0
+    description: >-
+      Search people, companies, employees, job postings and news, and drive CRM data, sequences,
+      one-off emails, lists, custom fields, notes, calls, tasks, conversations, analytics and credit
+      usage in Apollo.io from the terminal. Documents every command, its options, JSON response
+      shapes and jq examples.
+    surface: cli
+    api: cli/apollo-io-cli.yml
+    source: https://github.com/apolloio/apollo-io-cli/blob/main/.claude/skills/apollo-cli/SKILL.md

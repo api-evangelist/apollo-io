@@ -4,7 +4,19 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Apollo.io
 providerId: apollo-io
 created: '2026-05-08'
-modified: '2026-05-08'
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: probed
+source: https://www.apollo.io/pricing
+source_detail: >-
+  Prices read from the schema.org Product/Offer JSON-LD block embedded in the pricing page HTML —
+  the page's visible tier cards are client-rendered and carry no prices in the served markup, so the
+  JSON-LD is the only machine-readable pricing Apollo publishes. Credit and API-access facts come
+  from https://docs.apollo.io/docs/api-pricing and https://docs.apollo.io/reference/rate-limits.
+sources:
+  - https://www.apollo.io/pricing
+  - https://docs.apollo.io/docs/api-pricing
+  - https://docs.apollo.io/reference/rate-limits
 reconciled: true
 tags:
   - Sales Intelligence
@@ -12,129 +24,101 @@ tags:
   - B2B Data
   - Plans
 description: >-
-  Apollo.io publishes four per-seat-per-month plans (Free, Basic,
-  Professional, Organization) plus add-on credits for mobile numbers,
-  exports, dialer minutes, and email sends. API access is gated to Basic
-  and higher and is metered by credits drawn from the workspace pool.
-sources:
-  - https://www.apollo.io/pricing
+  Apollo sells per-seat monthly subscriptions with a free forever tier, and meters data access
+  separately in credits. The pricing page's structured data publishes four offers — Free $0, Basic
+  $49/month, Professional $99/month and Enterprise "Contact for pricing". API access is gated: the
+  Free tier has hard request caps and no credits to spend, and Apollo's own Enterprise copy names
+  API access as an Enterprise feature.
 notes: >-
-  Listed prices reflect publicly published per-seat-per-month rates on
-  annual billing; monthly billing is approximately 25-35% higher. Apollo
-  adjusts pricing periodically; verify against the live pricing page.
+  PLAN-NAME DRIFT IS REAL HERE. The pricing page's JSON-LD says Free / Basic / Professional /
+  Enterprise, the marketing copy on the same page calls the free tier "Starter" and refers to
+  "Unlimited plans", and the API rate-limit reference names its columns Free / Basic / Professional
+  / Organization. All three are current Apollo surfaces. The tiers below use the JSON-LD names and
+  cross-reference the rate-limit column each maps to. Legacy plans exist and differ; Apollo directs
+  customers to Settings > Billing and credits > About credits for their own numbers.
+plan_count: 4
 plans:
   - id: apollo-io-free
     name: Free
+    aka: [Starter]
     type: free
+    rate_limit_tier: Free
     description: >-
-      Free tier with limited monthly export and email credits; no API
-      access. Includes Chrome extension and basic prospecting.
+      Free forever tier. API requests are capped at 50/minute, 200/hour and 600/day with no
+      unlimited windows, and enrichment on a free account registered to a personal email address is
+      blocked outright.
     entries:
-      - label: Free
-        name: apollo_free
-        type: flat
-        metric: account
-        timeFrame: monthly
-        unit: 1
-        price: '0'
-        currency: USD
-        userMultiplied: false
+      - {label: Free, name: apollo_free, type: flat, metric: account, timeFrame: monthly, unit: 1,
+         price: '0', currency: USD, userMultiplied: false}
     elements:
-      - name: Limited monthly exports and emails
-      - name: No REST API access
+      - name: 50 requests/minute, 200/hour, 600/day on every endpoint
+      - name: Bulk enrichment limited to 20 requests/minute
+      - name: Export Conversations limited to 1/minute and 20/hour
+      - name: Free accounts on a personal email address cannot search or enrich people or companies
   - id: apollo-io-basic
     name: Basic
     type: per-seat
+    rate_limit_tier: Basic
     description: >-
-      Entry paid plan with REST API access, increased credits, and basic
-      sequence sending.
+      Entry paid tier. Lifts enrichment to 1,000 requests/minute with no hourly or daily ceiling,
+      and search to 6,000/hour and 50,000/day.
     entries:
-      - label: Per Seat / Month (annual)
-        name: apollo_basic_seat
-        type: flat
-        metric: seats
-        timeFrame: monthly
-        unit: 1
-        price: '59'
-        currency: USD
-        userMultiplied: true
+      - {label: Per Seat / Month, name: apollo_basic_seat, type: flat, metric: seats,
+         timeFrame: monthly, unit: 1, price: '49', currency: USD, userMultiplied: true,
+         billingDuration: P1M}
     elements:
-      - name: REST API access
-      - name: Email sequences and basic dialer
+      - name: 200 requests/minute, 400/hour, 2,000/day default
+      - name: Enrichment 1,000/minute with no hourly or daily limit
+      - name: Search 200/minute, 6,000/hour, 50,000/day
   - id: apollo-io-professional
     name: Professional
     type: per-seat
+    rate_limit_tier: Professional
     description: >-
-      Adds advanced sequencing, A/B testing, dialer, and increased
-      credit allocations.
+      Adds advanced sales automation, engagement tracking and AI-driven insights. API limits match
+      Basic on every published window.
     entries:
-      - label: Per Seat / Month (annual)
-        name: apollo_pro_seat
-        type: flat
-        metric: seats
-        timeFrame: monthly
-        unit: 1
-        price: '99'
-        currency: USD
-        userMultiplied: true
-  - id: apollo-io-organization
-    name: Organization
-    type: per-seat
+      - {label: Per Seat / Month, name: apollo_pro_seat, type: flat, metric: seats,
+         timeFrame: monthly, unit: 1, price: '99', currency: USD, userMultiplied: true,
+         billingDuration: P1M}
+  - id: apollo-io-enterprise
+    name: Enterprise
+    aka: [Organization]
+    type: contact-sales
+    rate_limit_tier: Organization
     description: >-
-      Top tier with advanced analytics, conversations recording, custom
-      workflows, and admin / SSO features. Min seat counts apply.
+      Custom platform tier with dedicated support and advanced analytics; Apollo's own offer
+      description names API access as an Enterprise feature. Raises the default hourly cap to 600
+      and the daily cap to 6,000.
     entries:
-      - label: Per Seat / Month (annual)
-        name: apollo_org_seat
-        type: flat
-        metric: seats
-        timeFrame: monthly
-        unit: 1
-        price: '149'
-        currency: USD
-        userMultiplied: true
-  - id: apollo-io-mobile-credits
-    name: Mobile Number Credits
-    type: usage
-    description: Credits consumed for mobile number reveals beyond plan allocation.
-    entries:
-      - label: Per Mobile Reveal
-        name: apollo_mobile_credit
-        type: flat
-        metric: credits
-        timeFrame: usage
-        unit: 1
-        price: as-quoted
-        currency: USD
-        userMultiplied: false
-  - id: apollo-io-export-credits
-    name: Export Credits
-    type: usage
-    description: Credits for exporting people / accounts beyond the plan allocation.
-    entries:
-      - label: Per Export
-        name: apollo_export_credit
-        type: flat
-        metric: credits
-        timeFrame: usage
-        unit: 1
-        price: as-quoted
-        currency: USD
-        userMultiplied: false
-  - id: apollo-io-dialer-minutes
-    name: Dialer Minutes
-    type: usage
-    description: Per-minute calling charges through the Apollo Dialer.
-    entries:
-      - label: Per Minute
-        name: apollo_dialer_minute
-        type: flat
-        metric: minutes
-        timeFrame: usage
-        unit: 1
-        price: as-quoted
-        currency: USD
-        userMultiplied: false
+      - {label: Contact for pricing, name: apollo_enterprise, type: quote, metric: seats,
+         timeFrame: monthly, unit: 1, price: 'contact-sales', currency: USD, userMultiplied: true}
+metering:
+  unit: credits
+  independent_of_rate_limits: true
+  fair_use: >-
+    Unlimited plans are governed by a fair-use policy: 10,000 credits per account per month for
+    non-paying accounts, or the lesser of (amount paid / $0.025) or 1,000,000 credits per account
+    per year for paying accounts.
+  free_endpoints: >-
+    Every endpoint that creates, updates, lists or manages records consumes 0 credits — the whole
+    CRM, sequence, task, call, list, field and usage surface.
+  charged_endpoints:
+    - {operation: people-enrichment, cost: '1-9 credits per person', detail: '1 credit for demographics/email, +8 if a mobile phone is returned; waterfall enrichment can push email to 20+ and phone to 45+ depending on vendor configuration'}
+    - {operation: bulk-people-enrichment, cost: '1-9 credits per person', detail: 'same logic, up to 10 people per request'}
+    - {operation: organization-enrichment, cost: '1 credit per organization'}
+    - {operation: bulk-organization-enrichment, cost: '1 credit per organization'}
+    - {operation: organization-search, cost: '1 credit per page', detail: 'up to 100 results per page'}
+    - {operation: organization-jobs-postings, cost: '1 credit per page', detail: 'up to 10,000 results per page'}
+    - {operation: news_articles_search, cost: '1 credit per page', detail: 'up to 25 results per page'}
+    - {operation: 'get_organizations{id}', cost: '1 credit per company'}
+    - {operation: 'get_people{id}', cost: '1 credit per person'}
+    - {operation: get-conversations-info, cost: '1 credit per conversation with AI insights, else 0'}
+    - {operation: export-conversations, cost: '1 credit per conversation with AI insights, else 0'}
+  telemetry:
+    - {operation: post_apiusage, path: 'POST /usage_stats/api_usage_stats', purpose: per-endpoint usage and rate limits}
+    - {operation: view-credit-usage-stats, path: 'POST /usage_stats/credit_usage_stats', purpose: remaining credit balance}
+  mcp_cost: There is no additional cost to connect Apollo MCP; plan, permissions and credits still apply.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,0 +1,51 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.apollo.io/reference/how-to-test-api-endpoints
+test_environment:
+  separate_sandbox_host: false
+  test_mode: false
+  key_prefixes: null
+  note: >-
+    Apollo publishes no sandbox host, no test/live key separation and no test-mode credentials. Every
+    call goes to the single production host, https://api.apollo.io/api/v1, against real workspace
+    data and a real credit balance. Testing is done with a real API key against production, which is
+    the risk an integrator has to design around — there are no magic test identifiers, test records
+    or fixture generators to record here, and none are invented.
+console:
+  type: interactive-docs-explorer
+  url: https://docs.apollo.io/reference/authentication
+  platform: ReadMe API Explorer (x-readme.explorer-enabled and proxy-enabled are set in the spec)
+  auth: 'Select Header from the credentials dropdown and enter the key in the x-api-key field, then Try It.'
+  anonymous_use: >-
+    Example responses and the response schema for every status code are viewable without a key —
+    only executing a live request needs one.
+safe_first_calls:
+  - operation: get-current-user-profile
+    request: GET /users/api_profile
+    credits: 0
+    why: >-
+      Apollo's own recommended first call. Confirms the key works and returns the acting user id,
+      without consuming credits or writing anything.
+  - operation: null
+    request: GET /auth/health
+    credits: 0
+    why: >-
+      Health check used in the authentication doc's curl example. Not present in the published
+      OpenAPI, but documented as a live route.
+  - operation: post_apiusage
+    request: POST /usage_stats/api_usage_stats
+    credits: 0
+    why: Returns the team's real per-endpoint limits and remaining capacity before a large job.
+credit_safety:
+  guidance: >-
+    Apollo's documented practice is to run a small test request first, check credit usage in the app,
+    then scale. Endpoints that create, update, list or manage records cost 0 credits; enrichment,
+    organization search, news search and AI-insight endpoints charge.
+  free_endpoints: All non-enrichment, non-search CRUD and administrative endpoints.
+  charged_endpoints: see plans/apollo-io-plans-pricing.yml for the per-operation credit table
+  detail: https://docs.apollo.io/docs/api-pricing
+free_tier_limits:
+  note: >-
+    A free Apollo account registered with a personal email address cannot use people or company
+    search and enrichment at all through MCP; a free account registered with a work email can. Free
+    plans are also capped at 50 requests/minute, 200/hour and 600/day.

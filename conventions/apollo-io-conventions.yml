@@ -1,0 +1,105 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.apollo.io/reference/apollo-api
+derived_from: openapi/_original/apollo-io-apollo-rest-api-openapi.json
+docs:
+  authentication: https://docs.apollo.io/reference/authentication
+  rate_limits: https://docs.apollo.io/reference/rate-limits
+  errors: https://docs.apollo.io/reference/status-codes
+  pricing_and_credits: https://docs.apollo.io/docs/api-pricing
+base_url: https://api.apollo.io/api/v1
+authentication:
+  style: api-key-header
+  header: x-api-key
+  alternative:
+    style: oauth2-bearer
+    header: Authorization
+    format: Bearer <access_token>
+    audience: Apollo partners building on behalf of mutual users
+  key_model: >-
+    Keys are scoped at creation to an explicit list of endpoints, or marked as a master key with
+    access to everything. Calling an endpoint outside a key's scope returns 403 API_INACCESSIBLE.
+    A few endpoints (for example Get a List of Users) only work with a master key.
+  acting_user: >-
+    An API key identifies the workspace, not a person: every API-key request acts as the workspace's
+    longest-standing active admin, and that user owns the records it creates. OAuth tokens act as the
+    user who granted them.
+  detail: authentication/apollo-io-authentication.yml
+  scopes: scopes/apollo-io-scopes.yml
+idempotency:
+  supported: false
+  idempotency_key_header: null
+  note: >-
+    Apollo publishes no idempotency-key header or parameter, and none appears anywhere in the
+    OpenAPI. The only idempotency language in Apollo's docs runs the other way — Apollo asks that
+    YOUR webhook receiver be idempotent because Apollo may retry enrichment callbacks. Retry-safety
+    on writes is handled per-resource instead: the contact create routes accept dedupe controls, and
+    bulk create/update routes are the batching mechanism.
+  related: [dedupe flag on contact creation, bulk_create and bulk_update batch routes]
+pagination:
+  style: page-number
+  request_params: [page, per_page]
+  response_fields: [pagination.page, pagination.per_page, pagination.total_entries, pagination.total_pages]
+  declared_on: 11 operations as query parameters, 3 more inside the request body
+  defaults: >-
+    Apollo declares no default for page or per_page in the spec — the schemas carry an empty default
+    string. Send both explicitly rather than relying on a server default.
+  credit_warning: >-
+    Pagination on credit-consuming search endpoints charges per page (organization search: 1 credit
+    per page of up to 100 results; news search: 1 credit per page of up to 25), so paging deeply
+    multiplies credit spend.
+filtering:
+  style: array-repeat
+  note: >-
+    Search endpoints take repeated array parameters (person_titles[], organization_locations[],
+    organization_num_employees_ranges[] and similar) rather than a query DSL. Ranges are expressed as
+    strings such as "1,10".
+field_expansion:
+  supported: false
+  note: >-
+    No expand / include / fields parameter. Search returns a partial record and enrichment is the
+    separate, credit-consuming call that reveals emails and phone numbers.
+metadata:
+  custom_fields: >-
+    Workspace-defined custom fields are written through typed_custom_fields on contact, account and
+    opportunity payloads; field IDs come from GET /fields.
+  labels: Records are grouped with labels/lists (modality contacts or accounts).
+request_tracing:
+  request_id_header: null
+  async_request_id: >-
+    People and bulk-people enrichment accept a webhook_url and return a request_id that is polled at
+    GET /webhook_result/{request_id}. That id is the only correlation handle Apollo publishes.
+  response_headers_observed: [x-http-request-id, x-request-id, x-runtime]
+  note: >-
+    x-request-id / x-http-request-id are present on live responses (observed on the mcp.apollo.io
+    401) but are not documented by Apollo as a supported tracing contract.
+versioning:
+  scheme: uri-path
+  current: v1
+  base: https://api.apollo.io/api/v1
+  detail: lifecycle/apollo-io-lifecycle.yml
+error_envelope:
+  format: vendor-json
+  rfc9457: false
+  fields: [error, error_code, message, retry_after_seconds]
+  note: 401 is returned as text/plain on most routes; 4xx JSON bodies are not application/problem+json.
+  detail: errors/apollo-io-problem-types.yml
+rate_limit_signaling:
+  status_on_exhaustion: 429
+  headers:
+    limit: [x-rate-limit-minute, x-rate-limit-hourly, x-rate-limit-24-hour]
+    usage: [x-minute-usage, x-hourly-usage, x-24-hour-usage]
+    remaining: [x-minute-requests-left, x-hourly-requests-left, x-24-hour-requests-left]
+    backoff: [retry-after]
+  note: >-
+    Headers are only attached after authentication and authorization succeed and the endpoint's limit
+    is checked; 401/403 responses carry none. Windows Apollo does not limit return an empty
+    x-rate-limit-* header and no usage headers.
+  detail: rate-limits/apollo-io-rate-limits.yml
+async_and_webhooks:
+  pattern: callback-plus-poll
+  detail: asyncapi/apollo-io-webhooks.yml
+content_type:
+  request: application/json
+  response: application/json
+  note: Apollo's docs send Cache-Control:no-cache and Content-Type:application/json on every example.

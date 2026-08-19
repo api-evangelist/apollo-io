@@ -1,0 +1,1221 @@
+{
+  "item": [
+    {
+      "id": "f9fe95b9-769d-4296-9f4b-4e3fd9ade736",
+      "name": "Emailer Messages",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "19cf6d16-3b48-4031-b8de-a465400324f6",
+          "name": "Create an Email Draft",
+          "request": {
+            "name": "Create an Email Draft",
+            "description": {
+              "content": "## Endpoint essentials\n\n**API key access:** `api/v1/emailer_messages/create` or `Master API key`\n\n**OAuth scopes:** `emailer_messages_create`\n\n**Credit usage:** `0 credits` — [Learn more about API pricing and credits](https://docs.apollo.io/docs/api-pricing).\n\nUse the Create an Email Draft endpoint to create a single, unsent email message (an email draft) for a contact. The draft is created with a `drafted` status — this endpoint doesn't send the email.<br><br>To send the draft after creating it, call the <a href=\"https://docs.apollo.io/reference/send-email-now\">Send Email Now endpoint</a> with the `id` returned in the response.<br><br>You must provide a `contact_id` so Apollo knows who the email is for. Alternatively, to draft a reply within an existing email thread, provide `in_response_to_emailer_message_id` instead and Apollo infers the contact and recipients from the parent message.<br><br>The email is drafted from the user that owns the API key. That user must have permission to email the contact (like by owning the contact or its account), and the contact must not be blocked by any do not contact settings.<br><br>This endpoint returns the created `emailer_message` object. If the draft is linked to an outreach task, a `task` object is also returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "emailer_messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"body_html\": \"<string>\",\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"contact_id\": \"<string>\",\n      \"recipient_type_cd\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"contact_id\": \"<string>\",\n      \"recipient_type_cd\": \"<string>\"\n    }\n  ],\n  \"in_response_to_emailer_message_id\": \"<string>\",\n  \"emailer_template_id\": \"<string>\",\n  \"attachment_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enable_tracking\": \"<boolean>\",\n  \"outreach_task_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0080e41-ff90-4cf6-b9f5-e028e8f03f8d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"66e34b81740c50074e3d1bd4\",\n  \"subject\": \"Quick question about your team's workflow\",\n  \"body_html\": \"<p>Hi Ava, I wanted to reach out about how Apollo can help your team.</p>\",\n  \"recipients\": [\n    {\n      \"email\": \"ava.ruiz@sumware.com\",\n      \"contact_id\": \"66e34b81740c50074e3d1bd4\",\n      \"recipient_type_cd\": \"to\"\n    }\n  ],\n  \"enable_tracking\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"emailer_message\": {\n    \"id\": \"66e8cc45028aed019c25d724\",\n    \"user_id\": \"66a3d80d4238fe02d2baaaaf\",\n    \"status\": \"drafted\",\n    \"to_name\": \"Ava Ruiz\",\n    \"due_at\": null,\n    \"completed_at\": null,\n    \"emailer_campaign_id\": null,\n    \"attachment_ids\": [],\n    \"enable_tracking\": true,\n    \"type\": \"outreach_manual_email\",\n    \"contact_id\": \"66e34b81740c50074e3d1bd4\",\n    \"email_account_id\": \"66e8c4567f32a501b2605004\",\n    \"created_at\": \"2025-02-03T15:30:00.000Z\",\n    \"account_id\": \"612f9d6cd26c290001d9bda0\",\n    \"click_tracking_enabled\": true,\n    \"open_tracking_enabled\": true,\n    \"recipients\": [\n      {\n        \"email\": \"ava.ruiz@sumware.com\",\n        \"raw_name\": \"Ava Ruiz\",\n        \"recipient_type_cd\": \"to\",\n        \"contact_id\": \"66e34b81740c50074e3d1bd4\"\n      }\n    ],\n    \"send_from\": {\n      \"email\": \"someemail@apollo.io\",\n      \"user_id\": \"66a3d80d4238fe02d2baaaaf\"\n    },\n    \"from_email\": \"someemail@apollo.io\",\n    \"to_email\": \"ava.ruiz@sumware.com\",\n    \"bcc_emails\": [],\n    \"cc_emails\": [],\n    \"send_from_info\": \"66e8c4567f32a501b2605004***someemail@apollo.io\",\n    \"body_text\": \"Hi Ava, I wanted to reach out about how Apollo can help your team.\",\n    \"body_html\": \"<p>Hi Ava, I wanted to reach out about how Apollo can help your team.</p>\",\n    \"body_html_loaded\": true,\n    \"subject\": \"Quick question about your team's workflow\",\n    \"contact\": {\n      \"id\": \"66e34b81740c50074e3d1bd4\",\n      \"first_name\": \"Ava\",\n      \"last_name\": \"Ruiz\",\n      \"name\": \"Ava Ruiz\",\n      \"email\": \"ava.ruiz@sumware.com\",\n      \"title\": \"Founder & CEO\",\n      \"organization_name\": \"Sumware Software\",\n      \"account_id\": \"612f9d6cd26c290001d9bda0\",\n      \"owner_id\": \"66302798d03b9601c7934ebf\",\n      \"email_status\": \"verified\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aec2043a-86da-40bd-a258-6dab65c8c9f8",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"66e34b81740c50074e3d1bd4\",\n  \"subject\": \"Quick question about your team's workflow\",\n  \"body_html\": \"<p>Hi Ava, I wanted to reach out about how Apollo can help your team.</p>\",\n  \"recipients\": [\n    {\n      \"email\": \"ava.ruiz@sumware.com\",\n      \"contact_id\": \"66e34b81740c50074e3d1bd4\",\n      \"recipient_type_cd\": \"to\"\n    }\n  ],\n  \"enable_tracking\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Invalid API key. See https://docs.apollo.io/reference/authentication for how to authenticate.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d3403a2b-47bd-4654-ac2e-fcabd70d6685",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"66e34b81740c50074e3d1bd4\",\n  \"subject\": \"Quick question about your team's workflow\",\n  \"body_html\": \"<p>Hi Ava, I wanted to reach out about how Apollo can help your team.</p>\",\n  \"recipients\": [\n    {\n      \"email\": \"ava.ruiz@sumware.com\",\n      \"contact_id\": \"66e34b81740c50074e3d1bd4\",\n      \"recipient_type_cd\": \"to\"\n    }\n  ],\n  \"enable_tracking\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"error\\\": \\\"Contact does not exist\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87bdb1b7-2e36-4d76-99ca-f3fbeb116ee5",
+              "name": "429",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"66e34b81740c50074e3d1bd4\",\n  \"subject\": \"Quick question about your team's workflow\",\n  \"body_html\": \"<p>Hi Ava, I wanted to reach out about how Apollo can help your team.</p>\",\n  \"recipients\": [\n    {\n      \"email\": \"ava.ruiz@sumware.com\",\n      \"contact_id\": \"66e34b81740c50074e3d1bd4\",\n      \"recipient_type_cd\": \"to\"\n    }\n  ],\n  \"enable_tracking\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"message\\\": \\\"The maximum number of api calls allowed for api/v1/emailer_messages/create is 600 times per hour. Please upgrade your plan from https://app.apollo.io/#/settings/plans/upgrade.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9fb917c-960d-48ee-9041-180dcc7f968c",
+          "name": "Send Email Now",
+          "request": {
+            "name": "Send Email Now",
+            "description": {
+              "content": "## Endpoint essentials\n\n**API key access:** `api/v1/emailer_messages/send_now` or `Master API key`\n\n**OAuth scopes:** `emailer_messages_send_now`\n\n**Credit usage:** `0 credits` — [Learn more about API pricing and credits](https://docs.apollo.io/docs/api-pricing).\n\nUse the Send Email Now endpoint to immediately send an existing email message.This works for emails that are currently in a `drafted`, `scheduled`, or `failed` state. Apollo schedules the email to be sent right away and processes it asynchronously. <br><br>To first create an email draft, use the <a href=\"https://docs.apollo.io/reference/create-an-email-draft\">Create an Email Draft</a> endpoint and pass the returned `id` to this endpoint. <br><br>The email is sent from the user that owns the API key. That user must have a linked email account on the message, must have permission to send from that email account, and must have permission to email the contact. The contact must also not be blocked by any do not contact settings, and the user must not have exceeded their daily email sending limit. <br><br>Because sending is processed asynchronously, a successful `200` response means the email has been queued for sending — not that it's been delivered. To check whether the email was delivered, poll the <a href=\"https://docs.apollo.io/reference/check-email-send-status\">Check Email Send Status</a> endpoint using the message `id`.<br><br>This endpoint returns the `emailer_message` object. If the message is linked to an outreach task, a `task` object is also returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "emailer_messages",
+                ":id",
+                "send_now"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Apollo ID of the email message to send. This is the `id` returned when you create an email draft. <br><br>Example: `66e8cc45028aed019c25d724`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"surface\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "86a20892-8c3d-4297-a0e8-9fc7ea12dc93",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    ":id",
+                    "send_now"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Apollo ID of the email message to send. This is the `id` returned when you create an email draft. <br><br>Example: `66e8cc45028aed019c25d724`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"surface\": \"emails\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"emailer_message\": {\n    \"id\": \"66e8cc45028aed019c25d724\",\n    \"user_id\": \"66a3d80d4238fe02d2baaaaf\",\n    \"status\": \"scheduled\",\n    \"to_name\": \"Ava Ruiz\",\n    \"due_at\": \"2025-02-03T15:30:00.000+00:00\",\n    \"completed_at\": null,\n    \"emailer_campaign_id\": null,\n    \"attachment_ids\": [],\n    \"enable_tracking\": true,\n    \"type\": \"outreach_manual_email\",\n    \"contact_id\": \"66e34b81740c50074e3d1bd4\",\n    \"email_account_id\": \"66e8c4567f32a501b2605004\",\n    \"due_at_manually_changed\": true,\n    \"due_at_source\": \"Email was sent using Send Now action\",\n    \"async_sending\": true,\n    \"created_at\": \"2025-02-03T15:30:00.000Z\",\n    \"account_id\": \"612f9d6cd26c290001d9bda0\",\n    \"click_tracking_enabled\": true,\n    \"open_tracking_enabled\": true,\n    \"recipients\": [\n      {\n        \"email\": \"ava.ruiz@sumware.com\",\n        \"raw_name\": \"Ava Ruiz\",\n        \"recipient_type_cd\": \"to\",\n        \"contact_id\": \"66e34b81740c50074e3d1bd4\"\n      }\n    ],\n    \"send_from\": {\n      \"email\": \"someemail@apollo.io\",\n      \"user_id\": \"66a3d80d4238fe02d2baaaaf\"\n    },\n    \"from_email\": \"someemail@apollo.io\",\n    \"to_email\": \"ava.ruiz@sumware.com\",\n    \"bcc_emails\": [],\n    \"cc_emails\": [],\n    \"send_from_info\": \"66e8c4567f32a501b2605004***someemail@apollo.io\",\n    \"body_text\": \"Hi Ava, I wanted to reach out about how Apollo can help your team.\",\n    \"body_html\": \"<p>Hi Ava, I wanted to reach out about how Apollo can help your team.</p>\",\n    \"body_html_loaded\": true,\n    \"subject\": \"Quick question about your team's workflow\",\n    \"contact\": {\n      \"id\": \"66e34b81740c50074e3d1bd4\",\n      \"first_name\": \"Ava\",\n      \"last_name\": \"Ruiz\",\n      \"name\": \"Ava Ruiz\",\n      \"email\": \"ava.ruiz@sumware.com\",\n      \"title\": \"Founder & CEO\",\n      \"organization_name\": \"Sumware Software\",\n      \"account_id\": \"612f9d6cd26c290001d9bda0\",\n      \"owner_id\": \"66302798d03b9601c7934ebf\",\n      \"email_status\": \"verified\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7946a003-8763-40dd-b09d-0a5e7c076395",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    ":id",
+                    "send_now"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Apollo ID of the email message to send. This is the `id` returned when you create an email draft. <br><br>Example: `66e8cc45028aed019c25d724`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"surface\": \"emails\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Invalid API key. See https://docs.apollo.io/reference/authentication for how to authenticate.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53788523-b9dc-4ccc-babb-ee26eb8d15aa",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    ":id",
+                    "send_now"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Apollo ID of the email message to send. This is the `id` returned when you create an email draft. <br><br>Example: `66e8cc45028aed019c25d724`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"surface\": \"emails\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"error\\\": \\\"This email has already been deleted. Please refresh the page.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d543aaf6-54f3-4271-912d-ec22587a3e88",
+              "name": "429",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    ":id",
+                    "send_now"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Apollo ID of the email message to send. This is the `id` returned when you create an email draft. <br><br>Example: `66e8cc45028aed019c25d724`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"surface\": \"emails\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"message\\\": \\\"The maximum number of api calls allowed for api/v1/emailer_messages/send_now is 600 times per hour. Please upgrade your plan from https://app.apollo.io/#/settings/plans/upgrade.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97d3f483-6958-4e4c-8ed7-d1ac41713e6b",
+          "name": "Get Email Content",
+          "request": {
+            "name": "Get Email Content",
+            "description": {
+              "content": "## Endpoint essentials\n\n**API key access:** `api/v1/emailer_messages/get_content` or `Master API key`\n\n**OAuth scopes:** `emailer_messages_get_content`\n\n**Credit usage:** `0 credits` — [Learn more about API pricing and credits](https://docs.apollo.io/docs/api-pricing).\n\nUse the Get Email Content endpoint to retrieve the subject line, body, and recipients of emails that your team has already sent. Provide up to 10 email message IDs in a single request, and choose whether each body is returned as plain text or as the original HTML.<br><br>This endpoint only returns emails that your team sent and that Apollo has finished sending. Drafted, scheduled, and failed emails are never returned, and neither are replies or other inbound emails.<br><br>Any ID that doesn't match one of your team's sent emails is left out of the response instead of causing an error. This applies to unknown IDs, malformed IDs, IDs that belong to another team, and IDs for emails that aren't sent outreach emails. Because of this, always match the results back to your request using the `id` field, and treat a missing `id` as \"no sent email available\" rather than a failure.<br><br>To find email message IDs, call the <a href=\"https://docs.apollo.io/reference/search-for-outreach-emails\">Search for Outreach Emails endpoint</a> and identify the `id` value for each email.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "emailer_messages",
+                "get_content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"body_format\": \"plain\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6571832f-053e-4ec9-9703-01b809d8e7ea",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    "get_content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"66e8cc45028aed019c25d724\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"emailer_messages\": [\n    {\n      \"id\": \"66e8cc45028aed019c25d724\",\n      \"subject\": \"Quick idea for Sumware\",\n      \"body\": \"Hi Ava, great chatting yesterday.\",\n      \"body_format\": \"plain\",\n      \"status\": \"completed\",\n      \"sent_at\": \"2026-07-20T10:30:00+00:00\",\n      \"recipients\": [\n        {\n          \"email\": \"ava.ruiz@sumware.com\",\n          \"type\": \"to\"\n        },\n        {\n          \"email\": \"dev.patel@sumware.com\",\n          \"type\": \"cc\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b98f8ac5-2eab-486e-8148-7c100f27393b",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    "get_content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"66e8cc45028aed019c25d724\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Invalid API key. See https://docs.apollo.io/reference/authentication for how to authenticate.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b9b949be-53c5-431f-b875-6da0cab69262",
+              "name": "403",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    "get_content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"66e8cc45028aed019c25d724\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"error\\\": \\\"This API key is not authorized to access api/v1/emailer_messages/get_content. Request an API key from your administrator that includes this endpoint in its configured scope.\\\",\\n  \\\"error_code\\\": \\\"API_INACCESSIBLE\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3406d9ea-af61-41a0-9603-5ca45812f047",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    "get_content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"66e8cc45028aed019c25d724\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\\"error\\\": \\\"Missing required parameter: ids\\\"}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0dff13b0-ec61-4b02-951a-edcf8d9bda28",
+              "name": "429",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    "get_content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"66e8cc45028aed019c25d724\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"The maximum number of api calls allowed for api/v1/emailer_messages/get_content is 600 times per hour. Please upgrade your plan from https://app.apollo.io/#/settings/plans/upgrade.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "153ff59e-9a88-4448-b7ea-18a733004031",
+          "name": "Check Email Send Status",
+          "request": {
+            "name": "Check Email Send Status",
+            "description": {
+              "content": "## Endpoint essentials\n\n**API key access:** `api/v1/emailer_messages/email_send_status` or `Master API key`\n\n**OAuth scopes:** `emailer_messages_email_send_status`\n\n**Credit usage:** `0 credits` — [Learn more about API pricing and credits](https://docs.apollo.io/docs/api-pricing).\n\nUse the Check Email Send Status endpoint to check the current delivery status of an email message. This is typically used after calling the <a href=\"https://docs.apollo.io/reference/send-email-now\">Send Email Now endpoint</a>, since emails are sent asynchronously and a successful send response only means the email was queued. <br><br>You must provide the `id` of the email message. The message must belong to your team, otherwise a `404` is returned.<br><br>The response always includes the message `id`, its current `status`, and a human-readable `message`. The remaining fields depend on the status:<ul><li>If the email was delivered (`completed`), a `completed_at` timestamp is included.</li><li>If the email failed (`failed`), a `not_sent_reason`, `failure_reason`, and `failed_at` timestamp may be included.</li><li>If the email is still being processed (like `drafted` or `scheduled`), a `retry_after_seconds` value is included to indicate how long to wait before checking again.</li></ul>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "emailer_messages",
+                "email_send_status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c45356cb-88ad-4021-84ae-9ecabe116444",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    "email_send_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"66e8cc45028aed019c25d724\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"66e8cc45028aed019c25d724\",\n  \"status\": \"completed\",\n  \"message\": \"Email delivered successfully.\",\n  \"completed_at\": \"2025-02-03T15:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41c88815-3c0e-48ac-8666-900903b0b944",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    "email_send_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"66e8cc45028aed019c25d724\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Invalid API key. See https://docs.apollo.io/reference/authentication for how to authenticate.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ff6f452-b969-46ac-93db-5eaed586b13f",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    "email_send_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"66e8cc45028aed019c25d724\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"error\\\": \\\"Email message not found\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "862cba4a-75ef-40f7-802b-8a5828d437e2",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    "email_send_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"66e8cc45028aed019c25d724\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"error\\\": \\\"Missing required parameter: id\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83a22fbd-ad8f-4d62-b2f5-5226fdb2a744",
+              "name": "429",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailer_messages",
+                    "email_send_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"66e8cc45028aed019c25d724\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"message\\\": \\\"The maximum number of api calls allowed for api/v1/emailer_messages/email_send_status is 600 times per hour. Please upgrade your plan from https://app.apollo.io/#/settings/plans/upgrade.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.apollo.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e528580b-0494-4b0f-b9bd-0645ddac9b60",
+    "name": "Apollo.io Emailer Messages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Apollo API provides programmatic access to [Apollo](https://www.apollo.io/), the all-in-one sales intelligence and engagement platform. Use it to enrich people and company data (individually or in bulk), search Apollo's database of over 240 million contacts and 30 million companies, and manage accounts, contacts, deals, sequences, tasks, calls, and conversations in your go-to-market workflows.\n\n## Base URL\n\nAll API requests are made to `https://api.apollo.io/api/v1`.\n\n## Authentication\n\n- **Apollo users** authenticate with an API key passed in the `x-api-key` request header. See [Create API Keys](https://docs.apollo.io/docs/create-api-key).\n- **Apollo partners** building integrations on behalf of mutual users authenticate with the [OAuth 2.0 authorization flow](https://docs.apollo.io/docs/use-oauth-20-authorization-flow-to-access-apollo-user-information-partners).\n\n## Rate limits & credits\n\nRate limits and credit consumption depend on your [Apollo pricing plan](https://docs.apollo.io/docs/api-pricing). Check your current limits and usage with the [View API Usage Stats and Rate Limits](https://docs.apollo.io/reference/view-api-usage-stats) endpoint. For more details, see [Rate Limits](https://docs.apollo.io/reference/rate-limits) and the [API FAQs](https://docs.apollo.io/docs/apollo-api-faqs).\n\nNew to the API? Start with the [Apollo API overview](https://docs.apollo.io/reference/apollo-api).\n\nContact Support:\n Name: Apollo API Support",
+      "type": "text/plain"
+    }
+  }
+}

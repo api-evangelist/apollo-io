@@ -1,0 +1,225 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/_original/apollo-io-apollo-rest-api-openapi.json
+docs: https://docs.apollo.io/reference/apollo-api
+note: Apollo's OpenAPI declares zero components.schemas — every request and response body is inlined —
+  so the entity graph is derived from path segments and the id-reference fields carried in request bodies
+  and path parameters rather than from $ref links. Apollo IDs are unprefixed 24-character MongoDB ObjectId
+  hex strings (e.g. 60c39ed82bd02f01154c470a); there is no per-type id prefix to key on.
+id_format:
+  style: mongodb-objectid
+  length: 24
+  prefixed: false
+  example: 60c39ed82bd02f01154c470a
+entity_count: 20
+relationship_count: 30
+entities:
+- key: person
+  label: Person
+  domain: Apollo database
+  id_field: id
+  note: A record in Apollo's 240M+ contact database. Read-only; becomes a Contact when saved.
+- key: organization
+  label: Organization
+  domain: Apollo database
+  id_field: organization_id
+  note: A company record in Apollo's 30M+ company database.
+- key: contact
+  label: Contact
+  domain: Workspace CRM
+  id_field: contact_id
+- key: account
+  label: Account
+  domain: Workspace CRM
+  id_field: account_id
+- key: opportunity
+  label: Deal / Opportunity
+  domain: Workspace CRM
+  id_field: opportunity_id
+- key: emailer_campaign
+  label: Sequence (emailer campaign)
+  domain: Engagement
+  id_field: sequence_id
+- key: emailer_message
+  label: Email message
+  domain: Engagement
+  id_field: id
+- key: emailer_schedule
+  label: Sending schedule
+  domain: Engagement
+  id_field: id
+- key: email_account
+  label: Connected email account
+  domain: Engagement
+  id_field: id
+- key: task
+  label: Task
+  domain: Engagement
+  id_field: id
+- key: phone_call
+  label: Phone call record
+  domain: Engagement
+  id_field: id
+- key: conversation
+  label: Conversation (recorded call/meeting)
+  domain: Conversation intelligence
+  id_field: id
+- key: label
+  label: List / label
+  domain: Workspace
+  id_field: id
+- key: note
+  label: Note
+  domain: Workspace
+  id_field: id
+- key: user
+  label: User
+  domain: Workspace
+  id_field: user_id
+- key: field
+  label: Field / custom field
+  domain: Workspace
+  id_field: id
+- key: contact_stage
+  label: Contact stage
+  domain: Workspace
+  id_field: stage_id
+- key: account_stage
+  label: Account stage
+  domain: Workspace
+  id_field: stage_id
+- key: opportunity_stage
+  label: Deal stage
+  domain: Workspace
+  id_field: stage_id
+- key: webhook_result
+  label: Async webhook result
+  domain: Enrichment
+  id_field: request_id
+relationships:
+- from: contact
+  to: account
+  kind: belongs_to
+  via: account_id
+- from: contact
+  to: person
+  kind: has_one
+  via: id
+  note: A contact is created from a person record in Apollo's database.
+- from: contact
+  to: contact_stage
+  kind: belongs_to
+  via: contact_stage_id
+- from: contact
+  to: user
+  kind: belongs_to
+  via: owner_id
+- from: contact
+  to: opportunity
+  kind: has_many
+  via: contact_id
+  note: POST /contacts/{contact_id}/opportunities
+- from: account
+  to: organization
+  kind: has_one
+  via: domain
+- from: account
+  to: account_stage
+  kind: belongs_to
+  via: account_stage_id
+- from: account
+  to: user
+  kind: belongs_to
+  via: owner_id
+- from: opportunity
+  to: account
+  kind: belongs_to
+  via: account_id
+- from: opportunity
+  to: opportunity_stage
+  kind: belongs_to
+  via: opportunity_stage_id
+- from: opportunity
+  to: user
+  kind: belongs_to
+  via: owner_id
+- from: emailer_campaign
+  to: contact
+  kind: has_many
+  via: contact_ids
+- from: emailer_campaign
+  to: emailer_schedule
+  kind: belongs_to
+  via: emailer_schedule_id
+- from: emailer_campaign
+  to: email_account
+  kind: belongs_to
+  via: send_email_from_email_account_id
+- from: emailer_message
+  to: contact
+  kind: belongs_to
+  via: contact_id
+- from: emailer_message
+  to: emailer_campaign
+  kind: belongs_to
+  via: emailer_campaign_id
+- from: task
+  to: contact
+  kind: belongs_to
+  via: contact_id
+- from: task
+  to: account
+  kind: belongs_to
+  via: account_id
+- from: task
+  to: opportunity
+  kind: belongs_to
+  via: opportunity_id
+- from: task
+  to: user
+  kind: belongs_to
+  via: user_id
+- from: phone_call
+  to: contact
+  kind: belongs_to
+  via: contact_id
+- from: phone_call
+  to: account
+  kind: belongs_to
+  via: account_id
+- from: phone_call
+  to: opportunity
+  kind: belongs_to
+  via: opportunity_id
+- from: conversation
+  to: account
+  kind: belongs_to
+  via: account_id
+- from: conversation
+  to: contact
+  kind: has_many
+  via: contact_ids
+- from: label
+  to: contact
+  kind: has_many
+  via: entity_ids
+  note: 'modality: contacts'
+- from: label
+  to: account
+  kind: has_many
+  via: entity_ids
+  note: 'modality: accounts'
+- from: field
+  to: contact
+  kind: has_many
+  via: typed_custom_fields
+  note: modality one of contact | account | opportunity
+- from: webhook_result
+  to: person
+  kind: has_many
+  via: request_id
+  note: Async people/bulk enrichment callbacks are polled by request_id.
+- from: organization
+  to: person
+  kind: has_many
+  via: organization_id

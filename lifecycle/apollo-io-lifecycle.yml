@@ -1,0 +1,52 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.apollo.io/reference/apollo-api
+versioning:
+  scheme: uri-path
+  current: v1
+  base: https://api.apollo.io/api/v1
+  spec_version: '1.0'
+  note: >-
+    Apollo has shipped one public major version. Every documented route sits under /api/v1; there is
+    no version header, no date-pinned version train and no published version-negotiation mechanism.
+    Historic clients calling the older https://api.apollo.io/v1/ form should move to /api/v1.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  mechanism: >-
+    Deprecation is marked in the OpenAPI itself (deprecated: true) and restated in the endpoint's
+    reference page with a pointer to the replacement. Apollo publishes no dated deprecation policy,
+    no notice window, and does not advertise RFC 8594 Sunset/Deprecation response headers.
+deprecated_operations:
+  - operation: get-a-list-of-all-custom-fields
+    path: GET /typed_custom_fields
+    file: openapi/apollo-io-fields-api-openapi.yml
+    replacement: get-a-list-of-fields (GET /fields with source=custom)
+    docs: https://docs.apollo.io/reference/get-a-list-of-all-custom-fields
+retention:
+  webhook_results: >-
+    Asynchronous enrichment results are retrievable for 30 days from the poll endpoint; after that
+    the request_id returns 410 request_id_expired.
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA or uptime commitment is published on apollo.io, the docs, or the status page.
+    Enterprise terms are referenced only through the API terms of service.
+status_page: https://status.apollo.io/
+terms_of_service: https://www.apollo.io/terms/api
+change_log:
+  api: null
+  note: >-
+    Apollo publishes no dated changelog for the REST API. Endpoint reference pages carry an
+    `updatedAt` timestamp, and the OpenAPI document is regenerated on every docs publish, so the
+    spec itself is the closest thing to a change signal. The Apollo CLI does have a dated release
+    history — see changelog/apollo-io-changelog.yml.
+  cli: https://github.com/apolloio/apollo-io-cli/releases
+evidence:
+  - {url: 'https://status.apollo.io/', status: 200}
+  - {url: 'https://www.apollo.io/terms/api', status: 200}
+  - {url: 'https://docs.apollo.io/changelog', status: 404}
+  - {url: 'https://www.apollo.io/roadmap', status: 404}

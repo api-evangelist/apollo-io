@@ -1,0 +1,78 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of the /.well-known/ surface on every Apollo.io host in apis.yml and openapi servers[]
+note: >-
+  Apollo serves a real RFC 8414 / RFC 9728 / OIDC discovery surface on its MCP host, mcp.apollo.io —
+  the same host the remote MCP server answers on. Nothing is served under /.well-known/ on the API
+  host (api.apollo.io), the marketing host (www.apollo.io), the app host (app.apollo.io) or the docs
+  host (docs.apollo.io). The www and docs hosts answer every /.well-known/ path with an HTTP 404 that
+  still carries the site's HTML shell, so those rows are recorded as misses, not documents.
+hosts:
+  - host: https://mcp.apollo.io
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: application/json
+        file: apollo-io-oauth-authorization-server.json
+        spec: RFC 8414
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        content_type: application/json
+        file: apollo-io-oauth-protected-resource.json
+        spec: RFC 9728
+      - path: /.well-known/oauth-protected-resource/mcp
+        status: 200
+        content_type: application/json
+        spec: RFC 9728
+        note: identical body to the root oauth-protected-resource document
+      - path: /.well-known/openid-configuration
+        status: 200
+        content_type: application/json
+        file: apollo-io-openid-configuration.json
+        spec: OpenID Connect Discovery 1.0
+      - path: /.well-known/agent-card.json
+        status: 401
+      - path: /.well-known/agent.json
+        status: 401
+      - path: /.well-known/security.txt
+        status: 401
+  - host: https://api.apollo.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+  - host: https://www.apollo.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://app.apollo.io
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+  - host: https://docs.apollo.io
+    documents:
+      - path: /.well-known/agent-card.json
+        status: 404
+summary:
+  hits: 4
+  misses: 17
+  security_txt: false
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false
+  oauth_metadata: true

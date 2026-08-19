@@ -1,0 +1,91 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, github.com/apolloio releases + package manifests, and
+  https://docs.apollo.io/docs/apollo-cli-overview
+note: >-
+  Apollo ships no conventional server-side client SDK in any language registry — no npm, PyPI,
+  RubyGems, Maven, NuGet, crates.io or Go module package for the REST API exists under an Apollo
+  namespace, and the docs do not name one. What Apollo publishes instead is a compiled CLI, an
+  official n8n node, and an MCP plug-in, plus explicit instructions to GENERATE a typed client from
+  the published OpenAPI with OpenAPI Generator. Registry probes for apollo-io-cli, @apollo-io/cli,
+  @apolloio/cli and apollo-io on npm all returned "Not found"; the CLI is deliberately distributed
+  as a Homebrew formula and signed prebuilt binaries rather than as an npm package.
+package_count: 4
+official_count: 4
+packages:
+  - language: typescript
+    kind: cli
+    registry: homebrew
+    name: apollo-io-cli
+    url: https://github.com/apolloio/apollo-io-cli
+    tap: https://github.com/apolloio/homebrew-apollo-io-cli
+    install: brew install apolloio/apollo-io-cli/apollo-io-cli
+    official: true
+    version: 2.1.0
+    published: '2026-08-07'
+    version_source: https://api.github.com/repos/apolloio/apollo-io-cli/releases
+    note: >-
+      Not published to npm — probed registry.npmjs.org/apollo-io-cli and got "Not found". Distributed
+      through a first-party Homebrew tap and GPG-signed prebuilt binaries (macOS arm64/x64, Linux
+      x64, Windows x64) attached to each GitHub release. package.json in the repo declares version
+      2.1.0 with bin.apollo, matching the v2.1.0 release tag.
+  - language: typescript
+    kind: integration-node
+    registry: npm
+    name: '@apolloio/n8n-nodes-apollo'
+    url: https://www.npmjs.com/package/@apolloio/n8n-nodes-apollo
+    install: npm install @apolloio/n8n-nodes-apollo
+    official: true
+    version: 0.3.1
+    published: '2026-07-17'
+    version_source: https://registry.npmjs.org/@apolloio%2Fn8n-nodes-apollo
+    note: >-
+      Official n8n community node for people and organization enrichment, authored by Apollo.io and
+      published under the @apolloio npm scope.
+  - language: n/a
+    kind: mcp-plugin
+    registry: npm
+    name: '@apolloio/mcp'
+    url: https://www.npmjs.com/package/@apolloio/mcp
+    install: npm install @apolloio/mcp
+    official: true
+    version: 0.1.1
+    published: '2026-07-01'
+    version_source: https://registry.npmjs.org/@apolloio%2Fmcp
+    note: >-
+      "Official Apollo.io MCP server" package, repository apolloio/apollo-mcp-plugin. One version has
+      ever been published (0.1.1) and it declares no bin entry — the real agent surface is the hosted
+      remote server at https://mcp.apollo.io/mcp, not a locally-run stdio binary.
+  - language: n/a
+    kind: mcp-plugin
+    registry: github
+    name: apollo-mcp-plugin
+    url: https://github.com/apolloio/apollo-mcp-plugin
+    install: 'Claude Code / Cowork plug-in marketplace: apolloio/apollo-mcp-plugin'
+    official: true
+    version: 0.1.1
+    published: '2026-07-20'
+    version_source: https://raw.githubusercontent.com/apolloio/apollo-mcp-plugin/main/server.json
+    note: >-
+      MCP registry manifest (io.github.apolloio/apollo-mcp) plus four packaged agent skills. No
+      registry metadata endpoint — version read from the repo's server.json; `published` is the date
+      of the most recent push to the default branch, since the repo cuts no releases.
+generate_your_own:
+  documented: true
+  docs: https://docs.apollo.io/reference/openapi-specification
+  spec: https://docs.apollo.io/openapi/apollo-rest-api.json
+  command: openapi-generator generate -i https://docs.apollo.io/openapi/apollo-rest-api.json -g typescript-fetch -o ./apollo-client
+  note: >-
+    Apollo's stated SDK strategy is generation from the OpenAPI rather than hand-maintained clients,
+    and the docs walk through generating a TypeScript client and running a People Search with it.
+registries_probed:
+  - {registry: npm, queries: [apollo-io-cli, '@apollo-io/cli', '@apolloio/cli', apollo-io], result: not-found}
+  - {registry: npm, queries: ['@apolloio/n8n-nodes-apollo', '@apolloio/mcp'], result: found}
+  - {registry: npm, queries: ['text=@apolloio'], result: '13 hits, but only the two @apolloio-scoped packages above are first-party — the rest are third-party Apollo.io MCP wrappers'}
+  - {registry: pypi, queries: [apollo-io, apolloio, apollo-api-client], result: '404 on all'}
+  - {registry: rubygems, queries: [apollo-io, apolloio], result: '404 on all'}
+  - {registry: crates.io, queries: [apollo-io], result: 'no crate (403 from the crates.io API to an unattended client)'}
+  - {registry: nuget, queries: [apollo.io], result: '404'}
+  - {registry: maven-central, queries: [apollo.io], result: 'no matching artifact'}
+  - {registry: pkg.go.dev, result: 'no Go module documented by Apollo'}

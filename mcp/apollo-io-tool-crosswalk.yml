@@ -1,0 +1,115 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/apollo-io-mcp.yml + openapi/_original/apollo-io-apollo-rest-api-openapi.json
+note: >-
+  Apollo's MCP tools/list is OAuth-gated (HTTP 401), so tools are mapped from Apollo's own published
+  "Available actions" table to REST operationIds by name and documented semantics. Every operationId
+  below was grepped out of the harvested spec and exists verbatim; confidence is set honestly per row.
+  Bound tools inherit their real input contract from the linked operation's parameters + requestBody.
+surfaces:
+  openapi:
+    file: openapi/_original/apollo-io-apollo-rest-api-openapi.json
+    server: https://api.apollo.io/api/v1
+    operations: 80
+    gated: false
+  mcp:
+    url: https://mcp.apollo.io/mcp
+    transport: streamable-http
+    auth: oauth2
+    tools_list: gated
+  graphql:
+    present: false
+    note: Apollo.io publishes no GraphQL endpoint. REST and MCP are the only machine-readable surfaces.
+coverage:
+  tools_named: 51
+  tools_bound: 44
+  mcp_only: 7
+  rest_operations_total: 80
+  rest_operations_with_a_tool: 47
+  rest_only: 33
+crosswalk:
+  - {tool: Search for people, category: search, rest: [people-api-search], binding: rest, confidence: high}
+  - {tool: Search for companies, category: search, rest: [organization-search], binding: rest, confidence: high}
+  - {tool: Company job postings, category: search, rest: [organization-jobs-postings], binding: rest, confidence: high}
+  - {tool: People enrichment, category: enrichment, rest: [people-enrichment], binding: rest, confidence: high}
+  - {tool: Bulk people enrichment, category: enrichment, rest: [bulk-people-enrichment], binding: rest, confidence: high}
+  - {tool: Company enrichment, category: enrichment, rest: [organization-enrichment], binding: rest, confidence: high}
+  - {tool: Bulk company enrichment, category: enrichment, rest: [bulk-organization-enrichment], binding: rest, confidence: high}
+  - {tool: Search for contacts, category: crm, rest: [search-for-contacts], binding: rest, confidence: high}
+  - {tool: Create a contact, category: crm, rest: [create-a-contact], binding: rest, confidence: high}
+  - {tool: Bulk create contacts, category: crm, rest: [bulk-create-contacts], binding: rest, confidence: high}
+  - {tool: Update a contact, category: crm, rest: [update-a-contact], binding: rest, confidence: high}
+  - {tool: Create an account, category: crm, rest: [create-an-account], binding: rest, confidence: high}
+  - {tool: Bulk create accounts, category: crm, rest: [bulk-create-accounts], binding: rest, confidence: high}
+  - {tool: Update an account, category: crm, rest: [update-an-account], binding: rest, confidence: high}
+  - {tool: Search for deals, category: crm, rest: [list-all-deals], binding: rest, confidence: high}
+  - {tool: Create a deal, category: crm, rest: [create-deal], binding: rest, confidence: high}
+  - {tool: View deal details, category: crm, rest: [view-deal], binding: rest, confidence: high}
+  - {tool: Search conversations, category: conversations, rest: [search-conversations], binding: rest, confidence: high}
+  - {tool: Get conversation insights, category: conversations, rest: [get-conversations-info], binding: rest, confidence: high}
+  - {tool: Get conversation transcript, category: conversations, rest: [get-conversations-info], binding: rest, confidence: medium,
+     note: Transcript is a field of the conversation-info payload rather than its own REST operation.}
+  - {tool: Get conversation recording link, category: conversations, rest: [get-conversations-info], binding: rest, confidence: medium,
+     note: Recording link is a field of the conversation-info payload rather than its own REST operation.}
+  - {tool: Search for lists, category: lists, rest: [get-a-list-of-all-lists], binding: rest, confidence: high}
+  - {tool: Create a list, category: lists, rest: [create-a-list], binding: rest, confidence: high}
+  - {tool: Update a list, category: lists, rest: [update-a-list], binding: rest, confidence: high}
+  - {tool: Add records to lists, category: lists, rest: [add-records-to-a-list], binding: rest, confidence: high}
+  - {tool: Remove records from lists, category: lists, rest: [remove-records-from-a-list], binding: rest, confidence: high}
+  - {tool: Create or manage labels, category: lists, rest: [create-a-list, update-a-list, add-records-to-a-list], binding: rest, confidence: medium,
+     note: Apollo models lists and labels on the same /labels routes; this tool fans out across them.}
+  - {tool: Create or update a sequence, category: sequences, rest: [create-sequence, update-sequence], binding: rest, confidence: high}
+  - {tool: Search for sequences, category: sequences, rest: [search-for-sequences], binding: rest, confidence: high}
+  - {tool: Add contacts to a sequence, category: sequences, rest: [add-contacts-to-sequence], binding: rest, confidence: high}
+  - {tool: Remove contacts from sequences, category: sequences, rest: [update-contact-status-sequence], binding: rest, confidence: high}
+  - {tool: Get a list of email accounts, category: email, rest: [get-a-list-of-email-accounts], binding: rest, confidence: high}
+  - {tool: Send one-off emails, category: email, rest: [create-an-email-draft, send-email-now], binding: rest, confidence: high,
+     note: Two-step in REST — draft then send; the tool composes both.}
+  - {tool: Search email campaigns, category: email, rest: [emailer_messages/search, get-contact-sequence-activity], binding: rest, confidence: medium}
+  - {tool: Search tasks, category: tasks, rest: [search-tasks], binding: rest, confidence: high}
+  - {tool: Show task details, category: tasks, rest: [get-a-task], binding: rest, confidence: high}
+  - {tool: Create tasks, category: tasks, rest: [create-a-task, bulk-create-tasks], binding: rest, confidence: high}
+  - {tool: Complete or skip tasks, category: tasks, rest: [complete-a-task, skip-a-task], binding: rest, confidence: high}
+  - {tool: Query analytics data, category: analytics, rest: [sync-report], binding: rest, confidence: high}
+  - {tool: Get API usage and credit stats, category: usage, rest: [post_apiusage, view-credit-usage-stats], binding: rest, confidence: high}
+  - {tool: Get user profile, category: workspace, rest: [get-current-user-profile], binding: rest, confidence: high}
+  - {tool: Poll webhook result, category: async, rest: [poll-webhook-result], binding: rest, confidence: high}
+  - {tool: Search custom object records, category: custom-objects, rest: [get-a-list-of-fields], binding: rest, confidence: low,
+     note: MCP exposes a custom-object surface; the public REST API only exposes custom FIELDS. Mapping is nominal.}
+  - {tool: View a custom object, category: custom-objects, rest: [get-a-list-of-fields], binding: rest, confidence: low,
+     note: Same divergence as above — no public REST custom-object read operation.}
+mcp_only:
+  - {tool: Create a custom object, reason: No public REST operation creates a custom OBJECT type; /fields only creates custom fields.}
+  - {tool: Connect a data source, reason: Data-source connection is an app-side capability with no public REST operation.}
+  - {tool: Import data from a data source, reason: Import is an app-side capability with no public REST operation.}
+  - {tool: Purchase or browse sending domains, reason: Domain purchase is exposed to MCP (domain_purchase_list / domain_purchase_create scopes) but not in the public OpenAPI.}
+  - {tool: Purchase or browse email accounts, reason: Mailbox purchase is exposed to MCP (email_account_purchase_* scopes) but not in the public OpenAPI.}
+  - {tool: Check email domain authentication, reason: SPF/DKIM/DMARC status (domain_authentication_status scope) has no public REST operation.}
+  - {tool: Track website visitors, reason: Website-visitor tracking (website_visitor_domain_tracker_* / website_visitors_read scopes) has no public REST operation.}
+rest_only:
+  - capability: Account and contact administration
+    operations: [search-for-accounts, bulk-update-accounts, update-account-ownership, list-account-stages,
+                 'get_accounts{id}', view-a-contact, bulk-update-contacts, update-contact-stage,
+                 update-contact-ownership, list-contact-stages]
+  - capability: Deal administration
+    operations: [update-deal, list-deal-stages, view-associated-deals]
+  - capability: Sequence administration
+    operations: [approve-sequence, abort-sequence, archive-sequence, list-email-schedules]
+  - capability: Email message lifecycle
+    operations: [get-email-content, check-email-send-status, get_emailstats]
+  - capability: Phone-call records
+    operations: [phonecalls_create, get_phone_callssearch, put_phone_callsupdate]
+  - capability: Database record reads
+    operations: ['get_people{id}', 'get_organizations{id}', news_articles_search]
+  - capability: Fields and notes
+    operations: [create-a-custom-field, update-a-custom-field, get-a-list-of-all-custom-fields, get-a-list-of-notes]
+  - capability: Workspace users
+    operations: [get-a-list-of-users]
+  - capability: Task updates
+    operations: [update-a-task]
+divergence_note: >-
+  The two surfaces are genuinely non-identical. MCP reaches seven capabilities the public REST API
+  does not expose at all (custom objects, data sources, domain and mailbox purchase, domain
+  authentication, website-visitor tracking), while REST carries 33 operations — mostly stage,
+  ownership, approval and record-administration routes — that no MCP tool covers. Neither is a
+  superset of the other.

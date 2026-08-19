@@ -1,0 +1,88 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.apollo.io/reference/status-codes
+derived_from: openapi/_original/apollo-io-apollo-rest-api-openapi.json
+format: vendor-json
+note: 'Apollo does not use RFC 9457 application/problem+json. Error bodies are plain JSON with an `error`
+  string and, on the documented cases, an `error_code`; 401 is returned as text/plain on most routes.
+  The response-media histogram across all 4xx/5xx declarations is: application/json=188, text/plain=76.'
+envelope:
+  fields:
+  - error
+  - error_code
+  - message
+  - retry_after_seconds
+  example: '{"error": "This API key is not authorized to access api/v1/typed_custom_fields/index. Request
+    an API key from your administrator that includes this endpoint in its configured scope.", "error_code":
+    "API_INACCESSIBLE"}'
+error_codes:
+- code: INVALID_ACCESS_TOKEN
+  status: 401
+  meaning: OAuth access token is missing, expired or invalid.
+- code: API_INACCESSIBLE
+  status: 403
+  meaning: Key scope or plan does not permit this endpoint.
+- code: result_pending
+  status: 404
+  meaning: Async enrichment still processing; retry after retry_after_seconds.
+  terminal: false
+- code: request_id_unknown
+  status: 404
+  meaning: request_id was never issued or is mistyped.
+  terminal: true
+- code: request_id_expired
+  status: 410
+  meaning: Result aged out of the 30-day window.
+  terminal: true
+- code: invalid_request_id
+  status: 400
+  meaning: request_id is not a valid signed 64-bit integer.
+  terminal: true
+problem_count: 8
+problems:
+- status: 400
+  title: Bad request
+  meaning: The request could not be parsed or a value is structurally invalid — for example a request_id
+    that is not a signed 64-bit integer (error_code invalid_request_id).
+  operations_declaring: 5
+  docs: https://docs.apollo.io/reference/status-codes
+- status: 401
+  title: Unauthorized
+  meaning: The x-api-key header or OAuth access token is missing, invalid, or the account is no longer
+    active. OAuth tokens return error_code INVALID_ACCESS_TOKEN. Body is text/plain on most routes.
+  operations_declaring: 76
+  docs: https://docs.apollo.io/reference/status-codes
+- status: 403
+  title: Forbidden
+  meaning: The plan does not include API access, or the key's configured scope does not include this endpoint.
+    Returns error_code API_INACCESSIBLE. Some routes require a master key.
+  operations_declaring: 56
+  docs: https://docs.apollo.io/reference/status-codes
+- status: 404
+  title: Not found
+  meaning: The record does not exist or is not visible to these credentials. On webhook polling this also
+    carries error_code result_pending (with retry_after_seconds) or request_id_unknown.
+  operations_declaring: 9
+  docs: https://docs.apollo.io/reference/status-codes
+- status: 410
+  title: Gone
+  meaning: The asynchronous webhook result has aged out of the 30-day retention window (error_code request_id_expired).
+    Terminal — start a fresh enrichment request.
+  operations_declaring: 1
+  docs: https://docs.apollo.io/reference/status-codes
+- status: 422
+  title: Unprocessable entity
+  meaning: Validation failure — an invalid or missing parameter. Response shape varies by endpoint.
+  operations_declaring: 51
+  docs: https://docs.apollo.io/reference/status-codes
+- status: 429
+  title: Too many requests
+  meaning: A per-minute, per-hour or per-day rate-limit window for this endpoint is exhausted. Read the
+    retry-after header for the number of seconds until the window resets.
+  operations_declaring: 62
+  docs: https://docs.apollo.io/reference/status-codes
+- status: 500
+  title: Internal server error
+  meaning: Unexpected error on Apollo's side. Retry; contact support if it persists.
+  operations_declaring: 2
+  docs: https://docs.apollo.io/reference/status-codes

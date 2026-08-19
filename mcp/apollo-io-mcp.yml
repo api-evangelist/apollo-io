@@ -1,0 +1,128 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://docs.apollo.io/docs/apollo-mcp
+registry_entry: https://raw.githubusercontent.com/apolloio/apollo-mcp-plugin/main/server.json
+deployment:
+  mode: remote
+  endpoint: https://mcp.apollo.io/mcp
+  install: claude mcp add --transport http apollo https://mcp.apollo.io/mcp
+  package: https://www.npmjs.com/package/@apolloio/mcp
+  auth: oauth
+  verified: probed
+  note: >-
+    Remote first. The hosted Streamable-HTTP endpoint is the product — an agent reaches it with an
+    OAuth token and no local install. The @apolloio/mcp npm package and the apollo-mcp-plugin repo
+    are plug-in distributions that point at that same remote URL (their .mcp.json declares
+    type "http", url https://mcp.apollo.io/mcp); neither runs a local stdio server.
+server:
+  name: apollo
+  registry_name: io.github.apolloio/apollo-mcp
+  title: Apollo.io
+  description: >-
+    Prospect, enrich leads, and manage outreach sequences with Apollo.io. Connects Apollo's contact
+    database, real-time enrichment engine, and sales engagement surface to an MCP client.
+  transport: streamable-http
+  url: https://mcp.apollo.io/mcp
+  version: 0.1.1
+  local_install_required: false
+  api_key_required: false
+authorization:
+  scheme: OAuth 2.0
+  protected_resource: https://mcp.apollo.io/.well-known/oauth-protected-resource
+  authorization_server: https://mcp.apollo.io/.well-known/oauth-authorization-server
+  dynamic_client_registration: https://mcp.apollo.io/api/v1/oauth/applications/register_oauth_client
+  pkce: [S256]
+  scopes: scopes/apollo-io-scopes.yml
+  scope_count: 70
+distribution:
+  - channel: standalone-remote
+    detail: Any MCP client supporting remote servers over Streamable HTTP with OAuth 2.0.
+    url: https://mcp.apollo.io/mcp
+  - channel: ai-connector
+    detail: First-party built-in connectors on ChatGPT, Claude, Perplexity, Replit and Cursor.
+  - channel: coding-plugin
+    detail: First-party plug-in for Codex and Claude Code / Cowork.
+    url: https://github.com/apolloio/apollo-mcp-plugin
+introspection:
+  tools_list: gated
+  probe:
+    url: https://mcp.apollo.io/mcp
+    method: 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+    body: 'Unauthorized: Missing or invalid Authorization header for one of [tools/list]'
+    www_authenticate: >-
+      Bearer realm="Apollo.io MCP Server",
+      resource_metadata="https://mcp.apollo.io/.well-known/oauth-protected-resource"
+  note: >-
+    tools/list requires an OAuth bearer token, so the live inputSchema set cannot be captured
+    anonymously. The tool list below is Apollo's own published "Available actions" table from
+    https://docs.apollo.io/docs/apollo-mcp — names and descriptions are verbatim from the provider;
+    the machine-readable input schemas need an authenticated introspection pass. The 401 challenge
+    itself enumerates the full scope set, which is captured in scopes/apollo-io-scopes.yml.
+tool_count: 51
+tools:
+  - {name: Search for companies, credits: true, description: Search for companies using filters like industry, headcount, and website visitor intent.}
+  - {name: Bulk company enrichment, credits: true, description: Enrich multiple company records at once using the Enrichment API.}
+  - {name: Company enrichment, credits: true, description: Enrich a single company with fresh firmographic data.}
+  - {name: Company job postings, credits: true, description: Retrieve company job posting data to identify hiring signals.}
+  - {name: Bulk people enrichment, credits: true, description: Enrich multiple people records at once, including verified email data.}
+  - {name: People enrichment, credits: true, description: Enrich a single person record with updated contact and employment data.}
+  - {name: Search for people, credits: false, description: Search Apollo's people API data programmatically.}
+  - {name: Search for contacts, credits: false, description: Search people and contacts with natural language.}
+  - {name: Create a contact, credits: false, description: Create a contact record to save and engage in Apollo.}
+  - {name: Bulk create contacts, credits: false, description: Create multiple contact records at once.}
+  - {name: Update a contact, credits: false, description: Update details on a saved contact.}
+  - {name: Create an account, credits: false, description: Create a company record to save and manage in Apollo.}
+  - {name: Bulk create accounts, credits: false, description: Create multiple account records at once.}
+  - {name: Update an account, credits: false, description: Update fields on an existing account.}
+  - {name: Search for deals, credits: false, description: Find existing deals in your pipeline.}
+  - {name: Create a deal, credits: false, description: Create a new deal to track in Apollo.}
+  - {name: View deal details, credits: false, description: View the details of an existing deal.}
+  - {name: Search custom object records, credits: false, description: Search records for custom objects configured in your workspace.}
+  - {name: Create a custom object, credits: false, description: Define a new custom object type for your workspace.}
+  - {name: View a custom object, credits: false, description: View the configuration of an existing custom object.}
+  - {name: Search conversations, credits: false, description: Find calls and conversations recorded in Apollo.}
+  - {name: Get conversation insights, credits: conditional, description: Retrieve AI-generated insights for a conversation.}
+  - {name: Get conversation transcript, credits: false, description: Retrieve the transcript for a recorded conversation.}
+  - {name: Get conversation recording link, credits: false, description: Retrieve a link to a conversation's recording.}
+  - {name: Search for lists, credits: false, description: Find your team's Apollo lists for contacts and accounts.}
+  - {name: Create a list, credits: false, description: Create a new contact or account list.}
+  - {name: Update a list, credits: false, description: Rename an existing list.}
+  - {name: Add records to lists, credits: false, description: Add contacts or accounts to one or more lists.}
+  - {name: Remove records from lists, credits: false, description: Remove contacts or accounts from one or more lists without deleting the records.}
+  - {name: Create or update a sequence, credits: false, description: Create sequences, improve steps, generate variants, and preview changes before updating Apollo.}
+  - {name: Add contacts to a sequence, credits: false, description: Enroll contacts into a sequence to start outreach steps.}
+  - {name: Remove contacts from sequences, credits: false, description: Remove contacts from a sequence to stop future outreach steps.}
+  - {name: Search for sequences, credits: false, description: Find existing sequences to enroll and manage outreach.}
+  - {name: Get a list of email accounts, credits: false, description: List connected mailboxes used for sending, sequences, and tracking.}
+  - {name: Send one-off emails, credits: false, description: Create and send one-off emails to contacts, including custom To, Cc, and Bcc recipients.}
+  - {name: Search email campaigns, credits: false, description: Search sequence email activity, message content, and send status.}
+  - {name: Connect a data source, credits: false, description: Create and configure an external data source connection.}
+  - {name: Import data from a data source, credits: false, description: Import records from a connected data source.}
+  - {name: Purchase or browse sending domains, credits: false, description: Buy or browse available domains for cold email sending.}
+  - {name: Purchase or browse email accounts, credits: false, description: Buy or browse available mailboxes for cold email sending.}
+  - {name: Check email domain authentication, credits: false, description: Check the SPF, DKIM, and DMARC authentication status for a sending domain.}
+  - {name: Create or manage labels, credits: false, description: Create, update, or apply labels to records.}
+  - {name: Search tasks, credits: false, description: Search Apollo tasks by status, type, priority, sequence, or owner.}
+  - {name: Show task details, credits: false, description: View task context, including who the task is for and any related sequence step.}
+  - {name: Create tasks, credits: false, description: Create one or more tasks for contacts, accounts, or deals.}
+  - {name: Complete or skip tasks, credits: false, description: Complete or skip tasks with a note.}
+  - {name: Query analytics data, credits: false, description: Retrieve analytics data on sequences, emails, and engagement.}
+  - {name: Get API usage and credit stats, credits: false, description: Retrieve current API usage and credit consumption stats.}
+  - {name: Get user profile, credits: false, description: Retrieve the authenticated user's Apollo profile and settings.}
+  - {name: Poll webhook result, credits: false, description: Retrieve the result of an asynchronous webhook-based request.}
+  - {name: Track website visitors, credits: false, description: Retrieve or manage website visitor and domain tracking data.}
+governance:
+  model_training: >-
+    Apollo prohibits AI model training with Apollo MCP integrations and asks that model training be
+    turned off in the AI client before connecting.
+  permissions: >-
+    MCP access mirrors the authorizing Apollo user's own permissions, plan and credit balance —
+    a tool cannot do anything that user could not do in the app.
+  destructive_actions: Bulk delete and other destructive actions are not exposed.
+  rate_limits: >-
+    Apollo MCP uses rate limits separate from the REST API and does not return the REST
+    x-rate-limit-* response headers.
+skills: skills/_index.yml
+crosswalk: mcp/apollo-io-tool-crosswalk.yml

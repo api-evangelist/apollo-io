@@ -1,0 +1,35 @@
+generated: '2026-08-13'
+method: probed
+source: https://api.github.com/repos/apolloio/apollo-io-cli/releases
+api_changelog:
+  published: false
+  note: >-
+    Apollo publishes no dated changelog for the REST API. There is no /changelog on the docs host
+    (404), no release-notes page on apollo.io (404), and no versioning/deprecation announcement feed.
+    The two change signals that do exist are indirect: every docs page carries an `updatedAt`
+    timestamp in its markdown frontmatter, and the OpenAPI document at
+    https://docs.apollo.io/openapi/apollo-rest-api.json is regenerated on each docs publish, so
+    diffing that file is the only mechanical way to detect an API change.
+  probed:
+    - {url: 'https://docs.apollo.io/changelog', status: 404}
+    - {url: 'https://docs.apollo.io/docs/api-changelog', status: 404}
+    - {url: 'https://docs.apollo.io/docs/whats-new', status: 404}
+    - {url: 'https://www.apollo.io/product-updates', status: 404}
+    - {url: 'https://www.apollo.io/release-notes', status: 404}
+cli_changelog:
+  scope: Apollo CLI only — this is not the API's change history
+  url: https://github.com/apolloio/apollo-io-cli/releases
+  scheme: semver
+  current: 2.1.0
+  note: >-
+    Releases are tagged and dated but every release body is empty, so there is no per-release
+    description of what changed. Recorded here as dated version history, not as release notes.
+  entries:
+    - {version: 2.1.0, date: '2026-08-07', notes: null}
+    - {version: 2.0.0, date: '2026-07-20', notes: null, breaking: probable, note: major-version bump; no published notes}
+    - {version: 1.1.1, date: '2026-07-07', notes: null}
+    - {version: 1.1.0, date: '2026-05-29', notes: null}
+    - {version: 1.0.1, date: '2026-05-22', notes: null}
+    - {version: 1.0.0, date: '2026-05-16', notes: null}
+    - {version: 0.5.4, date: '2026-05-11', notes: null}
+    - {version: 0.5.3, date: '2026-05-11', notes: null}

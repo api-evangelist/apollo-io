@@ -1,0 +1,47 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.apollo.io/reference/poll-webhook-result
+derived_from: openapi/_original/apollo-io-apollo-rest-api-openapi.json
+spec_type: Webhooks
+asyncapi_published: false
+note: >-
+  Apollo publishes no AsyncAPI document and no general event-subscription surface — there is no
+  endpoint to register a persistent webhook for record or engagement events. What Apollo does ship
+  is a per-request asynchronous callback on the two people-enrichment operations: pass a
+  webhook_url on the request and Apollo POSTs the completed result to it, returning a request_id
+  that can also be polled. Retries are at Apollo's discretion, so receivers must be idempotent.
+  This is the whole documented event surface; nothing here is inferred.
+surface:
+  style: per-request-callback
+  registration: inline (webhook_url parameter on the enrichment request)
+  delivery: HTTP POST from Apollo to the caller-supplied HTTPS URL
+  retries: >-
+    Apollo may retry a callback. Apollo's own guidance is that the receiving endpoint must be
+    idempotent so duplicate payloads are safe.
+  security: >-
+    The receiver must be publicly reachable over HTTPS. Apollo documents no signing secret, no
+    signature header and no mTLS option for callback verification.
+  polling_fallback:
+    operation: poll-webhook-result
+    path: GET /webhook_result/{request_id}
+    retention_days: 30
+    pending: 404 with error_code result_pending and a retry_after_seconds value — wait, then poll again
+    terminal:
+      - {error_code: request_id_unknown, status: 404, meaning: request_id was never issued or is mistyped}
+      - {error_code: request_id_expired, status: 410, meaning: result aged out of the 30-day window}
+      - {error_code: invalid_request_id, status: 400, meaning: request_id is not a valid signed 64-bit integer}
+events:
+  - name: people-enrichment.completed
+    trigger: POST /people/match with webhook_url set
+    operation: people-enrichment
+    file: openapi/apollo-io-enrichment-api-openapi.yml
+    payload: The enriched person record, identical in shape to the synchronous 200 response.
+  - name: bulk-people-enrichment.completed
+    trigger: POST /people/bulk_match with webhook_url set
+    operation: bulk-people-enrichment
+    file: openapi/apollo-io-enrichment-api-openapi.yml
+    payload: The enriched person records for the batch (up to 10 per request).
+event_count: 2
+not_found:
+  - {path: 'https://docs.apollo.io/reference/webhooks', status: 404, note: 'A webhooks reference page no longer exists on the docs host.'}
+  - {path: 'https://docs.apollo.io/asyncapi.yaml', status: 404}

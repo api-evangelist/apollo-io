@@ -4,7 +4,13 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Apollo.io
 providerId: apollo-io
 created: '2026-05-08'
-modified: '2026-05-08'
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: searched
+source: https://docs.apollo.io/reference/rate-limits
+sources:
+  - https://docs.apollo.io/reference/rate-limits
+  - https://docs.apollo.io/docs/api-pricing
 reconciled: true
 tags:
   - Sales Intelligence
@@ -12,73 +18,122 @@ tags:
   - Rate Limiting
   - Throttling
 description: >-
-  Apollo.io applies request-rate limits per minute, per hour, and per day,
-  scaled by plan tier (Basic / Professional / Organization). Search and
-  enrichment endpoints additionally consume credits from a separate
-  per-workspace monthly pool. When the request rate or credit pool is
-  exhausted Apollo returns HTTP 429.
-sources:
-  - https://docs.apollo.io/reference/rate-limits
+  Apollo enforces rate limits per TEAM (not per key or per user), per ENDPOINT, and in three
+  windows at once — per minute, per hour and per day. Child workspaces share their parent's limits.
+  An endpoint may be limited in some or all windows and every applicable window must be satisfied.
+  Windows are fixed and open on the first request rather than aligned to the clock, so a count
+  resets when its window elapses. Exhausting any window returns 429 with a retry-after header.
+  Credit consumption is a separate, independent ceiling from the request-rate limits.
 notes: >-
-  Apollo's exact RPM / RPH / daily caps differ by endpoint family and plan
-  tier and may evolve over time; consult the live documentation for the
-  authoritative numbers and inspect rate-limit headers on responses.
+  Numbers below are the published maximums for current plans; legacy plans differ. The
+  authoritative per-team values come from the View API Usage Stats endpoint
+  (POST /usage_stats/api_usage_stats), which returns limits and remaining capacity per route.
 responseCodes:
   throttled: 429
+limit_count: 12
 limits:
-  - name: Per Minute
-    scope: workspace
+  - name: Requests per minute (default)
+    scope: team-per-endpoint
     metric: requests
-    notes: >-
-      Per-minute request cap scaled by plan tier; tightest on Basic,
-      loosest on Organization.
-  - name: Per Hour
-    scope: workspace
+    window: minute
+    by_plan: {free: 50, basic: 200, professional: 200, organization: 200}
+  - name: Requests per hour (default)
+    scope: team-per-endpoint
     metric: requests
-    notes: >-
-      Per-hour request cap scaled by plan tier.
-  - name: Per Day
-    scope: workspace
+    window: hour
+    by_plan: {free: 200, basic: 400, professional: 400, organization: 600}
+  - name: Requests per day (default)
+    scope: team-per-endpoint
     metric: requests
-    notes: >-
-      Per-day request cap scaled by plan tier.
-  - name: Search Credits
-    scope: workspace
-    metric: credits
-    notes: >-
-      Search-style endpoints (people search, organization search) draw
-      from a monthly search-credit pool refreshed each billing cycle.
-  - name: Enrichment Credits
-    scope: workspace
-    metric: credits
-    notes: >-
-      Enrichment endpoints consume a separate enrichment-credit pool;
-      mobile reveals are billed against a dedicated mobile-credit pool.
-  - name: Bulk Endpoint Discount
-    scope: request
-    metric: credits
-    notes: >-
-      Bulk enrichment endpoints (up to 10 records per call) cost less
-      per-record than the single-record endpoints.
-  - name: Webhook Delivery
-    scope: subscription
-    metric: events
-    notes: >-
-      Webhook deliveries are retried on 5xx; receivers should respond
-      2xx within the platform timeout.
+    window: day
+    by_plan: {free: 600, basic: 2000, professional: 2000, organization: 6000}
+  - name: Enrichment endpoints — per minute
+    scope: team-per-endpoint
+    metric: requests
+    window: minute
+    by_plan: {free: 50, free_bulk: 20, basic: 1000, professional: 1000, organization: 1000}
+    applies_to: [people-enrichment, bulk-people-enrichment, organization-enrichment,
+                 bulk-organization-enrichment, organization-jobs-postings, 'get_people{id}', 'get_organizations{id}']
+  - name: Enrichment endpoints — per hour
+    scope: team-per-endpoint
+    metric: requests
+    window: hour
+    by_plan: {free: 200, free_bulk: 100, basic: unlimited, professional: unlimited, organization: unlimited}
+  - name: Enrichment endpoints — per day
+    scope: team-per-endpoint
+    metric: requests
+    window: day
+    by_plan: {free: 600, basic: unlimited, professional: unlimited, organization: unlimited}
+  - name: Search endpoints — per minute
+    scope: team-per-endpoint
+    metric: requests
+    window: minute
+    by_plan: {free: 50, basic: 200, professional: 200, organization: 200}
+    applies_to: [people-api-search, organization-search, news_articles_search]
+    note: >-
+      Searching your OWN saved records (search-for-contacts, search-for-accounts and similar) is not
+      a database search and falls back to the default plan limits.
+  - name: Search endpoints — per hour
+    scope: team-per-endpoint
+    metric: requests
+    window: hour
+    by_plan: {free: 200, basic: 6000, professional: 6000, organization: 6000}
+  - name: Search endpoints — per day
+    scope: team-per-endpoint
+    metric: requests
+    window: day
+    by_plan: {free: 600, basic: 50000, professional: 50000, organization: 50000}
+  - name: Query Analytics Report
+    scope: team-per-endpoint
+    metric: requests
+    window: hour
+    limit: 5
+    applies_to: [sync-report]
+  - name: Export Conversations (Free plans)
+    scope: team-per-endpoint
+    metric: requests
+    window: minute
+    limit: 1
+    hourly_limit: 20
+    applies_to: [export-conversations]
+  - name: Apollo MCP
+    scope: mcp-session
+    metric: requests
+    window: unpublished
+    note: >-
+      Apollo MCP uses rate limits separate from the REST API and returns none of the x-rate-limit-*
+      headers. The numbers are not published.
+headers:
+  limit: [x-rate-limit-minute, x-rate-limit-hourly, x-rate-limit-24-hour]
+  usage: [x-minute-usage, x-hourly-usage, x-24-hour-usage]
+  remaining: [x-minute-requests-left, x-hourly-requests-left, x-24-hour-requests-left]
+  backoff: [retry-after]
+  behavior: >-
+    Headers are added only after authentication and authorization succeed and the endpoint's limit is
+    checked — 401 and 403 responses carry none. An unlimited window returns an empty x-rate-limit-*
+    header and no usage headers for that window, so enrichment calls on paid plans come back with a
+    per-minute limit and nothing hourly or daily. retry-after is returned with a 429 and gives the
+    seconds until the exhausted window resets.
+credits:
+  independent_of_rate_limits: true
+  note: >-
+    Enrichment's high per-minute allowance is not a licence to send unlimited requests — the credit
+    balance is the real ceiling on enriched data. See plans/apollo-io-plans-pricing.yml.
 policies:
-  - name: Backoff Strategy
+  - name: Read the headers, not the table
     description: >-
-      Exponential backoff with jitter on 429. Inspect the
-      x-rate-limit-* headers (minute / hour / day) for current usage.
-  - name: Bulk Where Possible
+      Limits vary by endpoint and plan and legacy plans differ. Read x-*-requests-left on every
+      response and call POST /usage_stats/api_usage_stats for the authoritative per-route values.
+  - name: Honor retry-after
+    description: On a 429, wait the number of seconds in retry-after; the window is fixed, so retrying earlier cannot succeed.
+  - name: Batch instead of looping
     description: >-
-      Use bulk enrichment endpoints (up to 10 records) instead of single-
-      record calls to lower per-record credit cost and round-trip count.
-  - name: Credit Telemetry
+      Bulk enrichment takes up to 10 records per request and counts as one call against a per-minute
+      limit that is 20/min on Free — a 10x reduction in request count over single-record calls.
+  - name: Budget pagination
     description: >-
-      Read the API Usage endpoint to monitor remaining credits and
-      throttle in-app workloads accordingly.
+      Credit-consuming search endpoints charge per page (organization search 1 credit per page of
+      100; news search 1 credit per page of 25), so deep pagination multiplies spend.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

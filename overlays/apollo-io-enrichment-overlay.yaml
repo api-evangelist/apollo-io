@@ -1,0 +1,39 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Apollo.io (enrichment)
+  version: 1.0.0
+extends: openapi/apollo-io-enrichment-api-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: openapi/apollo-io-enrichment-api-openapi.yml + the Apollo.io enrichment artifacts in this repo
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: apollo-io
+    x-apievangelist-harvested-from: https://docs.apollo.io/openapi/apollo-rest-api.json
+    x-apievangelist-artifacts:
+      authentication: authentication/apollo-io-authentication.yml
+      scopes: scopes/apollo-io-scopes.yml
+      conventions: conventions/apollo-io-conventions.yml
+      errors: errors/apollo-io-problem-types.yml
+      rate_limits: rate-limits/apollo-io-rate-limits.yml
+      lifecycle: lifecycle/apollo-io-lifecycle.yml
+      data_model: data-model/apollo-io-data-model.yml
+      mcp: mcp/apollo-io-mcp.yml
+- target: $.servers
+  update:
+  - url: https://api.apollo.io/api/v1
+    description: Production — the only Apollo API host; there is no sandbox host
+- target: $.paths.*.*
+  update:
+    x-apievangelist-rate-limit-headers:
+    - x-rate-limit-minute
+    - x-rate-limit-hourly
+    - x-rate-limit-24-hour
+    - x-minute-usage
+    - x-hourly-usage
+    - x-24-hour-usage
+    - x-minute-requests-left
+    - x-hourly-requests-left
+    - x-24-hour-requests-left
+    - retry-after

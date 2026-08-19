@@ -1,6 +1,9 @@
 {
   "provider": "apollo-io",
-  "sources": [
+  "harvested": "https://docs.apollo.io/openapi/apollo-rest-api.json",
+  "harvested_on": "2026-08-13",
+  "source": "openapi/_original/apollo-io-apollo-rest-api-openapi.json",
+  "removed_scaffold": [
     "apollo-io-accounts-api-openapi.yml",
     "apollo-io-contacts-api-openapi.yml",
     "apollo-io-email-accounts-api-openapi.yml",
@@ -14,27 +17,74 @@
     "apollo-io-sync-report-api-openapi.yml",
     "apollo-io-tasks-api-openapi.yml",
     "apollo-io-usage-stats-api-openapi.yml",
-    "apollo-io-users-api-openapi.yml"
+    "apollo-io-users-api-openapi.yml",
+    "_original/apollo-io-openapi.yml"
   ],
   "outputs": [
-    "apollo-io-accounts-api-openapi.yml",
-    "apollo-io-contacts-api-openapi.yml",
-    "apollo-io-email-accounts-api-openapi.yml",
-    "apollo-io-emailer-campaigns-api-openapi.yml",
-    "apollo-io-mixed-companies-api-openapi.yml",
-    "apollo-io-mixed-people-api-openapi.yml",
-    "apollo-io-opportunities-api-openapi.yml",
-    "apollo-io-organizations-api-openapi.yml",
-    "apollo-io-people-api-openapi.yml",
-    "apollo-io-phone-calls-api-openapi.yml",
-    "apollo-io-sync-report-api-openapi.yml",
-    "apollo-io-tasks-api-openapi.yml",
-    "apollo-io-usage-stats-api-openapi.yml",
-    "apollo-io-users-api-openapi.yml"
-  ],
-  "archived": [],
-  "errors": [],
-  "warnings": [],
-  "notes": [],
-  "skipped": []
+    {
+      "file": "apollo-io-accounts-api-openapi.yml",
+      "tag": "Accounts",
+      "operations": 8
+    },
+    {
+      "file": "apollo-io-analytics-api-openapi.yml",
+      "tag": "Analytics",
+      "operations": 1
+    },
+    {
+      "file": "apollo-io-calls-api-openapi.yml",
+      "tag": "Calls",
+      "operations": 3
+    },
+    {
+      "file": "apollo-io-contacts-api-openapi.yml",
+      "tag": "Contacts",
+      "operations": 10
+    },
+    {
+      "file": "apollo-io-conversations-api-openapi.yml",
+      "tag": "Conversations",
+      "operations": 4
+    },
+    {
+      "file": "apollo-io-deals-api-openapi.yml",
+      "tag": "Deals",
+      "operations": 5
+    },
+    {
+      "file": "apollo-io-emailer-messages-api-openapi.yml",
+      "tag": "Emailer Messages",
+      "operations": 4
+    },
+    {
+      "file": "apollo-io-enrichment-api-openapi.yml",
+      "tag": "Enrichment",
+      "operations": 4
+    },
+    {
+      "file": "apollo-io-fields-api-openapi.yml",
+      "tag": "Fields",
+      "operations": 4
+    },
+    {
+      "file": "apollo-io-miscellaneous-api-openapi.yml",
+      "tag": "Miscellaneous",
+      "operations": 12
+    },
+    {
+      "file": "apollo-io-search-api-openapi.yml",
+      "tag": "Search",
+      "operations": 6
+    },
+    {
+      "file": "apollo-io-sequences-api-openapi.yml",
+      "tag": "Sequences",
+      "operations": 12
+    },
+    {
+      "file": "apollo-io-tasks-api-openapi.yml",
+      "tag": "Tasks",
+      "operations": 7
+    }
+  ]
 }

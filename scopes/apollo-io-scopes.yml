@@ -1,0 +1,612 @@
+generated: '2026-08-13'
+method: probed
+source: https://mcp.apollo.io/.well-known/oauth-authorization-server
+docs: https://docs.apollo.io/docs/use-oauth-20-authorization-flow-to-access-apollo-user-information-partners
+note: Apollo's OpenAPI declares OAuth as an http/bearer scheme, so the scope set is not in the spec's
+  securitySchemes. The authoritative anonymous source is the RFC 8414 authorization-server metadata Apollo
+  serves at mcp.apollo.io, cross-referenced against the per-operation `OAuth scopes:` line published in
+  every endpoint reference page. Partners select scopes at OAuth app registration; read_user_profile and
+  app_scopes are added by Apollo automatically.
+schemes:
+- name: bearerAuth
+  type: oauth2
+  grant_types:
+  - authorization_code
+  - refresh_token
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://app.apollo.io/#/oauth/authorize
+    tokenUrl: https://app.apollo.io/api/v1/oauth/token
+    docs: https://docs.apollo.io/docs/use-oauth-20-authorization-flow-to-access-apollo-user-information-partners
+  - flow: authorizationCode
+    audience: Apollo MCP (mcp.apollo.io)
+    authorizationUrl: https://mcp.apollo.io/mcp/oauth_metadata/redirect_to_authorize
+    tokenUrl: https://mcp.apollo.io/api/v1/oauth/token
+    registrationUrl: https://mcp.apollo.io/api/v1/oauth/applications/register_oauth_client
+    revocationUrl: https://mcp.apollo.io/api/v1/oauth/revoke
+    pkce:
+    - S256
+scope_count: 91
+scopes:
+- scope: read_user_profile
+  flows:
+  - authorizationCode
+  operations:
+  - get-current-user-profile
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: app_scopes
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: people_bulk_match
+  flows:
+  - authorizationCode
+  operations:
+  - bulk-people-enrichment
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: organizations_bulk_enrich
+  flows:
+  - authorizationCode
+  operations:
+  - bulk-organization-enrichment
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: organizations_enrich
+  flows:
+  - authorizationCode
+  operations:
+  - organization-enrichment
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: people_match
+  flows:
+  - authorizationCode
+  operations:
+  - people-enrichment
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: webhook_result_read
+  flows:
+  - authorizationCode
+  operations:
+  - poll-webhook-result
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: mixed_people_api_search
+  flows:
+  - authorizationCode
+  operations:
+  - people-api-search
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: organizations_job_posting
+  flows:
+  - authorizationCode
+  operations:
+  - organization-jobs-postings
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: mixed_companies_search
+  flows:
+  - authorizationCode
+  operations:
+  - organization-search
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: organizations_search
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: contact_write
+  flows:
+  - authorizationCode
+  operations:
+  - create-a-contact
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: contact_update
+  flows:
+  - authorizationCode
+  operations:
+  - update-a-contact
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: contacts_search
+  flows:
+  - authorizationCode
+  operations:
+  - search-for-contacts
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: contact_read
+  flows:
+  - authorizationCode
+  operations:
+  - view-a-contact
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: account_write
+  flows:
+  - authorizationCode
+  operations:
+  - create-an-account
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: account_update
+  flows:
+  - authorizationCode
+  operations:
+  - update-an-account
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: context_center_read
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: context_center_write
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_campaigns_search
+  flows:
+  - authorizationCode
+  operations:
+  - search-for-sequences
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_campaigns_create
+  flows:
+  - authorizationCode
+  operations:
+  - create-sequence
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_campaigns_update
+  flows:
+  - authorizationCode
+  operations:
+  - update-sequence
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_campaigns_approve
+  flows:
+  - authorizationCode
+  operations:
+  - approve-sequence
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_campaigns_add_contact_ids
+  flows:
+  - authorizationCode
+  operations:
+  - add-contacts-to-sequence
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_campaigns_remove_or_stop_contact_ids
+  flows:
+  - authorizationCode
+  operations:
+  - update-contact-status-sequence
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_schedules_list
+  flows:
+  - authorizationCode
+  operations:
+  - list-email-schedules
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_messages_search
+  flows:
+  - authorizationCode
+  operations:
+  - emailer_messages/search
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_messages_create
+  flows:
+  - authorizationCode
+  operations:
+  - create-an-email-draft
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_messages_send_now
+  flows:
+  - authorizationCode
+  operations:
+  - send-email-now
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_messages_email_send_status
+  flows:
+  - authorizationCode
+  operations:
+  - check-email-send-status
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_messages_get_content
+  flows:
+  - authorizationCode
+  operations:
+  - get-email-content
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_campaigns_activity_feed
+  flows:
+  - authorizationCode
+  operations:
+  - get-contact-sequence-activity
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: report_sync
+  flows:
+  - authorizationCode
+  operations:
+  - sync-report
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: agent_task
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: email_accounts_list
+  flows:
+  - authorizationCode
+  operations:
+  - get-a-list-of-email-accounts
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: custom_objects_write
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: custom_objects_read
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: custom_field_write
+  flows:
+  - authorizationCode
+  operations:
+  - create-a-custom-field
+  - update-a-custom-field
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: opportunity_write
+  flows:
+  - authorizationCode
+  operations:
+  - create-deal
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: opportunities_list
+  flows:
+  - authorizationCode
+  operations:
+  - view-associated-deals
+  - list-all-deals
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: opportunity_read
+  flows:
+  - authorizationCode
+  operations:
+  - view-deal
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: tasks_create
+  flows:
+  - authorizationCode
+  operations:
+  - create-a-task
+  - bulk-create-tasks
+  - update-a-task
+  - complete-a-task
+  - skip-a-task
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: tasks_list
+  flows:
+  - authorizationCode
+  operations:
+  - get-a-task
+  - search-tasks
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: email_account_purchase_list
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: email_account_purchase_create
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: domain_purchase_list
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: domain_purchase_create
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: domain_authentication_status
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: account_bulk_create
+  flows:
+  - authorizationCode
+  operations:
+  - bulk-create-accounts
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: contacts_bulk_create
+  flows:
+  - authorizationCode
+  operations:
+  - bulk-create-contacts
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: api_usage_stats_read
+  flows:
+  - authorizationCode
+  operations:
+  - post_apiusage
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: credit_usage_stats_read
+  flows:
+  - authorizationCode
+  operations:
+  - view-credit-usage-stats
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: users_list
+  flows:
+  - authorizationCode
+  operations:
+  - get-a-list-of-users
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: custom_fields_list
+  flows:
+  - authorizationCode
+  operations:
+  - get-a-list-of-fields
+  - get-a-list-of-all-custom-fields
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: conversation_intelligence_search
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: conversation_intelligence_show
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: tags_list
+  flows:
+  - authorizationCode
+  operations:
+  - get-a-list-of-all-lists
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: lists_create
+  flows:
+  - authorizationCode
+  operations:
+  - create-a-list
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: lists_update
+  flows:
+  - authorizationCode
+  operations:
+  - update-a-list
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: lists_add_entities
+  flows:
+  - authorizationCode
+  operations:
+  - add-records-to-a-list
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: lists_remove_entities
+  flows:
+  - authorizationCode
+  operations:
+  - remove-records-from-a-list
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: website_visitor_domain_tracker_read
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: website_visitor_domain_tracker_update
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: website_visitor_domain_tracker_send_install_email
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: website_visitor_domain_tracker_install_script
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: website_visitors_read
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: emailer_campaign_read
+  flows:
+  - authorizationCode
+  operations: []
+  source: well-known/apollo-io-oauth-authorization-server.json
+- scope: account_owners_update
+  flows:
+  - authorizationCode
+  operations:
+  - update-account-ownership
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: account_read
+  flows:
+  - authorizationCode
+  operations:
+  - get_accounts{id}
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: account_stages_list
+  flows:
+  - authorizationCode
+  operations:
+  - list-account-stages
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: account_stages_update
+  flows:
+  - authorizationCode
+  operations:
+  - bulk-update-accounts
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: accounts_search
+  flows:
+  - authorizationCode
+  operations:
+  - search-for-accounts
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: contact_owners_update
+  flows:
+  - authorizationCode
+  operations:
+  - update-contact-ownership
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: contact_stages_list
+  flows:
+  - authorizationCode
+  operations:
+  - list-contact-stages
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: contact_stages_update
+  flows:
+  - authorizationCode
+  operations:
+  - update-contact-stage
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: contacts_bulk_update
+  flows:
+  - authorizationCode
+  operations:
+  - bulk-update-contacts
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: conversations_export
+  flows:
+  - authorizationCode
+  operations:
+  - export-conversations
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: conversations_find_export
+  flows:
+  - authorizationCode
+  operations:
+  - get-conversations-export
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: conversations_search
+  flows:
+  - authorizationCode
+  operations:
+  - search-conversations
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: conversations_show
+  flows:
+  - authorizationCode
+  operations:
+  - get-conversations-info
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: emailer_campaigns_abort
+  flows:
+  - authorizationCode
+  operations:
+  - abort-sequence
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: emailer_campaigns_archive
+  flows:
+  - authorizationCode
+  operations:
+  - archive-sequence
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: notes_list
+  flows:
+  - authorizationCode
+  operations:
+  - get-a-list-of-notes
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: opportunity_stages_list
+  flows:
+  - authorizationCode
+  operations:
+  - list-deal-stages
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: opportunity_update
+  flows:
+  - authorizationCode
+  operations:
+  - update-deal
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: organization_read
+  flows:
+  - authorizationCode
+  operations:
+  - get_organizations{id}
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: organizations_news_articles
+  flows:
+  - authorizationCode
+  operations:
+  - news_articles_search
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: person_read
+  flows:
+  - authorizationCode
+  operations:
+  - get_people{id}
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: phone_call_search
+  flows:
+  - authorizationCode
+  operations:
+  - get_phone_callssearch
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: phone_call_update
+  flows:
+  - authorizationCode
+  operations:
+  - put_phone_callsupdate
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
+- scope: phone_call_write
+  flows:
+  - authorizationCode
+  operations:
+  - phonecalls_create
+  source: openapi/_original/apollo-io-apollo-rest-api-openapi.json (endpoint reference)
+  note: Documented per-operation in the API reference; not listed in the MCP authorization-server scopes_supported
+    set.
