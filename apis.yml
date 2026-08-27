@@ -49,7 +49,8 @@ specificationVersion: '0.23'
 apis:
 - aid: apollo-io:apollo-io-enrichment-api
   name: Apollo.io Enrichment API
-  description: People and company enrichment, single and bulk. 4 operation(s) from the published Apollo OpenAPI.
+  description: >-
+    People and company enrichment, single and bulk. 4 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/people-enrichment
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -73,7 +74,8 @@ apis:
     url: https://docs.apollo.io/reference/people-enrichment
 - aid: apollo-io:apollo-io-search-api
   name: Apollo.io Search API
-  description: Database search across Apollo's people, company, job-posting and news data. 6 operation(s) from the
+  description: >-
+    Database search across Apollo's people, company, job-posting and news data. 6 operation(s) from the
     published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/people-api-search
   baseURL: https://api.apollo.io/api/v1
@@ -98,7 +100,8 @@ apis:
     url: https://docs.apollo.io/reference/people-api-search
 - aid: apollo-io:apollo-io-accounts-api
   name: Apollo.io Accounts API
-  description: Workspace CRM accounts — create, update, search, stages and ownership. 8 operation(s) from the published
+  description: >-
+    Workspace CRM accounts — create, update, search, stages and ownership. 8 operation(s) from the published
     Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-for-accounts
   baseURL: https://api.apollo.io/api/v1
@@ -119,7 +122,8 @@ apis:
     url: https://docs.apollo.io/reference/search-for-accounts
 - aid: apollo-io:apollo-io-contacts-api
   name: Apollo.io Contacts API
-  description: Workspace CRM contacts — create, update, search, stages and ownership. 10 operation(s) from the published
+  description: >-
+    Workspace CRM contacts — create, update, search, stages and ownership. 10 operation(s) from the published
     Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-for-contacts
   baseURL: https://api.apollo.io/api/v1
@@ -137,7 +141,8 @@ apis:
     url: https://docs.apollo.io/reference/search-for-contacts
 - aid: apollo-io:apollo-io-deals-api
   name: Apollo.io Deals API
-  description: Deals (opportunities), their stages, and the deals attached to a contact. 5 operation(s) from the
+  description: >-
+    Deals (opportunities), their stages, and the deals attached to a contact. 5 operation(s) from the
     published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/list-all-deals
   baseURL: https://api.apollo.io/api/v1
@@ -156,7 +161,8 @@ apis:
     url: https://docs.apollo.io/reference/list-all-deals
 - aid: apollo-io:apollo-io-sequences-api
   name: Apollo.io Sequences API
-  description: Outreach sequences — create, update, approve, abort, archive, enrollment and activity. 12 operation(s)
+  description: >-
+    Outreach sequences — create, update, approve, abort, archive, enrollment and activity. 12 operation(s)
     from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-for-sequences
   baseURL: https://api.apollo.io/api/v1
@@ -175,7 +181,8 @@ apis:
     url: https://docs.apollo.io/reference/search-for-sequences
 - aid: apollo-io:apollo-io-emailer-messages-api
   name: Apollo.io Emailer Messages API
-  description: One-off email drafting, sending, send status and content retrieval. 4 operation(s) from the published
+  description: >-
+    One-off email drafting, sending, send status and content retrieval. 4 operation(s) from the published
     Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/create-an-email-draft
   baseURL: https://api.apollo.io/api/v1
@@ -193,7 +200,8 @@ apis:
     url: https://docs.apollo.io/reference/create-an-email-draft
 - aid: apollo-io:apollo-io-tasks-api
   name: Apollo.io Tasks API
-  description: Tasks against contacts, accounts and deals — create, search, update, complete, skip. 7 operation(s)
+  description: >-
+    Tasks against contacts, accounts and deals — create, search, update, complete, skip. 7 operation(s)
     from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-tasks
   baseURL: https://api.apollo.io/api/v1
@@ -214,7 +222,8 @@ apis:
     url: https://docs.apollo.io/reference/search-tasks
 - aid: apollo-io:apollo-io-calls-api
   name: Apollo.io Calls API
-  description: Phone-call records — log, search and update dialer activity. 3 operation(s) from the published Apollo
+  description: >-
+    Phone-call records — log, search and update dialer activity. 3 operation(s) from the published Apollo
     OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-for-calls
   baseURL: https://api.apollo.io/api/v1
@@ -232,7 +241,8 @@ apis:
     url: https://docs.apollo.io/reference/search-for-calls
 - aid: apollo-io:apollo-io-conversations-api
   name: Apollo.io Conversations API
-  description: Conversation intelligence — search recorded calls and meetings, read insights, export. 4 operation(s)
+  description: >-
+    Conversation intelligence — search recorded calls and meetings, read insights, export. 4 operation(s)
     from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-conversations
   baseURL: https://api.apollo.io/api/v1
@@ -255,7 +265,8 @@ apis:
     url: https://docs.apollo.io/reference/search-conversations
 - aid: apollo-io:apollo-io-analytics-api
   name: Apollo.io Analytics API
-  description: The Query Analytics Report endpoint — metrics, dimensions and filters over engagement data. 1 operation(s)
+  description: >-
+    The Query Analytics Report endpoint — metrics, dimensions and filters over engagement data. 1 operation(s)
     from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/sync-report
   baseURL: https://api.apollo.io/api/v1
@@ -273,7 +284,8 @@ apis:
     url: https://docs.apollo.io/reference/sync-report
 - aid: apollo-io:apollo-io-fields-api
   name: Apollo.io Fields API
-  description: Field and custom-field definitions across contacts, accounts and opportunities. 4 operation(s) from
+  description: >-
+    Field and custom-field definitions across contacts, accounts and opportunities. 4 operation(s) from
     the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/get-a-list-of-fields
   baseURL: https://api.apollo.io/api/v1
@@ -291,8 +303,9 @@ apis:
     url: https://docs.apollo.io/reference/get-a-list-of-fields
 - aid: apollo-io:apollo-io-miscellaneous-api
   name: Apollo.io Miscellaneous API
-  description: Users, email accounts, lists and labels, notes, usage stats and webhook results. 12 operation(s)
-    from the published Apollo OpenAPI.
+  description: >-
+    Users, email accounts, lists and labels, notes, usage stats and webhook results. 12 operation(s) from
+    the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/get-a-list-of-users
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -316,9 +329,11 @@ apis:
     url: https://docs.apollo.io/reference/get-a-list-of-users
 - aid: apollo-io:apollo-mcp
   name: Apollo MCP Server
-  description: Apollo's hosted Model Context Protocol server. A remote Streamable-HTTP endpoint at https://mcp.apollo.io/mcp,
-    authenticated with OAuth 2.0 and no API key, exposing 51 published actions across search, enrichment, CRM, sequences,
-    tasks, conversations and analytics. tools/list is OAuth-gated; the 401 challenge enumerates all 70 scopes.
+  description: >-
+    Apollo's hosted Model Context Protocol server. A remote Streamable-HTTP endpoint at https://mcp.apollo.io/mcp,
+    authenticated with OAuth 2.0 and no API key, exposing 51 published actions across search, enrichment,
+    CRM, sequences, tasks, conversations and analytics. tools/list is OAuth-gated; the 401 challenge enumerates
+    all 70 scopes.
   humanURL: https://docs.apollo.io/docs/apollo-mcp
   baseURL: https://mcp.apollo.io/mcp
   tags:
@@ -340,6 +355,16 @@ apis:
     url: https://docs.apollo.io/docs/apollo-mcp
   - type: SourceCode
     url: https://github.com/apolloio/apollo-mcp-plugin
+- aid: apollo-io:apollo-io-users-api
+  name: Apollo.io Users API
+  description: The Users API from Apollo.io — 1 operation(s) for users.
+  humanURL: https://docs.apollo.io/reference/people-enrichment
+  baseURL: https://api.apollo.io/api/v1
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-io-users-api-openapi.yml
 common:
 - type: Website
   url: https://www.apollo.io/
