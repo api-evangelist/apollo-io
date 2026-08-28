@@ -8,6 +8,19 @@ description: Apollo.io is a sales intelligence and go-to-market platform combini
   accounts, contacts and deals, outreach sequences, one-off emails, tasks, calls, conversations, custom fields,
   lists, analytics and usage stats — described by a first-party OpenAPI 3.1.0 document. Apollo also ships a hosted
   MCP server, a first-party CLI, and provider-published agent skills for both.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
