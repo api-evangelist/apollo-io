@@ -1,0 +1,176 @@
+openapi: 3.2.0
+info:
+  title: Apollo.io Miscellaneous Users API
+  version: '1.0'
+  summary: Programmatic access to Apollo's sales intelligence and engagement platform — data enrichment, prospect and company search, and go-to-market workflow management.
+  description: 'The Apollo API provides programmatic access to [Apollo](https://www.apollo.io/), the all-in-one sales intelligence and engagement platform. Use it to enrich people and company data (individually or in bulk), search Apollo''s database of over 240 million contacts and 30 million companies, and manage accounts, contacts, deals, sequences, tasks, calls, and conversations in your go-to-market workflows.
+
+
+    ## Base URL
+
+
+    All API requests are made to `https://api.apollo.io/api/v1`.
+
+
+    ## Authentication
+
+
+    - **Apollo users** authenticate with an API key passed in the `x-api-key` request header. See [Create API Keys](https://docs.apollo.io/docs/create-api-key).
+
+    - **Apollo partners** building integrations on behalf of mutual users authenticate with the [OAuth 2.0 authorization flow](https://docs.apollo.io/docs/use-oauth-20-authorization-flow-to-access-apollo-user-information-partners).
+
+
+    ## Rate limits & credits
+
+
+    Rate limits and credit consumption depend on your [Apollo pricing plan](https://docs.apollo.io/docs/api-pricing). Check your current limits and usage with the [View API Usage Stats and Rate Limits](https://docs.apollo.io/reference/view-api-usage-stats) endpoint. For more details, see [Rate Limits](https://docs.apollo.io/reference/rate-limits) and the [API FAQs](https://docs.apollo.io/docs/apollo-api-faqs).
+
+
+    New to the API? Start with the [Apollo API overview](https://docs.apollo.io/reference/apollo-api).'
+  termsOfService: https://www.apollo.io/terms/api
+  contact:
+    name: Apollo API Support
+    url: https://docs.apollo.io/
+servers:
+- url: https://api.apollo.io/api/v1
+security:
+- apiKey: []
+- bearerAuth: []
+tags:
+- name: Users
+paths:
+  /users/api_profile:
+    get:
+      summary: Get Current User Profile
+      description: '## Endpoint essentials
+
+
+        **API key access:** `api/v1/users/api_profile` or `Master API key`
+
+
+        **OAuth scopes:** `read_user_profile`
+
+
+        **Credit usage:** `0 credits` — [Learn more about API pricing and credits](https://docs.apollo.io/docs/api-pricing).
+
+
+        **Authentication note:** Default scope — granted automatically on every OAuth token.
+
+
+        <a href="https://knowledge.apollo.io/hc/en-us/articles/4409130537101-Add-Manage-and-Deactivate-Users" target="_blank">Users</a> are the people who use your Apollo workspace.<br><br>Use the Get Current User Profile endpoint to retrieve the authenticated profile of the person who owns the API key being used.<br><br>By default, the endpoint returns the user''s identity fields. Set the `include_credit_usage` query parameter to `true` to also return the user''s and team''s credit usage and remaining credit balances.<br><br>If you call this endpoint without valid access credentials, you receive a `401` response.'
+      operationId: get-current-user-profile
+      parameters:
+      - name: include_credit_usage
+        in: query
+        description: 'Set to `true` to include credit usage and remaining credit details (lead, direct dial, export, AI, and power-up credits) in the response. Accepts boolean (`true`/`false`) or string (`"true"`/`"false"`) values. Defaults to `false`. <br><br>Example: `true`'
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Without credit usage:
+                  value: "{\n  \"id\": \"66c8db577ed7f201b25c0eef\",\n  \"team_id\": \"6095a710bd01d100a506d4ac\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"title\": \"Developer\",\n  \"email\": \"john.doe@example.com\"\n}"
+                With credit usage:
+                  value: "{\n  \"id\": \"66c8db577ed7f201b25c0eef\",\n  \"team_id\": \"6095a710bd01d100a506d4ac\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"title\": \"Developer\",\n  \"email\": \"john.doe@example.com\",\n  \"num_credits_remaining\": 9500,\n  \"effective_num_lead_credits\": 10000,\n  \"num_lead_credits_used\": 500,\n  \"effective_num_direct_dial_credits\": 1000,\n  \"num_direct_dial_credits_used\": 120,\n  \"effective_num_export_credits\": 5000,\n  \"num_export_credits_used\": 250,\n  \"effective_num_ai_credits\": 2000,\n  \"num_ai_credits_used\": 75,\n  \"effective_num_power_up_credits\": 1000,\n  \"num_power_up_credits_used\": 40,\n  \"total_unified_credits_used\": 910\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 66c8db577ed7f201b25c0eef
+                  team_id:
+                    type: string
+                    example: 6095a710bd01d100a506d4ac
+                  first_name:
+                    type: string
+                    example: John
+                  last_name:
+                    type: string
+                    example: Doe
+                  title:
+                    type: string
+                    example: Developer
+                  email:
+                    type: string
+                    example: john.doe@example.com
+                  num_credits_remaining:
+                    type: integer
+                    example: 9500
+                    description: Remaining lead credits for the user. Only present when `include_credit_usage=true`.
+                  effective_num_lead_credits:
+                    type: integer
+                    example: 10000
+                    description: Effective lead credit allowance for the user. Only present when `include_credit_usage=true`.
+                  num_lead_credits_used:
+                    type: integer
+                    example: 500
+                    description: Lead credits used by the user. Only present when `include_credit_usage=true`.
+                  effective_num_direct_dial_credits:
+                    type: integer
+                    example: 1000
+                    description: Effective direct dial credit allowance for the user. Only present when `include_credit_usage=true`.
+                  num_direct_dial_credits_used:
+                    type: integer
+                    example: 120
+                    description: Direct dial credits used by the user. Only present when `include_credit_usage=true`.
+                  effective_num_export_credits:
+                    type: integer
+                    example: 5000
+                    description: Effective export credit allowance for the user. Only present when `include_credit_usage=true`.
+                  num_export_credits_used:
+                    type: integer
+                    example: 250
+                    description: Export credits used by the user. Only present when `include_credit_usage=true`.
+                  effective_num_ai_credits:
+                    type: integer
+                    example: 2000
+                    description: Effective AI credit allowance for the user. Only present when `include_credit_usage=true`.
+                  num_ai_credits_used:
+                    type: integer
+                    example: 75
+                    description: AI credits used by the user. Only present when `include_credit_usage=true`.
+                  effective_num_power_up_credits:
+                    type: integer
+                    example: 1000
+                    description: Effective power-up credit allowance for the team. Only present when `include_credit_usage=true`.
+                  num_power_up_credits_used:
+                    type: integer
+                    example: 40
+                    description: Power-up credits used (user this cycle on unified credits, otherwise team total). Only present when `include_credit_usage=true`.
+                  total_unified_credits_used:
+                    type: integer
+                    example: 910
+                    description: Sum of lead, direct dial, export, and power-up credits used. Only present when `include_credit_usage=true` and the team is on unified credits.
+        '401':
+          description: '401'
+          content:
+            text/plain:
+              examples:
+                Check API key:
+                  value: Invalid API key. See https://docs.apollo.io/reference/authentication for how to authenticate.
+      deprecated: false
+      tags:
+      - Users
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: '[Recommended] API key, passed in the `x-api-key` request header.
+
+        See [Create API Keys](https://docs.apollo.io/docs/create-api-key).'
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'OAuth 2.0 access token, used by Apollo partners building integrations.
+
+        See the [OAuth 2.0 authorization flow](https://docs.apollo.io/docs/use-oauth-20-authorization-flow-to-access-apollo-user-information-partners).'
+x-harvested-from: https://docs.apollo.io/openapi/apollo-rest-api.json
+x-harvested-on: '2026-08-13'
+x-source-document: openapi/_original/apollo-io-apollo-rest-api-openapi.json
