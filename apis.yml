@@ -381,6 +381,9 @@ apis:
   - type: OpenAPI
     url: openapi/apollo-io-users-api-openapi.yml
 common:
+- type: License
+  name: MIT
+  url: https://github.com/apolloio/apollo-mcp-plugin/blob/main/LICENSE
 - type: Website
   url: https://www.apollo.io/
 - type: LinkedIn
