@@ -2,12 +2,7 @@ aid: apollo-io
 url: https://raw.githubusercontent.com/api-evangelist/apollo-io/refs/heads/main/apis.yml
 name: Apollo.io
 kind: company
-description: Apollo.io is a sales intelligence and go-to-market platform combining a database of 240M+ contacts
-  and 30M+ companies with enrichment, sequencing, dialing and conversation intelligence. Its REST API publishes
-  80 operations at https://api.apollo.io/api/v1 across people and company search, single and bulk enrichment, CRM
-  accounts, contacts and deals, outreach sequences, one-off emails, tasks, calls, conversations, custom fields,
-  lists, analytics and usage stats — described by a first-party OpenAPI 3.1.0 document. Apollo also ships a hosted
-  MCP server, a first-party CLI, and provider-published agent skills for both.
+description: Apollo.io is a sales intelligence and go-to-market platform combining a database of 240M+ contacts and 30M+ companies with enrichment, sequencing, dialing and conversation intelligence. Its REST API publishes 80 operations at https://api.apollo.io/api/v1 across people and company search, single and bulk enrichment, CRM accounts, contacts and deals, outreach sequences, one-off emails, tasks, calls, conversations, custom fields, lists, analytics and usage stats — described by a first-party OpenAPI 3.1.0 document. Apollo also ships a hosted MCP server, a first-party CLI, and provider-published agent skills for both.
 deliveryModel:
   model: unknown
   open_source: unknown
@@ -62,8 +57,7 @@ specificationVersion: '0.23'
 apis:
 - aid: apollo-io:apollo-io-enrichment-api
   name: Apollo.io Enrichment API
-  description: >-
-    People and company enrichment, single and bulk. 4 operation(s) from the published Apollo OpenAPI.
+  description: People and company enrichment, single and bulk. 4 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/people-enrichment
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -87,9 +81,7 @@ apis:
     url: https://docs.apollo.io/reference/people-enrichment
 - aid: apollo-io:apollo-io-search-api
   name: Apollo.io Search API
-  description: >-
-    Database search across Apollo's people, company, job-posting and news data. 6 operation(s) from the
-    published Apollo OpenAPI.
+  description: Database search across Apollo's people, company, job-posting and news data. 6 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/people-api-search
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -113,9 +105,7 @@ apis:
     url: https://docs.apollo.io/reference/people-api-search
 - aid: apollo-io:apollo-io-accounts-api
   name: Apollo.io Accounts API
-  description: >-
-    Workspace CRM accounts — create, update, search, stages and ownership. 8 operation(s) from the published
-    Apollo OpenAPI.
+  description: Workspace CRM accounts — create, update, search, stages and ownership. 8 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-for-accounts
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -135,9 +125,7 @@ apis:
     url: https://docs.apollo.io/reference/search-for-accounts
 - aid: apollo-io:apollo-io-contacts-api
   name: Apollo.io Contacts API
-  description: >-
-    Workspace CRM contacts — create, update, search, stages and ownership. 10 operation(s) from the published
-    Apollo OpenAPI.
+  description: Workspace CRM contacts — create, update, search, stages and ownership. 10 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-for-contacts
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -154,9 +142,7 @@ apis:
     url: https://docs.apollo.io/reference/search-for-contacts
 - aid: apollo-io:apollo-io-deals-api
   name: Apollo.io Deals API
-  description: >-
-    Deals (opportunities), their stages, and the deals attached to a contact. 5 operation(s) from the
-    published Apollo OpenAPI.
+  description: Deals (opportunities), their stages, and the deals attached to a contact. 5 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/list-all-deals
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -174,9 +160,7 @@ apis:
     url: https://docs.apollo.io/reference/list-all-deals
 - aid: apollo-io:apollo-io-sequences-api
   name: Apollo.io Sequences API
-  description: >-
-    Outreach sequences — create, update, approve, abort, archive, enrollment and activity. 12 operation(s)
-    from the published Apollo OpenAPI.
+  description: Outreach sequences — create, update, approve, abort, archive, enrollment and activity. 12 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-for-sequences
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -194,9 +178,7 @@ apis:
     url: https://docs.apollo.io/reference/search-for-sequences
 - aid: apollo-io:apollo-io-emailer-messages-api
   name: Apollo.io Emailer Messages API
-  description: >-
-    One-off email drafting, sending, send status and content retrieval. 4 operation(s) from the published
-    Apollo OpenAPI.
+  description: One-off email drafting, sending, send status and content retrieval. 4 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/create-an-email-draft
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -213,9 +195,7 @@ apis:
     url: https://docs.apollo.io/reference/create-an-email-draft
 - aid: apollo-io:apollo-io-tasks-api
   name: Apollo.io Tasks API
-  description: >-
-    Tasks against contacts, accounts and deals — create, search, update, complete, skip. 7 operation(s)
-    from the published Apollo OpenAPI.
+  description: Tasks against contacts, accounts and deals — create, search, update, complete, skip. 7 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-tasks
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -235,9 +215,7 @@ apis:
     url: https://docs.apollo.io/reference/search-tasks
 - aid: apollo-io:apollo-io-calls-api
   name: Apollo.io Calls API
-  description: >-
-    Phone-call records — log, search and update dialer activity. 3 operation(s) from the published Apollo
-    OpenAPI.
+  description: Phone-call records — log, search and update dialer activity. 3 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-for-calls
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -254,9 +232,7 @@ apis:
     url: https://docs.apollo.io/reference/search-for-calls
 - aid: apollo-io:apollo-io-conversations-api
   name: Apollo.io Conversations API
-  description: >-
-    Conversation intelligence — search recorded calls and meetings, read insights, export. 4 operation(s)
-    from the published Apollo OpenAPI.
+  description: Conversation intelligence — search recorded calls and meetings, read insights, export. 4 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/search-conversations
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -278,9 +254,7 @@ apis:
     url: https://docs.apollo.io/reference/search-conversations
 - aid: apollo-io:apollo-io-analytics-api
   name: Apollo.io Analytics API
-  description: >-
-    The Query Analytics Report endpoint — metrics, dimensions and filters over engagement data. 1 operation(s)
-    from the published Apollo OpenAPI.
+  description: The Query Analytics Report endpoint — metrics, dimensions and filters over engagement data. 1 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/sync-report
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -297,9 +271,7 @@ apis:
     url: https://docs.apollo.io/reference/sync-report
 - aid: apollo-io:apollo-io-fields-api
   name: Apollo.io Fields API
-  description: >-
-    Field and custom-field definitions across contacts, accounts and opportunities. 4 operation(s) from
-    the published Apollo OpenAPI.
+  description: Field and custom-field definitions across contacts, accounts and opportunities. 4 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/get-a-list-of-fields
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -316,9 +288,7 @@ apis:
     url: https://docs.apollo.io/reference/get-a-list-of-fields
 - aid: apollo-io:apollo-io-miscellaneous-api
   name: Apollo.io Miscellaneous API
-  description: >-
-    Users, email accounts, lists and labels, notes, usage stats and webhook results. 12 operation(s) from
-    the published Apollo OpenAPI.
+  description: Users, email accounts, lists and labels, notes, usage stats and webhook results. 12 operation(s) from the published Apollo OpenAPI.
   humanURL: https://docs.apollo.io/reference/get-a-list-of-users
   baseURL: https://api.apollo.io/api/v1
   tags:
@@ -342,11 +312,7 @@ apis:
     url: https://docs.apollo.io/reference/get-a-list-of-users
 - aid: apollo-io:apollo-mcp
   name: Apollo MCP Server
-  description: >-
-    Apollo's hosted Model Context Protocol server. A remote Streamable-HTTP endpoint at https://mcp.apollo.io/mcp,
-    authenticated with OAuth 2.0 and no API key, exposing 51 published actions across search, enrichment,
-    CRM, sequences, tasks, conversations and analytics. tools/list is OAuth-gated; the 401 challenge enumerates
-    all 70 scopes.
+  description: Apollo's hosted Model Context Protocol server. A remote Streamable-HTTP endpoint at https://mcp.apollo.io/mcp, authenticated with OAuth 2.0 and no API key, exposing 51 published actions across search, enrichment, CRM, sequences, tasks, conversations and analytics. tools/list is OAuth-gated; the 401 challenge enumerates all 70 scopes.
   humanURL: https://docs.apollo.io/docs/apollo-mcp
   baseURL: https://mcp.apollo.io/mcp
   tags:
@@ -380,6 +346,134 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/apollo-io-users-api-openapi.yml
+- aid: apollo-io:apollo-enrich-organization-enrichment-api
+  name: Apollo.io Organization Enrichment API
+  description: Match and enrich company records, single or in bulk.
+  humanURL: https://docs.apollo.io/reference/people-enrichment
+  baseURL: https://api.apollo.io/api/v1
+  tags:
+  - Organization Enrichment
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-enrich-organization-enrichment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/docs/enrich-people-data
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-enrichment
+  - type: PostmanCollection
+    url: collections/apollo-enrich.postman_collection.json
+  - type: OpenCollection
+    url: collections/apollo-enrich.opencollection.json
+  - type: Documentation
+    url: https://docs.apollo.io/docs/find-people-using-filters
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-api-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-enrichment
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-contacts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-accounts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/add-contacts-to-sequence
+- aid: apollo-io:apollo-enrich-organization-search-api
+  name: Apollo.io Organization Search API
+  description: Search Apollo's company database.
+  humanURL: https://docs.apollo.io/reference/people-enrichment
+  baseURL: https://api.apollo.io/api/v1
+  tags:
+  - Organization Search
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-enrich-organization-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/docs/enrich-people-data
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-enrichment
+  - type: PostmanCollection
+    url: collections/apollo-enrich.postman_collection.json
+  - type: OpenCollection
+    url: collections/apollo-enrich.opencollection.json
+  - type: Documentation
+    url: https://docs.apollo.io/docs/find-people-using-filters
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-api-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-enrichment
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-contacts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-accounts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/add-contacts-to-sequence
+- aid: apollo-io:apollo-enrich-people-enrichment-api
+  name: Apollo.io People Enrichment API
+  description: Match and enrich person records, single or in bulk.
+  humanURL: https://docs.apollo.io/reference/people-enrichment
+  baseURL: https://api.apollo.io/api/v1
+  tags:
+  - People Enrichment
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-enrich-people-enrichment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/docs/enrich-people-data
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-enrichment
+  - type: PostmanCollection
+    url: collections/apollo-enrich.postman_collection.json
+  - type: OpenCollection
+    url: collections/apollo-enrich.opencollection.json
+  - type: Documentation
+    url: https://docs.apollo.io/docs/find-people-using-filters
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-api-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-enrichment
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-contacts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-accounts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/add-contacts-to-sequence
+- aid: apollo-io:apollo-enrich-people-search-api
+  name: Apollo.io People Search API
+  description: Search Apollo's people database for prospects.
+  humanURL: https://docs.apollo.io/reference/people-enrichment
+  baseURL: https://api.apollo.io/api/v1
+  tags:
+  - People Search
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-enrich-people-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/docs/enrich-people-data
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-enrichment
+  - type: PostmanCollection
+    url: collections/apollo-enrich.postman_collection.json
+  - type: OpenCollection
+    url: collections/apollo-enrich.opencollection.json
+  - type: Documentation
+    url: https://docs.apollo.io/docs/find-people-using-filters
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-api-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-enrichment
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-contacts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-accounts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/add-contacts-to-sequence
 common:
 - type: License
   name: MIT
@@ -473,13 +567,11 @@ common:
   - REST API at https://api.apollo.io/api/v1 — 80 operations, OpenAPI 3.1.0 published at https://docs.apollo.io/openapi/apollo-rest-api.json
   - API key authentication via the x-api-key header; keys are scoped to an explicit endpoint list or marked master
   - OAuth 2.0 authorization-code flow for partners, with 70 named scopes
-  - Hosted remote MCP server at https://mcp.apollo.io/mcp over Streamable HTTP with OAuth 2.0 — no API key, no local
-    install
+  - Hosted remote MCP server at https://mcp.apollo.io/mcp over Streamable HTTP with OAuth 2.0 — no API key, no local install
   - First-party Apollo CLI (Homebrew tap and signed prebuilt binaries) with OAuth login
   - Five provider-published agent skills — four in the MCP plug-in, one for the CLI
   - 240M+ contacts and 30M+ companies searchable; enrichment is metered in credits
-  - Rate limits are per team and per endpoint, enforced in per-minute, per-hour and per-day windows, surfaced in
-    x-rate-limit-* response headers
+  - Rate limits are per team and per endpoint, enforced in per-minute, per-hour and per-day windows, surfaced in x-rate-limit-* response headers
   - Bulk enrichment endpoints take up to 10 records per call
   - Asynchronous enrichment callbacks via webhook_url, with a 30-day poll-by-request_id fallback
   - No sandbox host and no test mode — testing happens against production with a real key
