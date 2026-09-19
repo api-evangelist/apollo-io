@@ -157,6 +157,10 @@ apis:
   tags:
   - Deals
   - Opportunities
+  - Pipelines
+  tags_raw:
+  - Deals
+  - Opportunities
   - Pipeline
   properties:
   - type: OpenAPI
