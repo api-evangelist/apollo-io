@@ -2,15 +2,15 @@
 kin_checks:
   slug: apollo-io
   schema_version: 0.22.0
-  scored_at: '2026-09-18'
-  run_ts: 2026-09-18T231945
+  scored_at: '2026-09-19'
+  run_ts: 2026-09-19T193153
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
     below let you verify that.
   counts:
     total: 136
-    earned: 64
-    partial: 9
+    earned: 63
+    partial: 10
     missed: 38
     na: 25
   checks:
@@ -104,6 +104,10 @@ kin_checks:
   - id: github_org_present
     status: partial
     earned: 1.0
+    detail: pointer liveness 0.5
+  - id: documentation_present
+    status: partial
+    earned: 2.0
     detail: pointer liveness 0.5
   - id: getting_started_present
     status: partial
