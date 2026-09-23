@@ -1,0 +1,202 @@
+# x-archived-from: apollo-enrich-people-search-api-openapi.yml
+# x-archived-on: 2026-09-16
+openapi: 3.2.0
+info:
+  title: Apollo.io Accounts People Search API
+  description: 'A working model of the Apollo.io REST API for sales intelligence, contact discovery, and data enrichment. Apollo exposes People Enrichment (single and bulk match), People Search, Organization Enrichment and Search, Contacts and Accounts management, and Sequences (emailer campaigns) over a REST interface at https://api.apollo.io/api/v1. All requests authenticate with an `x-api-key` header; some endpoints (for example People Search and account user listing) require a key marked as a master key. API access is gated by Apollo plan tier - programmatic access begins on the Professional plan.
+
+
+    Grounding note: base URL, the `x-api-key` header, and the core endpoint paths (people/match, people/bulk_match, mixed_people/api_search, organizations/enrich, mixed_companies/search, contacts/search, accounts/search, emailer_campaigns/{id}/add_contact_ids) are taken directly from Apollo''s published reference at docs.apollo.io. Request/response schemas here are modeled from the documented parameters and are illustrative, not exhaustive; consult the live docs for the authoritative field lists.'
+  version: '1.0'
+  contact:
+    name: Apollo.io
+    url: https://www.apollo.io
+  termsOfService: https://www.apollo.io/legal/terms-of-service
+servers:
+- url: https://api.apollo.io/api/v1
+  description: Apollo.io production API
+security:
+- apiKeyAuth: []
+tags:
+- name: People Search
+  description: Search Apollo's people database for prospects.
+paths:
+  /mixed_people/api_search:
+    post:
+      operationId: searchPeople
+      tags:
+      - People Search
+      summary: Search for people
+      description: Searches Apollo's people database for prospects. Requires a master API key. Does not return email addresses or phone numbers - pair with People Enrichment to reveal contact details. Paginates up to 50,000 records (100 per page, up to 500 pages).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PeopleSearchRequest'
+      responses:
+        '200':
+          description: A page of matching people.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeopleSearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          description: The API key is not a master key or the plan lacks access to this endpoint.
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  schemas:
+    PeopleSearchRequest:
+      type: object
+      description: Filters for searching Apollo's people database.
+      properties:
+        person_titles:
+          type: array
+          items:
+            type: string
+        person_seniorities:
+          type: array
+          items:
+            type: string
+            enum:
+            - owner
+            - founder
+            - c_suite
+            - vp
+            - director
+            - manager
+            - senior
+            - entry
+            - intern
+        person_locations:
+          type: array
+          items:
+            type: string
+        organization_locations:
+          type: array
+          items:
+            type: string
+        organization_ids:
+          type: array
+          items:
+            type: string
+        contact_email_status:
+          type: array
+          items:
+            type: string
+        currently_using_any_of_technology_uids:
+          type: array
+          items:
+            type: string
+        q_organization_domains_list:
+          type: array
+          description: Company domains to filter by (up to 1,000 per request).
+          items:
+            type: string
+        page:
+          type: integer
+        per_page:
+          type: integer
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total_entries:
+          type: integer
+        total_pages:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_code:
+          type: string
+    PeopleSearchResponse:
+      type: object
+      properties:
+        people:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Organization:
+      type: object
+      description: A company record from Apollo's database or enrichment.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        website_url:
+          type: string
+        primary_domain:
+          type: string
+        linkedin_url:
+          type: string
+        industry:
+          type: string
+        estimated_num_employees:
+          type: integer
+        annual_revenue:
+          type: number
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+    Person:
+      type: object
+      description: A person record from Apollo's database or enrichment.
+      properties:
+        id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        name:
+          type: string
+        title:
+          type: string
+        seniority:
+          type: string
+        email:
+          type: string
+        email_status:
+          type: string
+        linkedin_url:
+          type: string
+        phone_numbers:
+          type: array
+          items:
+            type: string
+        organization:
+          $ref: '#/components/schemas/Organization'
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded. Apollo uses fixed-window rate limiting; limits vary by plan and are reported via response headers and the API usage stats endpoint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: Apollo API key passed in the `x-api-key` header on every request. Generate keys in the Apollo developer settings. Some endpoints (for example People Search) require a key marked as a master key.

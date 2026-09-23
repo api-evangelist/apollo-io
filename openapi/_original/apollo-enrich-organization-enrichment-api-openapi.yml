@@ -1,0 +1,151 @@
+# x-archived-from: apollo-enrich-organization-enrichment-api-openapi.yml
+# x-archived-on: 2026-09-16
+openapi: 3.2.0
+info:
+  title: Apollo.io Accounts Organization Enrichment API
+  description: 'A working model of the Apollo.io REST API for sales intelligence, contact discovery, and data enrichment. Apollo exposes People Enrichment (single and bulk match), People Search, Organization Enrichment and Search, Contacts and Accounts management, and Sequences (emailer campaigns) over a REST interface at https://api.apollo.io/api/v1. All requests authenticate with an `x-api-key` header; some endpoints (for example People Search and account user listing) require a key marked as a master key. API access is gated by Apollo plan tier - programmatic access begins on the Professional plan.
+
+
+    Grounding note: base URL, the `x-api-key` header, and the core endpoint paths (people/match, people/bulk_match, mixed_people/api_search, organizations/enrich, mixed_companies/search, contacts/search, accounts/search, emailer_campaigns/{id}/add_contact_ids) are taken directly from Apollo''s published reference at docs.apollo.io. Request/response schemas here are modeled from the documented parameters and are illustrative, not exhaustive; consult the live docs for the authoritative field lists.'
+  version: '1.0'
+  contact:
+    name: Apollo.io
+    url: https://www.apollo.io
+  termsOfService: https://www.apollo.io/legal/terms-of-service
+servers:
+- url: https://api.apollo.io/api/v1
+  description: Apollo.io production API
+security:
+- apiKeyAuth: []
+tags:
+- name: Organization Enrichment
+  description: Match and enrich company records, single or in bulk.
+paths:
+  /organizations/enrich:
+    get:
+      operationId: enrichOrganization
+      tags:
+      - Organization Enrichment
+      summary: Enrich a single organization
+      description: Enriches data for one company. Provide at least one of `domain`, `name`, `linkedin_url`, or `website`.
+      parameters:
+      - name: domain
+        in: query
+        schema:
+          type: string
+        example: apollo.io
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: linkedin_url
+        in: query
+        schema:
+          type: string
+      - name: website
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The enriched organization.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  organization:
+                    $ref: '#/components/schemas/Organization'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /organizations/bulk_enrich:
+    post:
+      operationId: bulkEnrichOrganizations
+      tags:
+      - Organization Enrichment
+      summary: Bulk enrich organizations
+      description: Enriches data for up to ten companies in a single call. Path modeled from Apollo's documented Bulk Organization Enrichment endpoint; confirm the exact request shape against the live reference.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                domains:
+                  type: array
+                  maxItems: 10
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: The enriched organizations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  organizations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Organization'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  schemas:
+    Organization:
+      type: object
+      description: A company record from Apollo's database or enrichment.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        website_url:
+          type: string
+        primary_domain:
+          type: string
+        linkedin_url:
+          type: string
+        industry:
+          type: string
+        estimated_num_employees:
+          type: integer
+        annual_revenue:
+          type: number
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_code:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded. Apollo uses fixed-window rate limiting; limits vary by plan and are reported via response headers and the API usage stats endpoint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: Apollo API key passed in the `x-api-key` header on every request. Generate keys in the Apollo developer settings. Some endpoints (for example People Search) require a key marked as a master key.

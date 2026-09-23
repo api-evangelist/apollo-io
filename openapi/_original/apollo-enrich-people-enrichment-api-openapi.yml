@@ -1,0 +1,204 @@
+# x-archived-from: apollo-enrich-people-enrichment-api-openapi.yml
+# x-archived-on: 2026-09-16
+openapi: 3.2.0
+info:
+  title: Apollo.io Accounts People Enrichment API
+  description: 'A working model of the Apollo.io REST API for sales intelligence, contact discovery, and data enrichment. Apollo exposes People Enrichment (single and bulk match), People Search, Organization Enrichment and Search, Contacts and Accounts management, and Sequences (emailer campaigns) over a REST interface at https://api.apollo.io/api/v1. All requests authenticate with an `x-api-key` header; some endpoints (for example People Search and account user listing) require a key marked as a master key. API access is gated by Apollo plan tier - programmatic access begins on the Professional plan.
+
+
+    Grounding note: base URL, the `x-api-key` header, and the core endpoint paths (people/match, people/bulk_match, mixed_people/api_search, organizations/enrich, mixed_companies/search, contacts/search, accounts/search, emailer_campaigns/{id}/add_contact_ids) are taken directly from Apollo''s published reference at docs.apollo.io. Request/response schemas here are modeled from the documented parameters and are illustrative, not exhaustive; consult the live docs for the authoritative field lists.'
+  version: '1.0'
+  contact:
+    name: Apollo.io
+    url: https://www.apollo.io
+  termsOfService: https://www.apollo.io/legal/terms-of-service
+servers:
+- url: https://api.apollo.io/api/v1
+  description: Apollo.io production API
+security:
+- apiKeyAuth: []
+tags:
+- name: People Enrichment
+  description: Match and enrich person records, single or in bulk.
+paths:
+  /people/match:
+    post:
+      operationId: matchPerson
+      tags:
+      - People Enrichment
+      summary: Enrich a single person
+      description: Enriches data for one person. Provide any combination of identifiers (name, email, domain, LinkedIn URL, Apollo id). Consumes Apollo credits per enriched record when data is returned. Set reveal flags to unlock personal emails or phone numbers (phone/waterfall reveals require a webhook_url).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PeopleMatchRequest'
+      responses:
+        '200':
+          description: The matched and enriched person.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  person:
+                    $ref: '#/components/schemas/Person'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /people/bulk_match:
+    post:
+      operationId: bulkMatchPeople
+      tags:
+      - People Enrichment
+      summary: Bulk enrich people
+      description: Enriches data for up to ten people in a single call. Pass an array of person records under `details`. Consumes Apollo credits per enriched record returned.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reveal_personal_emails:
+                  type: boolean
+                reveal_phone_number:
+                  type: boolean
+                details:
+                  type: array
+                  maxItems: 10
+                  items:
+                    $ref: '#/components/schemas/PeopleMatchRequest'
+      responses:
+        '200':
+          description: The matched people.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  matches:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Person'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  schemas:
+    PeopleMatchRequest:
+      type: object
+      description: Identifiers used to match and enrich one person.
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        hashed_email:
+          type: string
+        organization_name:
+          type: string
+        domain:
+          type: string
+        id:
+          type: string
+        linkedin_url:
+          type: string
+        reveal_personal_emails:
+          type: boolean
+        reveal_phone_number:
+          type: boolean
+        run_waterfall_email:
+          type: boolean
+        run_waterfall_phone:
+          type: boolean
+        webhook_url:
+          type: string
+          description: Required when using phone reveal or waterfall enrichment.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_code:
+          type: string
+    Organization:
+      type: object
+      description: A company record from Apollo's database or enrichment.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        website_url:
+          type: string
+        primary_domain:
+          type: string
+        linkedin_url:
+          type: string
+        industry:
+          type: string
+        estimated_num_employees:
+          type: integer
+        annual_revenue:
+          type: number
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+    Person:
+      type: object
+      description: A person record from Apollo's database or enrichment.
+      properties:
+        id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        name:
+          type: string
+        title:
+          type: string
+        seniority:
+          type: string
+        email:
+          type: string
+        email_status:
+          type: string
+        linkedin_url:
+          type: string
+        phone_numbers:
+          type: array
+          items:
+            type: string
+        organization:
+          $ref: '#/components/schemas/Organization'
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded. Apollo uses fixed-window rate limiting; limits vary by plan and are reported via response headers and the API usage stats endpoint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: Apollo API key passed in the `x-api-key` header on every request. Generate keys in the Apollo developer settings. Some endpoints (for example People Search) require a key marked as a master key.

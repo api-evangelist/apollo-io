@@ -1,0 +1,191 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apollo.io API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "x-api-key",
+        "value": "{{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "People Enrichment", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Enrich a single person.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/people/match",
+            "body": { "type": "json", "data": "{ \"first_name\": \"Tim\", \"last_name\": \"Zheng\", \"domain\": \"apollo.io\" }" }
+          },
+          "docs": "Enriches data for one person. Consumes Apollo credits per enriched record when data is returned."
+        },
+        {
+          "info": { "name": "Bulk enrich people.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/people/bulk_match",
+            "body": { "type": "json", "data": "{ \"details\": [ { \"first_name\": \"Tim\", \"last_name\": \"Zheng\", \"domain\": \"apollo.io\" } ] }" }
+          },
+          "docs": "Enriches up to ten people in a single call."
+        }
+      ]
+    },
+    {
+      "info": { "name": "People Search", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search for people.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/mixed_people/api_search",
+            "body": { "type": "json", "data": "{ \"person_titles\": [\"sales manager\"], \"page\": 1, \"per_page\": 25 }" }
+          },
+          "docs": "Searches Apollo's people database for prospects. Requires a master API key. Does not return emails or phone numbers. Paginates up to 50,000 records."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Organization Enrichment", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Enrich a single organization.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apollo.io/api/v1/organizations/enrich",
+            "params": [
+              { "name": "domain", "value": "apollo.io", "type": "query", "description": "One of domain, name, linkedin_url, or website is required." }
+            ]
+          },
+          "docs": "Enriches one company by domain, name, linkedin_url, or website."
+        },
+        {
+          "info": { "name": "Bulk enrich organizations.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/organizations/bulk_enrich",
+            "body": { "type": "json", "data": "{ \"domains\": [\"apollo.io\", \"stripe.com\"] }" }
+          },
+          "docs": "Enriches up to ten companies in a single call. Path modeled from Apollo's documented Bulk Organization Enrichment endpoint."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Organization Search", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search for organizations.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/mixed_companies/search",
+            "body": { "type": "json", "data": "{ \"organization_num_employees_ranges\": [\"51,200\"], \"page\": 1, \"per_page\": 25 }" }
+          },
+          "docs": "Searches Apollo's company database. Consumes credits per page. Paginates up to 50,000 records."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Contacts", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search for contacts.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/contacts/search",
+            "body": { "type": "json", "data": "{ \"q_keywords\": \"\", \"page\": 1, \"per_page\": 25 }" }
+          },
+          "docs": "Searches the contacts saved in your Apollo account."
+        },
+        {
+          "info": { "name": "Create a contact.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/contacts",
+            "body": { "type": "json", "data": "{ \"first_name\": \"Jane\", \"last_name\": \"Doe\", \"title\": \"VP Sales\", \"email\": \"jane@example.com\" }" }
+          },
+          "docs": "Creates a new contact in your Apollo account."
+        },
+        {
+          "info": { "name": "Update a contact.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apollo.io/api/v1/contacts/:id",
+            "params": [
+              { "name": "id", "value": "", "type": "path", "description": "The Apollo contact id." }
+            ],
+            "body": { "type": "json", "data": "{ \"title\": \"SVP Sales\" }" }
+          },
+          "docs": "Updates an existing contact by Apollo contact id."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Accounts", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search for accounts.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/accounts/search",
+            "body": { "type": "json", "data": "{ \"q_organization_name\": \"\", \"page\": 1, \"per_page\": 25 }" }
+          },
+          "docs": "Searches the accounts (companies) saved to your Apollo team."
+        },
+        {
+          "info": { "name": "Create an account.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/accounts",
+            "body": { "type": "json", "data": "{ \"name\": \"Example Inc\", \"domain\": \"example.com\" }" }
+          },
+          "docs": "Creates a new account (company) for your Apollo team."
+        },
+        {
+          "info": { "name": "Update an account.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apollo.io/api/v1/accounts/:id",
+            "params": [
+              { "name": "id", "value": "", "type": "path", "description": "The Apollo account id." }
+            ],
+            "body": { "type": "json", "data": "{ \"phone\": \"+1-555-0100\" }" }
+          },
+          "docs": "Updates an existing account by Apollo account id."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Sequences", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search for sequences.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/emailer_campaigns/search",
+            "body": { "type": "json", "data": "{ \"q_name\": \"\", \"page\": 1, \"per_page\": 25 }" }
+          },
+          "docs": "Searches sequences (emailer campaigns) in your Apollo account. Path modeled from Apollo's documented Search for Sequences endpoint."
+        },
+        {
+          "info": { "name": "Add contacts to a sequence.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/emailer_campaigns/:id/add_contact_ids",
+            "params": [
+              { "name": "id", "value": "", "type": "path", "description": "The Apollo sequence (emailer campaign) id." }
+            ],
+            "body": { "type": "json", "data": "{ \"contact_ids\": [\"CONTACT_ID\"], \"emailer_campaign_id\": \"SEQUENCE_ID\", \"send_email_from_email_account_id\": \"EMAIL_ACCOUNT_ID\" }" }
+          },
+          "docs": "Adds one or more contacts to a sequence so they enter the outreach steps."
+        }
+      ]
+    }
+  ]
+}

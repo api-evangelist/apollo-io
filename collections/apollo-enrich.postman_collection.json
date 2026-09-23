@@ -1,0 +1,195 @@
+{
+  "info": {
+    "name": "Apollo.io API",
+    "description": "Apollo.io sales intelligence and data enrichment API. Base URL: https://api.apollo.io/api/v1. Authenticate with an x-api-key header. Covers People Enrichment, People Search, Organization Enrichment/Search, Contacts, Accounts, and Sequences. API access requires a paid, API-enabled Apollo plan (Professional and above); People Search requires a master API key.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "x-api-key", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.apollo.io/api/v1", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "People Enrichment",
+      "item": [
+        {
+          "name": "Enrich a single person",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"first_name\": \"Tim\",\n  \"last_name\": \"Zheng\",\n  \"domain\": \"apollo.io\",\n  \"reveal_personal_emails\": false\n}" },
+            "url": { "raw": "{{baseUrl}}/people/match", "host": ["{{baseUrl}}"], "path": ["people", "match"] },
+            "description": "Enriches data for one person. Consumes Apollo credits per enriched record when data is returned."
+          }
+        },
+        {
+          "name": "Bulk enrich people",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"details\": [\n    { \"first_name\": \"Tim\", \"last_name\": \"Zheng\", \"domain\": \"apollo.io\" }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/people/bulk_match", "host": ["{{baseUrl}}"], "path": ["people", "bulk_match"] },
+            "description": "Enriches up to ten people in a single call."
+          }
+        }
+      ]
+    },
+    {
+      "name": "People Search",
+      "item": [
+        {
+          "name": "Search for people",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"person_titles\": [\"sales manager\"],\n  \"person_seniorities\": [\"manager\"],\n  \"person_locations\": [\"California, US\"],\n  \"page\": 1,\n  \"per_page\": 25\n}" },
+            "url": { "raw": "{{baseUrl}}/mixed_people/api_search", "host": ["{{baseUrl}}"], "path": ["mixed_people", "api_search"] },
+            "description": "Searches Apollo's people database for prospects. Requires a master API key. Does not return emails or phone numbers. Paginates up to 50,000 records."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Organization Enrichment",
+      "item": [
+        {
+          "name": "Enrich a single organization",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/organizations/enrich?domain=apollo.io", "host": ["{{baseUrl}}"], "path": ["organizations", "enrich"], "query": [{ "key": "domain", "value": "apollo.io" }] },
+            "description": "Enriches one company by domain, name, linkedin_url, or website."
+          }
+        },
+        {
+          "name": "Bulk enrich organizations",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"domains\": [\"apollo.io\", \"stripe.com\"]\n}" },
+            "url": { "raw": "{{baseUrl}}/organizations/bulk_enrich", "host": ["{{baseUrl}}"], "path": ["organizations", "bulk_enrich"] },
+            "description": "Enriches up to ten companies in a single call. Path modeled from Apollo's documented Bulk Organization Enrichment endpoint."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Organization Search",
+      "item": [
+        {
+          "name": "Search for organizations",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"organization_num_employees_ranges\": [\"51,200\"],\n  \"organization_locations\": [\"United States\"],\n  \"page\": 1,\n  \"per_page\": 25\n}" },
+            "url": { "raw": "{{baseUrl}}/mixed_companies/search", "host": ["{{baseUrl}}"], "path": ["mixed_companies", "search"] },
+            "description": "Searches Apollo's company database. Consumes credits per page. Paginates up to 50,000 records."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contacts",
+      "item": [
+        {
+          "name": "Search for contacts",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"q_keywords\": \"\",\n  \"page\": 1,\n  \"per_page\": 25\n}" },
+            "url": { "raw": "{{baseUrl}}/contacts/search", "host": ["{{baseUrl}}"], "path": ["contacts", "search"] },
+            "description": "Searches the contacts saved in your Apollo account."
+          }
+        },
+        {
+          "name": "Create a contact",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Doe\",\n  \"title\": \"VP Sales\",\n  \"organization_name\": \"Example Inc\",\n  \"email\": \"jane@example.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/contacts", "host": ["{{baseUrl}}"], "path": ["contacts"] },
+            "description": "Creates a new contact in your Apollo account."
+          }
+        },
+        {
+          "name": "Update a contact",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"SVP Sales\"\n}" },
+            "url": { "raw": "{{baseUrl}}/contacts/:id", "host": ["{{baseUrl}}"], "path": ["contacts", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Updates an existing contact by Apollo contact id."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Accounts",
+      "item": [
+        {
+          "name": "Search for accounts",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"q_organization_name\": \"\",\n  \"page\": 1,\n  \"per_page\": 25\n}" },
+            "url": { "raw": "{{baseUrl}}/accounts/search", "host": ["{{baseUrl}}"], "path": ["accounts", "search"] },
+            "description": "Searches the accounts (companies) saved to your Apollo team."
+          }
+        },
+        {
+          "name": "Create an account",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Example Inc\",\n  \"domain\": \"example.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/accounts", "host": ["{{baseUrl}}"], "path": ["accounts"] },
+            "description": "Creates a new account (company) for your Apollo team."
+          }
+        },
+        {
+          "name": "Update an account",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"phone\": \"+1-555-0100\"\n}" },
+            "url": { "raw": "{{baseUrl}}/accounts/:id", "host": ["{{baseUrl}}"], "path": ["accounts", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Updates an existing account by Apollo account id."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sequences",
+      "item": [
+        {
+          "name": "Search for sequences",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"q_name\": \"\",\n  \"page\": 1,\n  \"per_page\": 25\n}" },
+            "url": { "raw": "{{baseUrl}}/emailer_campaigns/search", "host": ["{{baseUrl}}"], "path": ["emailer_campaigns", "search"] },
+            "description": "Searches sequences (emailer campaigns) in your Apollo account. Path modeled from Apollo's documented Search for Sequences endpoint."
+          }
+        },
+        {
+          "name": "Add contacts to a sequence",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"contact_ids\": [\"CONTACT_ID\"],\n  \"emailer_campaign_id\": \"SEQUENCE_ID\",\n  \"send_email_from_email_account_id\": \"EMAIL_ACCOUNT_ID\"\n}" },
+            "url": { "raw": "{{baseUrl}}/emailer_campaigns/:id/add_contact_ids", "host": ["{{baseUrl}}"], "path": ["emailer_campaigns", ":id", "add_contact_ids"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Adds one or more contacts to a sequence so they enter the outreach steps."
+          }
+        }
+      ]
+    }
+  ]
+}

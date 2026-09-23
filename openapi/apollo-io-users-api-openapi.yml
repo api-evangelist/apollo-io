@@ -1,36 +1,13 @@
 openapi: 3.2.0
 info:
-  title: Apollo.io Miscellaneous Users API
-  version: '1.0'
+  title: apollo-rest-api Users API
   summary: Programmatic access to Apollo's sales intelligence and engagement platform — data enrichment, prospect and company search, and go-to-market workflow management.
-  description: 'The Apollo API provides programmatic access to [Apollo](https://www.apollo.io/), the all-in-one sales intelligence and engagement platform. Use it to enrich people and company data (individually or in bulk), search Apollo''s database of over 240 million contacts and 30 million companies, and manage accounts, contacts, deals, sequences, tasks, calls, and conversations in your go-to-market workflows.
-
-
-    ## Base URL
-
-
-    All API requests are made to `https://api.apollo.io/api/v1`.
-
-
-    ## Authentication
-
-
-    - **Apollo users** authenticate with an API key passed in the `x-api-key` request header. See [Create API Keys](https://docs.apollo.io/docs/create-api-key).
-
-    - **Apollo partners** building integrations on behalf of mutual users authenticate with the [OAuth 2.0 authorization flow](https://docs.apollo.io/docs/use-oauth-20-authorization-flow-to-access-apollo-user-information-partners).
-
-
-    ## Rate limits & credits
-
-
-    Rate limits and credit consumption depend on your [Apollo pricing plan](https://docs.apollo.io/docs/api-pricing). Check your current limits and usage with the [View API Usage Stats and Rate Limits](https://docs.apollo.io/reference/view-api-usage-stats) endpoint. For more details, see [Rate Limits](https://docs.apollo.io/reference/rate-limits) and the [API FAQs](https://docs.apollo.io/docs/apollo-api-faqs).
-
-
-    New to the API? Start with the [Apollo API overview](https://docs.apollo.io/reference/apollo-api).'
+  description: The Apollo API provides programmatic access to Apollo, the all-in-one sales intelligence and engagement platform.
   termsOfService: https://www.apollo.io/terms/api
   contact:
     name: Apollo API Support
     url: https://docs.apollo.io/
+  version: '1.0'
 servers:
 - url: https://api.apollo.io/api/v1
 security:
@@ -51,13 +28,22 @@ paths:
         **OAuth scopes:** `read_user_profile`
 
 
-        **Credit usage:** `0 credits` — [Learn more about API pricing and credits](https://docs.apollo.io/docs/api-pricing).
+        **Credit usage:** `0 credits` — Learn more about API pricing and credits.
 
 
         **Authentication note:** Default scope — granted automatically on every OAuth token.
 
 
-        <a href="https://knowledge.apollo.io/hc/en-us/articles/4409130537101-Add-Manage-and-Deactivate-Users" target="_blank">Users</a> are the people who use your Apollo workspace.<br><br>Use the Get Current User Profile endpoint to retrieve the authenticated profile of the person who owns the API key being used.<br><br>By default, the endpoint returns the user''s identity fields. Set the `include_credit_usage` query parameter to `true` to also return the user''s and team''s credit usage and remaining credit balances.<br><br>If you call this endpoint without valid access credentials, you receive a `401` response.'
+        Users are the people who use your Apollo workspace.
+
+
+        Use the Get Current User Profile endpoint to retrieve the authenticated profile of the person who owns the API key being used.
+
+
+        By default, the endpoint returns the user''s identity fields. Set the `include_credit_usage` query parameter to `true` to also return the user''s and team''s credit usage and remaining credit balances.
+
+
+        If you call this endpoint without valid access credentials, you receive a `401` response.'
       operationId: get-current-user-profile
       parameters:
       - name: include_credit_usage
@@ -171,6 +157,12 @@ components:
       description: 'OAuth 2.0 access token, used by Apollo partners building integrations.
 
         See the [OAuth 2.0 authorization flow](https://docs.apollo.io/docs/use-oauth-20-authorization-flow-to-access-apollo-user-information-partners).'
-x-harvested-from: https://docs.apollo.io/openapi/apollo-rest-api.json
-x-harvested-on: '2026-08-13'
-x-source-document: openapi/_original/apollo-io-apollo-rest-api-openapi.json
+x-readme:
+  headers:
+  - key: Cache-Control
+    value: no-cache
+  - key: Content-Type
+    value: application/json
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true
