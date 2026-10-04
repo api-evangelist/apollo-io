@@ -40,6 +40,15 @@ tags:
 - Conversation Intelligence
 - MCP
 - Software-as-a-Service
+- Data Enrichment
+- People Search
+- Company Search
+- Agents
+- Go-To-Market
+- Artificial Intelligence
+- B2B Sales
+- Lead Generation
+- Sales Platform
 tags_raw:
 - Sales Intelligence
 - Prospecting
@@ -51,6 +60,15 @@ tags_raw:
 - Conversation Intelligence
 - MCP
 - SaaS
+- Data Enrichment
+- People Search
+- Company Search
+- Agents
+- Go-To-Market
+- Artificial Intelligence
+- B2B Sales
+- Lead Generation
+- Sales Platform
 created: '2026-05-08'
 modified: '2026-08-13'
 specificationVersion: '0.23'
@@ -380,6 +398,9 @@ apis:
   - type: OpenAPI
     url: openapi/apollo-io-users-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/apollo-io-capability-edges.yml
+  name: Apollo.io Business Capability Map
 - type: License
   name: MIT
   url: https://github.com/apolloio/apollo-mcp-plugin/blob/main/LICENSE
@@ -487,6 +508,8 @@ common:
   - https://docs.apollo.io/docs/apollo-mcp
   - https://www.apollo.io/pricing
   updated: '2026-08-13'
+- url: https://www.apollo.io/magazine
+  type: Blog
 integrations:
 - name: Affiliate Partners
   url: https://www.apollo.io/partners
@@ -504,3 +527,5 @@ x-enrichment:
   status: enriched
   artifacts_added: 50
   pass: local-v1
+x-tags-removed:
+- API Documentation
