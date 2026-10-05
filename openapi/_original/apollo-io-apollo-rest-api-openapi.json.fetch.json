@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.apollo.io/openapi/apollo-rest-api.json",
+ "requested_url": "https://docs.apollo.io/openapi/apollo-rest-api.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 1233161,
+ "sha256": "e23f64e8016d2ff56a112eccd4cb37aec2322c705b4c8db3d2451cc1fe89ae41",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.988), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
