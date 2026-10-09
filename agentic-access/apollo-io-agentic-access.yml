@@ -1,22 +1,23 @@
-generated: '2026-08-13'
+generated: '2026-09-23'
 method: generated
 source: openapi/apollo-io-accounts-api-openapi.yml, openapi/apollo-io-analytics-api-openapi.yml,
   openapi/apollo-io-calls-api-openapi.yml, openapi/apollo-io-contacts-api-openapi.yml, openapi/apollo-io-conversations-api-openapi.yml,
   openapi/apollo-io-deals-api-openapi.yml, openapi/apollo-io-emailer-messages-api-openapi.yml,
   openapi/apollo-io-enrichment-api-openapi.yml, openapi/apollo-io-fields-api-openapi.yml, openapi/apollo-io-miscellaneous-api-openapi.yml,
-  openapi/apollo-io-search-api-openapi.yml, openapi/apollo-io-sequences-api-openapi.yml, openapi/apollo-io-tasks-api-openapi.yml
+  openapi/apollo-io-search-api-openapi.yml, openapi/apollo-io-sequences-api-openapi.yml, openapi/apollo-io-tasks-api-openapi.yml,
+  openapi/apollo-io-users-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 80
   by_action_class:
-    acting: 54
-    connected: 26
+    acting: 46
+    connected: 34
   by_consequence:
-    write: 49
+    write: 41
+    read: 34
     physical: 4
-    read: 26
     safety-critical: 1
   human_in_the_loop_required: 1
 operations:
@@ -56,18 +57,12 @@ operations:
   method: post
   operationId: search-for-accounts
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /accounts/bulk_create
   method: post
   operationId: bulk-create-accounts
@@ -142,18 +137,12 @@ operations:
   method: post
   operationId: sync-report
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /phone_calls/search
   method: get
   operationId: get_phone_callssearch
@@ -258,18 +247,12 @@ operations:
   method: post
   operationId: search-for-contacts
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /contacts/update_stages
   method: post
   operationId: update-contact-stage
@@ -350,18 +333,12 @@ operations:
   method: post
   operationId: search-conversations
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /conversations/{id}
   method: get
   operationId: get-conversations-info
@@ -498,18 +475,12 @@ operations:
   method: post
   operationId: get-email-content
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /emailer_messages/email_send_status
   method: post
   operationId: check-email-send-status
@@ -641,16 +612,6 @@ operations:
 - path: /users/search
   method: get
   operationId: get-a-list-of-users
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /users/api_profile
-  method: get
-  operationId: get-current-user-profile
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -886,18 +847,12 @@ operations:
   method: post
   operationId: search-for-sequences
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /emailer_campaigns/{sequence_id}/add_contact_ids
   method: post
   operationId: add-contacts-to-sequence
@@ -986,18 +941,12 @@ operations:
   method: post
   operationId: get-contact-sequence-activity
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /emailer_campaigns/{sequence_id}/approve
   method: post
   operationId: approve-sequence
@@ -1140,15 +1089,19 @@ operations:
   method: post
   operationId: search-tasks
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
+- path: /users/api_profile
+  method: get
+  operationId: get-current-user-profile
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
