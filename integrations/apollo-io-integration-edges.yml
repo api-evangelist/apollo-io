@@ -1,0 +1,441 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/apollo/integrations
+checked:
+- https://composio.dev/toolkits/apollo-io
+- https://monid.ai/tools/apollo-io
+- https://n8n.io/integrations/apollo-io/
+- https://n8n.io/integrations/apollo/
+- https://zapier.com/apps/apollo-io/integrations
+- https://zapier.com/apps/apollo/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: apollo
+  url: https://zapier.com/apps/apollo/integrations
+  external_url: https://www.apollo.io/
+  partner_tier: BRONZE
+  triggers:
+  - key: account_updated_resthook
+    label: Account Updated
+  - key: contact_updated_resthook
+    label: Contact Updated
+  - key: new_account_resthook
+    label: New Account
+  - key: new_contact_resthook
+    label: New Contact
+  actions:
+  - key: create_account
+    label: Create Account
+  - key: create_contact
+    label: Create Contact
+  - key: create_opportunity
+    label: Create Deal
+  - key: create_task
+    label: Create Task
+  - key: update_account
+    label: Update Account
+  - key: update_contact
+    label: Update Contact
+  - key: update_opportunity
+    label: Update Deal
+  - key: _zap_raw_request
+    label: API Request (Beta)
+  searches:
+  - key: find_contact
+    label: Find Contact
+edges:
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Pipedrive
+  partner: pipedrive
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/pipedrive
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://pipedrive.com/
+- partner_name: LinkedIn
+  partner: linkedin
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/linkedin
+  direction: third-party
+  category: Microsoft
+  partner_url: http://www.linkedin.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: LeadConnector
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/leadconnector
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.leadconnectorhq.com/
+- partner_name: monday.com
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: Attio
+  partner: attio
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/attio
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://attio.com/
+- partner_name: Instantly
+  partner: instantly-ai
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/instantly
+  direction: third-party
+  category: Email
+  partner_url: https://instantly.ai/
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: Brevo
+  partner: brevo
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/brevo
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://www.sendinblue.com/?utm_medium=plugin&utm_source=zapier
+- partner_name: Close
+  partner: close
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/close
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.close.com/?utm_source=Partner&utm_medium=Integration_Listing&utm_campaign=2025_Partnerships&utm_content=Home
+- partner_name: Gmail
+  partner: gmail
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: LinkedIn Ads
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/linkedin-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.linkedin.com/
+- partner_name: Microsoft Dynamics 365 CRM
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/microsoft-dynamics-crm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://dynamics.microsoft.com/
+- partner_name: Microsoft Outlook
+  partner: microsoft-outlook
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/microsoft-outlook
+  direction: third-party
+  category: Calendar
+  partner_url: https://outlook.live.com/
+- partner_name: Freshsales Suite
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/freshsales-suite
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.freshsales.io/
+- partner_name: Copper
+  partner: copper
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/copper
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://copper.com/?utm_source=zapier&utm_medium=zapier
+- partner_name: lemlist
+  partner: lemlist
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/lemlist
+  direction: third-party
+  category: Drip Emails
+  partner_url: https://lemlist.com/
+- partner_name: Clay
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/clay
+  direction: third-party
+  category: Spreadsheets
+  partner_url: https://clay.run/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Google Ads
+  partner: google-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/google-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://ads.google.com/
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: ClickUp
+  partner: clickup
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/clickup
+  direction: third-party
+  category: Project Management
+  partner_url: https://clickup.com/zapier
+- partner_name: Microsoft Excel
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/excel
+  direction: third-party
+  category: Microsoft
+  partner_url: https://zapier.com/office.com
+- partner_name: Typeform
+  partner: typeform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/typeform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.typeform.com/signup?utm_medium=referral&utm_source=zapier&utm_campaign=zapier_integration&utm_content=marketplace
+- partner_name: Calendly
+  partner: calendly
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/calendly
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://calendly.com/?utm_medium=partner&utm_source=zapier&utm_campaign=main_partner_page&utm_content=main_inbound_link
+- partner_name: Odoo CRM
+  partner: odoo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/odoo
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.odoo.com/
+- partner_name: RD Station
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apollo/integrations/rd-station
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.rdstation.com.br/
+templates:
+- title: Add new Apollo contacts to Google Sheets rows
+  url: https://zapier.com/apps/apollo/integrations/google-sheets/1202419/add-new-apollo-contacts-to-google-sheets-rows
+  apps:
+  - apollo
+  - google-sheets
+- title: Manage new Apollo contacts by creating or updating records in Attio
+  url: https://zapier.com/apps/apollo/integrations/attio/1641572/manage-new-apollo-contacts-by-creating-or-updating-records-in-attio
+  apps:
+  - apollo
+  - attio
+- title: Create/update Zoho CRM module entries for new Apollo contacts
+  url: https://zapier.com/apps/apollo/integrations/zoho-crm/1252532/createupdate-zoho-crm-module-entries-for-new-apollo-contacts
+  apps:
+  - apollo
+  - zoho-crm
+- title: Add or update new Apollo contacts into Brevo contacts
+  url: https://zapier.com/apps/apollo/integrations/brevo/1740347/add-or-update-new-apollo-contacts-into-brevo-contacts
+  apps:
+  - apollo
+  - brevo
+- title: Create contacts in Apollo when new rows are added in Google Sheets
+  url: https://zapier.com/apps/apollo/integrations/google-sheets/703614/create-contacts-in-apollo-when-new-rows-are-added-in-google-sheets
+  apps:
+  - google-sheets
+  - apollo
+- title: Add new Apollo contacts to Airtable as records
+  url: https://zapier.com/apps/airtable/integrations/apollo/1239893/add-new-apollo-contacts-to-airtable-as-records
+  apps:
+  - apollo
+  - airtable
+- title: Add new Apollo contacts to Mailchimp as subscribers
+  url: https://zapier.com/apps/apollo/integrations/mailchimp/1254516/add-new-apollo-contacts-to-mailchimp-as-subscribers
+  apps:
+  - apollo
+  - mailchimp
+- title: Add new Apollo contacts to your Google Ads customer list immediately
+  url: https://zapier.com/apps/apollo/integrations/google-ads/1601740/add-new-apollo-contacts-to-your-google-ads-customer-list-immediately
+  apps:
+  - apollo
+  - google-ads
+- title: Update and manage contacts in Brevo when contacts get updated in Apollo
+  url: https://zapier.com/apps/apollo/integrations/brevo/1766315/update-and-manage-contacts-in-brevo-when-contacts-get-updated-in-apollo
+  apps:
+  - apollo
+  - brevo
+- title: Create and update opportunities in LeadConnector for new contacts in Apollo
+  url: https://zapier.com/apps/apollo/integrations/leadconnector/1414062/create-and-update-opportunities-in-leadconnector-for-new-contacts-in-apollo
+  apps:
+  - apollo
+  - leadconnector
+- title: Update Google Ads contact list when contacts are updated in Apollo
+  url: https://zapier.com/apps/apollo/integrations/google-ads/1598504/update-google-ads-contact-list-when-contacts-are-updated-in-apollo
+  apps:
+  - apollo
+  - google-ads
+- title: Add new Apollo contacts to monday.com as items
+  url: https://zapier.com/apps/apollo/integrations/monday/1288533/add-new-apollo-contacts-to-mondaycom-as-items
+  apps:
+  - apollo
+  - monday
+template_total: 750
