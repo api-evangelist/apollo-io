@@ -144,7 +144,6 @@
   arazzo: null
 - slug: apollo-io-add-new-apollo-contacts-to-monday-com-as-items
   label: Add new Apollo contacts to monday.com as items
-  partner: monday-com
   partner_name: monday.com
   category: Project Management
   use_case: Add new Apollo contacts to monday.com as items
@@ -154,7 +153,7 @@
   evidence: https://zapier.com/apps/apollo/integrations/monday/1288533/add-new-apollo-contacts-to-mondaycom-as-items
   template: https://zapier.com/apps/apollo/integrations/monday/1288533/add-new-apollo-contacts-to-mondaycom-as-items
   source: template
-  status: pending-generation
+  status: pending-partner-spec
   arazzo: null
 - slug: apollo-io-hubspot
   label: HubSpot
@@ -254,7 +253,6 @@
   arazzo: null
 - slug: apollo-io-linkedin-ads
   label: LinkedIn Ads
-  partner: linkedin-ads
   partner_name: LinkedIn Ads
   category: Ads & Conversion
   type: marketplace
@@ -262,7 +260,7 @@
   channel: ipaas-usage
   evidence: https://zapier.com/apps/apollo/integrations/linkedin-ads
   source: edge
-  status: pending-generation
+  status: pending-partner-spec
   arazzo: null
 - slug: apollo-io-microsoft-dynamics-365-crm
   label: Microsoft Dynamics 365 CRM
@@ -359,7 +357,6 @@
   arazzo: null
 - slug: apollo-io-microsoft-excel
   label: Microsoft Excel
-  partner: microsoft-excel
   partner_name: Microsoft Excel
   category: Microsoft
   type: marketplace
@@ -367,7 +364,7 @@
   channel: ipaas-usage
   evidence: https://zapier.com/apps/apollo/integrations/excel
   source: edge
-  status: pending-generation
+  status: pending-partner-spec
   arazzo: null
 - slug: apollo-io-typeform
   label: Typeform
@@ -415,4 +412,16 @@
   evidence: https://zapier.com/apps/apollo/integrations/rd-station
   source: edge
   status: pending-partner-spec
+  arazzo: null
+- slug: apollo-io-hightouch
+  label: Hightouch
+  partner: hightouch
+  partner_name: Hightouch
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://hightouch.com/docs/destinations/apollo
+  source: edge
+  relationship: connector-coverage
+  status: not-a-workflow
   arazzo: null

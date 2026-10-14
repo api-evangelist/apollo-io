@@ -4,6 +4,7 @@ source:
 - https://zapier.com/apps/apollo/integrations
 checked:
 - https://composio.dev/toolkits/apollo-io
+- https://hightouch.com/docs/destinations/apollo
 - https://monid.ai/tools/apollo-io
 - https://n8n.io/integrations/apollo-io/
 - https://n8n.io/integrations/apollo/
@@ -377,6 +378,33 @@ edges:
   direction: third-party
   category: Marketing Automation
   partner_url: http://www.rdstation.com.br/
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/apollo
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - apollo
+      status: released
+      sync_types:
+      - Accounts
+      - Contacts
+      - Sequences
+      sync_modes:
+      - insert
+      - remove
+      - update
+      - upsert
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
 templates:
 - title: Add new Apollo contacts to Google Sheets rows
   url: https://zapier.com/apps/apollo/integrations/google-sheets/1202419/add-new-apollo-contacts-to-google-sheets-rows
