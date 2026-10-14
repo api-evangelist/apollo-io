@@ -8,6 +8,7 @@ checked:
 - https://monid.ai/tools/apollo-io
 - https://n8n.io/integrations/apollo-io/
 - https://n8n.io/integrations/apollo/
+- https://registry.modelcontextprotocol.io/v0/servers
 - https://zapier.com/apps/apollo-io/integrations
 - https://zapier.com/apps/apollo/integrations
 summary: null
@@ -404,6 +405,37 @@ edges:
       - update
       - upsert
   detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=io.github.apolloio
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: io.github.apolloio/apollo-mcp
+    register_id: io.github.apolloio/apollo-mcp
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  mcp_registry:
+    servers:
+    - io.github.apolloio/apollo-mcp
+    hosted_remote: 1
+    local_package: 0
+    transports:
+      streamable-http: 1
+    auth_declared: 0
+    catalog_declared: true
+    namespace_domains:
+    - apollo.io
+  matched_by:
+  - remote-domain
+  detected_by: sweep-agent-tools.py
   first_seen: '2026-10-14'
 templates:
 - title: Add new Apollo contacts to Google Sheets rows
