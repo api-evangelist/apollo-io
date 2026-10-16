@@ -2,8 +2,8 @@
 kin_checks:
   slug: apollo-io
   schema_version: 0.23.0
-  scored_at: '2026-10-03'
-  run_ts: 2026-10-03T024842
+  scored_at: '2026-10-11'
+  run_ts: 2026-10-11T110117
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.23.0.yml was earned; counts
     below let you verify that.
@@ -11,8 +11,8 @@ kin_checks:
     total: 153
     earned: 46
     partial: 28
-    missed: 53
-    na: 26
+    missed: 55
+    na: 24
   checks:
   - id: newsroom_present
     status: missed
@@ -88,6 +88,10 @@ kin_checks:
   - id: reg_support_lifetime
     status: missed
   - id: reg_accessibility_conformance
+    status: missed
+  - id: reg_training_data_summary
+    status: missed
+  - id: reg_ai_transparency
     status: missed
   - id: reg_global_privacy_control
     status: missed
@@ -264,7 +268,6 @@ kin_checks:
   - os_contribution_guide
   - os_releases
   - os_security_policy
-  - reg_ai_transparency
   - reg_camara_conformance
   - reg_certification_signal
   - reg_consent_model
@@ -273,7 +276,6 @@ kin_checks:
   - reg_mandate_verified
   - reg_pci_sca
   - reg_smart_configuration
-  - reg_training_data_summary
   - reg_write_surface
   - security_schemes
   - server_bindings
