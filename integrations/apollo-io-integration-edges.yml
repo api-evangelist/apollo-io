@@ -4,6 +4,8 @@ source:
 - https://zapier.com/apps/apollo/integrations
 checked:
 - https://composio.dev/toolkits/apollo-io
+- https://fivetran.com/docs-sitemap.xml
+- https://fivetran.com/docs/connectors/partner-built-program
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
 - https://hightouch.com/docs/destinations/apollo
 - https://monid.ai/tools/apollo-io
@@ -518,6 +520,32 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Fivetran
+  partner: fivetran
+  partner_match: aggregator
+  type: marketplace
+  marketplace: fivetran-connectors
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://fivetran.com/docs/connectors/applications/apollo
+  category: null
+  contract_reference:
+    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
+    spec_file: null
+    role: elt-connector:fivetran
+    registered_name: Apollo
+    matched_domain: apollo.io
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connector_paths:
+    - connectors/applications/apollo
+    vendor_link: https://www.apollo.io/
+    builder: Fivetran
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
 templates:
 - title: Add new Apollo contacts to Google Sheets rows
   url: https://zapier.com/apps/apollo/integrations/google-sheets/1202419/add-new-apollo-contacts-to-google-sheets-rows
