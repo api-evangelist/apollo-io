@@ -546,7 +546,7 @@
     - connectors/applications/apollo
     vendor_link: https://www.apollo.io/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: apollo-io-slack-own
   label: Slack (own)
