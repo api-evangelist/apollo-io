@@ -34,13 +34,12 @@ tags:
 - Prospecting
 - Engagement
 - B2B Data
-- Enrichment
+- Data Enrichment
 - CRM
 - Sales Engagement
 - Conversation Intelligence
 - MCP
 - Software-as-a-Service
-- Data Enrichment
 - People Search
 - Company Search
 - Agents
@@ -80,7 +79,7 @@ apis:
   humanURL: https://docs.apollo.io/reference/people-enrichment
   baseURL: https://api.apollo.io/api/v1
   tags:
-  - Enrichment
+  - Data Enrichment
   - People
   - Organization
   - Bulk
