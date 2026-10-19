@@ -3,7 +3,9 @@ method: searched
 source:
 - https://zapier.com/apps/apollo/integrations
 checked:
+- https://api.nuget.org/v3
 - https://composio.dev/toolkits/apollo-io
+- https://crates.io/api/v1
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/connectors/partner-built-program
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
@@ -11,8 +13,13 @@ checked:
 - https://monid.ai/tools/apollo-io
 - https://n8n.io/integrations/apollo-io/
 - https://n8n.io/integrations/apollo/
+- https://proxy.golang.org
+- https://pypi.org/pypi
 - https://registry.modelcontextprotocol.io/v0/servers
+- https://registry.npmjs.org
 - https://registry.npmjs.org/-/v1/search?text=keywords:n8n-community-node-package
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/apollo-io/integrations
 - https://zapier.com/apps/apollo/integrations
@@ -582,6 +589,36 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Zoom app
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/@apolloio/n8n-nodes-apollo
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@apolloio/n8n-nodes-apollo'
+      version: 0.3.1
+      released: '2026-07-17'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@apolloio/n8n-nodes-apollo
+      repo_leg: github-org:apolloio
+      publisher_leg: email:apollo.io
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 templates:
 - title: Add new Apollo contacts to Google Sheets rows
   url: https://zapier.com/apps/apollo/integrations/google-sheets/1202419/add-new-apollo-contacts-to-google-sheets-rows
