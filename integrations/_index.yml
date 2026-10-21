@@ -255,44 +255,6 @@
     builder: Fivetran
   status: not-a-workflow
   arazzo: null
-- slug: apollo-io-n8n-n8n-community
-  label: n8n (n8n-community)
-  partner: n8n
-  partner_name: n8n (n8n-community)
-  type: marketplace
-  marketplace: n8n-community
-  channel: partner-built
-  evidence: https://www.npmjs.com/package/@apolloio/n8n-nodes-apollo
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: apollo-io-slack-own
-  label: Slack (own)
-  partner: slack
-  partner_name: Slack (own)
-  category: Slack app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://slack.com/marketplace/A053232Q92N-apollo
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: apollo-io-zoom-own
-  label: Zoom (own)
-  partner: zoom
-  partner_name: Zoom (own)
-  category: Zoom app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.zoom.us/apps/fukGmgh7RxSjt9VIcJlyIw
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: apollo-io-zapier
   label: Zapier
   partner: zapier
@@ -761,5 +723,56 @@
       an ownership and participation record, not conformance or certification'
     detected_by: sweep-vc-portfolios.py
     detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
+- slug: apollo-io-n8n-n8n-community
+  label: n8n (n8n-community)
+  partner: n8n
+  partner_name: n8n (n8n-community)
+  type: marketplace
+  marketplace: n8n-community
+  channel: partner-built
+  evidence: https://www.npmjs.com/package/@apolloio/n8n-nodes-apollo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: apollo-io-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A053232Q92N-apollo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: apollo-io-zoom-own
+  label: Zoom (own)
+  partner: zoom
+  partner_name: Zoom (own)
+  category: Zoom app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.zoom.us/apps/fukGmgh7RxSjt9VIcJlyIw
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: apollo-io-hubspot-own
+  label: HubSpot (own)
+  partner: hubspot
+  partner_name: HubSpot (own)
+  category: SALES_INTELLIGENCE
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/apollo-enrichment-1353872
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
