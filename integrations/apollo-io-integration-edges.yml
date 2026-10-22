@@ -46,6 +46,7 @@ checked:
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
 - hubspot/integrations/hubspot-integration-edges.yml
+- pipedrive/integrations/pipedrive-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -831,6 +832,23 @@ edges:
   detected: '2026-10-21'
   detected_by: mirror-platform-listings.py
   category: SALES_INTELLIGENCE
+- partner_name: Pipedrive (own)
+  partner: pipedrive
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.pipedrive.com/en/marketplace/app/apollo-io/c1e7b5c186a0fe35
+  mirror_of: pipedrive/integrations/pipedrive-integration-edges.yml
+  apps:
+  - Apollo.io
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Attract new leads
 templates:
 - title: Add new Apollo contacts to Google Sheets rows
   url: https://zapier.com/apps/apollo/integrations/google-sheets/1202419/add-new-apollo-contacts-to-google-sheets-rows

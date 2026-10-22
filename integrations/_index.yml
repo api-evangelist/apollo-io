@@ -776,3 +776,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: apollo-io-pipedrive-own
+  label: Pipedrive (own)
+  partner: pipedrive
+  partner_name: Pipedrive (own)
+  category: Attract new leads
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.pipedrive.com/en/marketplace/app/apollo-io/c1e7b5c186a0fe35
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
