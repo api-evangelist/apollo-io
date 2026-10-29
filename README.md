@@ -1,4 +1,4 @@
-# Apollo.io (apollo-io)
+# Apollo.io
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,385 +64,192 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Apollo.io is a sales intelligence and engagement platform combining a 270M+ contact database with email and call sequencing. The Apollo REST API exposes people search & enrichment, organization search & enrichment, contacts, accounts, deals, sequences, email accounts, calls, tasks, meetings, lists, and webhooks.
+Apollo.io is a sales intelligence and go-to-market platform combining a database of 240M+ contacts and 30M+ companies with enrichment, sequencing, dialing and conversation intelligence. Its REST API publishes 80 operations at https://api.apollo.io/api/v1 across people and company search, single and bulk enrichment, CRM accounts, contacts and deals, outreach sequences, one-off emails, tasks, calls, conversations, custom fields, lists, analytics and usage stats — described by a first-party OpenAPI 3.1.0 document. Apollo also ships a hosted MCP server, a first-party CLI, and provider-published agent skills for both.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/apollo-io/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/apollo-io/refs/heads/main/apis.yml)
+**Areas:** Sales Intelligence · Prospecting · Engagement · B2B Data · Data Enrichment · CRM · Sales Engagement · Conversation Intelligence · MCP · Software-as-a-Service · People Search · Company Search
 
-## Tags
+## Apollo.io on APIs.io
 
-- Sales Intelligence
-- Prospecting
-- Engagement
-- B2B Data
-- Enrichment
-- SaaS
+Everything profiled for Apollo.io is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apollo-io/](https://apis.io/providers/apollo-io/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (15)
 
-- **Created:** 2026-05-08
-- **Modified:** 2026-05-19
+- [Apollo.io Enrichment API](https://apis.io/apis/apollo-io/apollo-io-enrichment-api/) — People and company enrichment, single and bulk. 4 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Search API](https://apis.io/apis/apollo-io/apollo-io-search-api/) — Database search across Apollo's people, company, job-posting and news data. 6 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Accounts API](https://apis.io/apis/apollo-io/apollo-io-accounts-api/) — Workspace CRM accounts — create, update, search, stages and ownership. 8 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Contacts API](https://apis.io/apis/apollo-io/apollo-io-contacts-api/) — Workspace CRM contacts — create, update, search, stages and ownership. 10 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Deals API](https://apis.io/apis/apollo-io/apollo-io-deals-api/) — Deals (opportunities), their stages, and the deals attached to a contact. 5 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Sequences API](https://apis.io/apis/apollo-io/apollo-io-sequences-api/) — Outreach sequences — create, update, approve, abort, archive, enrollment and activity. 12 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Emailer Messages API](https://apis.io/apis/apollo-io/apollo-io-emailer-messages-api/) — One-off email drafting, sending, send status and content retrieval. 4 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Tasks API](https://apis.io/apis/apollo-io/apollo-io-tasks-api/) — Tasks against contacts, accounts and deals — create, search, update, complete, skip. 7 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Calls API](https://apis.io/apis/apollo-io/apollo-io-calls-api/) — Phone-call records — log, search and update dialer activity. 3 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Conversations API](https://apis.io/apis/apollo-io/apollo-io-conversations-api/) — Conversation intelligence — search recorded calls and meetings, read insights, export. 4 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Analytics API](https://apis.io/apis/apollo-io/apollo-io-analytics-api/) — The Query Analytics Report endpoint — metrics, dimensions and filters over engagement data. 1 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Fields API](https://apis.io/apis/apollo-io/apollo-io-fields-api/) — Field and custom-field definitions across contacts, accounts and opportunities. 4 operation(s) from the published Apollo OpenAPI.
+- [Apollo.io Miscellaneous API](https://apis.io/apis/apollo-io/apollo-io-miscellaneous-api/) — Users, email accounts, lists and labels, notes, usage stats and webhook results. 12 operation(s) from the published Apollo OpenAPI.
+- [Apollo MCP Server](https://apis.io/apis/apollo-io/apollo-mcp/) — Apollo's hosted Model Context Protocol server. A remote Streamable-HTTP endpoint at https://mcp.apollo.io/mcp, authenticated with OAuth 2.0 and no API key,…
+- [Apollo.io Users API](https://apis.io/apis/apollo-io/apollo-io-users-api/) — The Users API from Apollo.io — 1 operation(s) for users.
 
-## APIs
+### Published properties
 
-### Apollo People Search API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Search Apollo's 270M+ person database by title, location, seniority, function, industry, technology stack, and other filters. Returns matching people with optional enrichment fields.
+#### AsyncAPI (1)
 
-#### Tags
+Event-driven and webhook contracts.
 
-- People
-- Search
-- Prospecting
+- [Apollo Io Webhooks](https://apis.io/asyncapis/apollo-io/apollo-io-webhooks/)
 
-#### Properties
+#### MCP servers (1)
 
-- [Documentation](https://docs.apollo.io/)
-- [API Reference](https://docs.apollo.io/reference/people-search)
-- [OpenAPI](openapi/apollo-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Model Context Protocol servers that expose the API to agents.
 
-### Apollo Organization Search API
+- [Apollo.io](https://apis.io/servers/apollo-io/apollo/)
 
-Search Apollo's organization database by industry, headcount, revenue, technology stack, location, and funding stage.
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Organizations
-- Companies
-- Search
+- [Apollo Io Agentic Access](https://apis.io/agentic-access/apollo-io/apollo-io-agentic-access/)
 
-#### Properties
+#### Collections (14)
 
-- [API Reference](https://docs.apollo.io/reference/organization-search)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### Apollo People Enrichment API
+- [Apollo.io API](https://apis.io/collections/apollo-io/open-apollo-enrich/)
+- [Apollo.io Accounts API](https://apis.io/collections/apollo-io/open-apollo-io-accounts-api/)
+- [Apollo.io Analytics API](https://apis.io/collections/apollo-io/open-apollo-io-analytics-api/)
+- [Apollo.io Calls API](https://apis.io/collections/apollo-io/open-apollo-io-calls-api/)
+- [Apollo.io Contacts API](https://apis.io/collections/apollo-io/open-apollo-io-contacts-api/)
+- [Apollo.io Conversations API](https://apis.io/collections/apollo-io/open-apollo-io-conversations-api/)
+- [Apollo.io Deals API](https://apis.io/collections/apollo-io/open-apollo-io-deals-api/)
+- [Apollo.io Emailer Messages API](https://apis.io/collections/apollo-io/open-apollo-io-emailer-messages-api/)
+- [Apollo.io Enrichment API](https://apis.io/collections/apollo-io/open-apollo-io-enrichment-api/)
+- [Apollo.io Fields API](https://apis.io/collections/apollo-io/open-apollo-io-fields-api/)
+- [Apollo.io Miscellaneous API](https://apis.io/collections/apollo-io/open-apollo-io-miscellaneous-api/)
+- [Apollo.io Search API](https://apis.io/collections/apollo-io/open-apollo-io-search-api/)
+- [Apollo.io Sequences API](https://apis.io/collections/apollo-io/open-apollo-io-sequences-api/)
+- [Apollo.io Tasks API](https://apis.io/collections/apollo-io/open-apollo-io-tasks-api/)
 
-Enrich a known person record by email, LinkedIn URL, name + company, or other identifiers; returns work email, mobile, title, social profiles, and tenure.
+#### Overlays (13)
 
-#### Tags
+OpenAPI overlays, including conversational phrasing for each operation.
 
-- People
-- Enrichment
+- [Apollo Io Accounts Overlay](https://apis.io/overlays/apollo-io/apollo-io-accounts-overlay/)
+- [Apollo Io Analytics Overlay](https://apis.io/overlays/apollo-io/apollo-io-analytics-overlay/)
+- [Apollo Io Calls Overlay](https://apis.io/overlays/apollo-io/apollo-io-calls-overlay/)
+- [Apollo Io Contacts Overlay](https://apis.io/overlays/apollo-io/apollo-io-contacts-overlay/)
+- [Apollo Io Conversations Overlay](https://apis.io/overlays/apollo-io/apollo-io-conversations-overlay/)
+- [Apollo Io Deals Overlay](https://apis.io/overlays/apollo-io/apollo-io-deals-overlay/)
+- [Apollo Io Emailer Messages Overlay](https://apis.io/overlays/apollo-io/apollo-io-emailer-messages-overlay/)
+- [Apollo Io Enrichment Overlay](https://apis.io/overlays/apollo-io/apollo-io-enrichment-overlay/)
+- [Apollo Io Fields Overlay](https://apis.io/overlays/apollo-io/apollo-io-fields-overlay/)
+- [Apollo Io Miscellaneous Overlay](https://apis.io/overlays/apollo-io/apollo-io-miscellaneous-overlay/)
+- [Apollo Io Search Overlay](https://apis.io/overlays/apollo-io/apollo-io-search-overlay/)
+- [Apollo Io Sequences Overlay](https://apis.io/overlays/apollo-io/apollo-io-sequences-overlay/)
+- [Apollo Io Tasks Overlay](https://apis.io/overlays/apollo-io/apollo-io-tasks-overlay/)
 
-#### Properties
+#### Security (3)
 
-- [API Reference](https://docs.apollo.io/reference/people-enrichment)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Apollo Organization Enrichment API
+- [Apollo Io Authentication](https://apis.io/security/apollo-io/apollo-io-authentication/)
+- [Apollo Io Domain Security](https://apis.io/security/apollo-io/apollo-io-domain-security/)
+- [Apollo Io Trust Center](https://apis.io/security/apollo-io/apollo-io-trust-center/)
 
-Enrich a known organization by domain or LinkedIn URL; returns headcount, industry, revenue, funding, technologies, and location.
+#### OAuth scopes (1)
 
-#### Tags
+The permissions the API asks for.
 
-- Organizations
-- Enrichment
+- [Apollo Io Scopes](https://apis.io/scopes/apollo-io/apollo-io-scopes/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [API Reference](https://docs.apollo.io/reference/organization-enrichment)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-### Apollo Bulk People Enrichment API
+- [Apollo Io Plans Pricing](https://apis.io/plans/apollo-io/apollo-io-plans-pricing/)
 
-Enrich up to 10 person records in a single API call to reduce round-trip and credit cost.
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Bulk Enrichment
-- People
+- [Apollo Io Rate Limits](https://apis.io/rate-limits/apollo-io/apollo-io-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [API Reference](https://docs.apollo.io/reference/bulk-people-enrichment)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### Apollo Bulk Organization Enrichment API
+- [Apollo Io Finops](https://apis.io/finops/apollo-io/apollo-io-finops/)
 
-Enrich multiple organizations in a single API call.
+## Where to find this API
 
-#### Tags
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- Bulk Enrichment
-- Organizations
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/bulk-organization-enrichment)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Contacts API
-
-Manage contacts in your Apollo CRM workspace — create, update, delete, and bulk-import contacts with custom fields and tags.
-
-#### Tags
-
-- Contacts
-- CRM
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/contacts)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Accounts API
-
-Manage accounts (companies) in your Apollo CRM with stage, ownership, and custom fields.
-
-#### Tags
-
-- Accounts
-- CRM
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/accounts)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Deals API
-
-Manage deals (opportunities) attached to accounts and contacts, including stage, value, probability, and custom fields.
-
-#### Tags
-
-- Deals
-- Opportunities
-- Pipeline
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/deals)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Sequences API
-
-Manage outreach sequences (cadences) and add or remove contacts as sequence subscribers; trigger sends and pause/resume schedules.
-
-#### Tags
-
-- Sequences
-- Cadences
-- Outreach
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/sequences)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Email Accounts API
-
-Manage connected email accounts (Gmail / Outlook / SMTP) used for outbound sequence sends and inbox sync.
-
-#### Tags
-
-- Email Accounts
-- SMTP
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/email-accounts)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Emails API
-
-Read sent / received email metadata and tracking events (open, click, reply, bounce) for sequence emails.
-
-#### Tags
-
-- Emails
-- Tracking
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/emails)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Calls API
-
-Log inbound and outbound calls with duration, recording URLs, transcripts, and disposition outcomes.
-
-#### Tags
-
-- Calls
-- Telephony
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/calls)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Tasks API
-
-Manage user tasks tied to contacts and accounts.
-
-#### Tags
-
-- Tasks
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/tasks)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Meetings API
-
-Manage meetings booked via Apollo's Meetings (scheduling) feature and synced from connected calendar accounts.
-
-#### Tags
-
-- Meetings
-- Scheduling
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/meetings)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Custom Fields API
-
-Define and read custom field schemas across people, organizations, contacts, accounts, and deals.
-
-#### Tags
-
-- Custom Fields
-- Metadata
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/custom-fields)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Lists API
-
-Manage saved lists (static and dynamic) for segmenting people and accounts and feeding them into sequences and dialer queues.
-
-#### Tags
-
-- Lists
-- Segments
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/lists)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Tags API
-
-Read, create, and apply tags to contacts and accounts for categorization and filtering.
-
-#### Tags
-
-- Tags
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/tags)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Users API
-
-Manage users (sales reps, managers) and their roles within the Apollo workspace.
-
-#### Tags
-
-- Users
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/users)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Analytics API
-
-Pull aggregated activity, sequence performance, dialer, and pipeline analytics for reporting use cases.
-
-#### Tags
-
-- Analytics
-- Reporting
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/analytics)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo API Usage API
-
-Read your workspace's API usage and remaining credit balance across hourly, daily, and monthly windows.
-
-#### Tags
-
-- Usage
-- Credits
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/api-usage)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apollo Webhooks API
-
-Subscribe to Apollo events (contact.created, sequence.added, email.opened, call.completed) for downstream automation.
-
-#### Tags
-
-- Webhooks
-- Events
-
-#### Properties
-
-- [API Reference](https://docs.apollo.io/reference/webhooks)
-- [Postman Collection](collections/apollo-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apollo-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/apolloio)
 - [Website](https://www.apollo.io/)
 - [Documentation](https://docs.apollo.io/)
-- [API Reference](https://docs.apollo.io/reference)
+- [Getting started](https://docs.apollo.io/docs/build-with-apollo)
+- [API reference](https://docs.apollo.io/reference/apollo-api)
 - [Pricing](https://www.apollo.io/pricing)
-- [Login](https://app.apollo.io/)
-- [Status Page](https://status.apollo.io/)
-- [Blog](https://www.apollo.io/blog)
+- [Sign up](https://www.apollo.io/lp/sign-up)
 - [Support](https://knowledge.apollo.io/)
-- [GitHub Organization](https://github.com/apolloio)
-- [Privacy Policy](https://www.apollo.io/privacy-policy)
-- [Terms of Service](https://www.apollo.io/terms)
-- [Authentication](https://docs.apollo.io/reference/authentication)
-- [Rate Limits](https://docs.apollo.io/reference/rate-limits)
-- [Webhooks](https://docs.apollo.io/reference/webhooks)
-- [Plans](plans/apollo-io-plans-pricing.yml)
-- [Rate Limits](rate-limits/apollo-io-rate-limits.yml)
-- [Fin Ops](finops/apollo-io-finops.yml)
-- [Features](undefined)
-- [Integrations](https://www.apollo.io/partners)
-- [M C P Server](https://github.com/apolloio/apollo-mcp-plugin)
-- [L L Ms Txt](https://docs.apollo.io/llms.txt)
+- [Blog](https://www.apollo.io/blog)
+- [Compliance](https://trust.apollo.io/)
+- [Terms of service](https://www.apollo.io/terms/api)
+- [Privacy policy](https://www.apollo.io/privacy-policy)
+- [GitHub](https://github.com/apolloio)
+- [Status](https://status.apollo.io/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 63.6** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 64.2 |
+| Contract governance | 4.5 |
+| Operational transparency | 50.0 |
+| Developer ergonomics | 52.4 |
+| Access clarity | 92.1 |
+
+**Agent readiness 59.2** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 36.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apollo-io/](https://apis.io/providers/apollo-io/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apollo.io: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apollo-io/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
